@@ -1,101 +1,102 @@
-import Image from "next/image";
+import { auth } from "@/server/auth";
+import { redirect } from "next/navigation";
+import LogoutButton from "@/components/auth/logout-button";
+import Link from "next/link";
+import { title, subtitle } from "@/components/primitives";
+import { SearchIcon } from "@/components/icons";
+import { Kbd } from "@nextui-org/kbd";
+import { Input } from "@nextui-org/input";
+import Midsections from "../components/Midsections";
+import { Navbar } from "@/components/navbar";
+import Footer from "@/components/Footer";
+import  NavbarMenuToggle from "@/components/textnav"
 
-export default function Home() {
+
+
+
+export default async function Home() {
+  const session = await auth();
+  const searchInput = (
+    <Input
+      aria-label="Search"
+      classNames={{
+        inputWrapper: "bg-default-100",
+        input: "text-sm",
+      }}
+      endContent={
+        <Kbd className="hidden lg:inline-block" keys={["command"]}></Kbd>
+      }
+      labelPlacement="outside"
+      placeholder="Search..."
+      startContent={
+        <SearchIcon className="text-base text-default-400 pointer-events-none flex-shrink-0" />
+      }
+      type="search"
+    />
+  );
+  // if (!session) {
+  //   redirect("/login");
+  // }
+
+
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+    <div>
+      <main className="w-full min-h-screen">
+        <Navbar />
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
+        {/* Section with background image and text */}
+        <section
+          className="w-full h-screen flex flex-col items-center justify-center gap-4 bg-cover bg-center"
+          style={{ backgroundImage: 'url(/assets/images/prop3.webp)' }}
+        >
+          <div className="inline-block max-w-xl text-center pt-16 text-white">
+            <span className={title()}>Make&nbsp;</span>
+            <span className={title({ color: "violet" })}>beautiful&nbsp;</span>
+            <br />
+            <span className={title()}>
+              websites regardless of your design experience.
+            </span>
+            <div className={subtitle({ class: "mt-4 text-white" })} >
+              Beautiful, fast, and modern React UI library.
+
+            </div>
+          </div>
+
+          {/* /* Your search input */}
+          <div className="mt-8 rounded-xl">{searchInput}</div>
+        </section>
+
+        {/* /* Midsections or additional content below the hero */}
+        <Midsections />
+        <Footer />
+
       </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+
+      <nav className=" flex justify-center w-full h-20px">
+        <ul className="flex items-center gap-x-20">
+          <li>
+            <Link href="/login">
+              Sign-up
+            </Link>
+          </li>
+          <li>
+            <Link href="/register">
+              register
+            </Link>
+          </li>
+          <li>
+            <Link href="/login">
+              contact
+            </Link>
+          </li>
+          <li>
+            <LogoutButton />
+
+          </li>
+        </ul>
+
+      </nav>
+      <h1 className="flex text-4xl  items-center">this is home page</h1>
     </div>
   );
 }
