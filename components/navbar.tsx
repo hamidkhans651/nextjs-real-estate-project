@@ -79,7 +79,7 @@ export const Navbar = () => {
             ))}
           </ul>
         </NavbarContent>
-        {/* <NavbarContent as="div" justify="end">
+        <NavbarContent as="div"  justify="end" className="hidden md:flex ">
           <Dropdown placement="bottom-end">
             <DropdownTrigger>
               <Avatar
@@ -97,8 +97,8 @@ export const Navbar = () => {
                 <p className="font-semibold">Signed in as</p>
                 <p className="font-semibold">zoey@example.com</p>
               </DropdownItem>
-              <DropdownItem key="settings">My Settings</DropdownItem>
-              <DropdownItem key="team_settings">Team Settings</DropdownItem>
+              <DropdownItem href="dashboard" key="settings">My Dashboard</DropdownItem>
+              <DropdownItem href="/register" key="P"> </DropdownItem>
               <DropdownItem key="analytics">Analytics</DropdownItem>
               <DropdownItem key="system">System</DropdownItem>
               <DropdownItem key="configurations">Configurations</DropdownItem>
@@ -108,7 +108,7 @@ export const Navbar = () => {
               </DropdownItem>
             </DropdownMenu>
           </Dropdown>
-        </NavbarContent> */}
+        </NavbarContent>
 
         {/* Right-side Content (Theme switch, search, etc.) */}
         <NavbarContent className="hidden sm:flex basis-1/5 sm:basis-full " justify="end">

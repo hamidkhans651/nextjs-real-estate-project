@@ -19,20 +19,12 @@ import { Button } from "@/components/ui/button";
 
 export const Step2Schema = z.object({
   skillLevel: z.enum([
-    "Beginner",
-    "Intermediate",
-    "Advanced",
-    "Expert",
-    "Master",
+    "Buyer", "Seller", "Realtor", "Agent", "Marketer",
   ]),
 });
 
 const skillLevels = [
-  "Beginner",
-  "Intermediate",
-  "Advanced",
-  "Expert",
-  "Master",
+  "Buyer", "Seller", "Realtor", "Agent", "Marketer",
 ];
 
 interface StepTwoProps {
@@ -52,13 +44,7 @@ const StepTwo = ({ onNext, onBack }: StepTwoProps) => {
   };
   return (
     <div>
-      <h3 className="text-3xl from-bold">
-        Developer Skill Level
-      </h3>
-      <p className="text-gray-500 text-sm mt-3">
-        💪 Every expert was once a beginner. Where do you
-        stand?
-      </p>
+
       <div className="mt-10">
         <Form {...form}>
           <form
@@ -71,7 +57,7 @@ const StepTwo = ({ onNext, onBack }: StepTwoProps) => {
               render={({ field }) => (
                 <FormItem className="space-y-3">
                   <FormLabel>
-                    What is your skill level?
+                    <h3 className="text-3xl">Who are you?</h3>
                   </FormLabel>
                   <FormControl>
                     <RadioGroup

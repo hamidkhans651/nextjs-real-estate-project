@@ -31,14 +31,9 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-
   return (
     <html suppressHydrationWarning lang="en">
       <head />
-
-      <header>
-
-      </header>
       <body
         className={clsx(
           "min-h-screen bg-background font-sans antialiased",
@@ -46,19 +41,14 @@ export default function RootLayout({
         )}
       >
         <Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
-          {/* Add your Navbar */}
-
+     
 
           {/* Main content */}
-          <main>{children}
-
-          </main>
+          <main>{children}</main>
 
           {/* Footer */}
         </Providers>
       </body>
     </html>
-
-
   );
 }

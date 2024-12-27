@@ -7,13 +7,10 @@ import { db } from "../db";
 import { eq } from "drizzle-orm";
 import { users } from "../schema";
 
-
-
-
 export const RegisterAccount = actionClient
   .schema(RegisterSchema)
   .action(
-    async ({ parsedInput: { email, password, lastName, firstName, skillLevel, location } }) => {
+    async ({ parsedInput: { email, password, lastName, firstName, location } }) => {
       const hashedPassword = await bcrypt.hash(password, 10)
 
       const existingUser = await db.query.users.findFirst({
@@ -30,7 +27,6 @@ export const RegisterAccount = actionClient
         location: location,
         email: email,
         password: hashedPassword,
-        skillLevel: skillLevel,
       });
 
       return {success: "Account created successfully"}

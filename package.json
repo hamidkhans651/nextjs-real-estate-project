@@ -12,7 +12,7 @@
   "dependencies": {
     "@auth/drizzle-adapter": "^1.7.4",
     "@hookform/resolvers": "^3.9.1",
-    "@neondatabase/serverless": "^0.9.5",
+    "@neondatabase/serverless": "^0.10.4",
     "@nextui-org/autocomplete": "^2.3.8",
     "@nextui-org/button": "^2.0.38",
     "@nextui-org/card": "^2.2.8",
@@ -47,7 +47,7 @@
     "clsx": "^2.1.1",
     "dotenv": "^16.4.7",
     "drizzle-kit": "^0.30.1",
-    "drizzle-orm": "^0.33.0",
+    "drizzle-orm": "^0.38.3",
     "framer-motion": "^11.15.0",
     "lucide-react": "^0.438.0",
     "next": "15.1.2",

@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-
 import StepOne from "./step-one";
 import { Progress } from "@/components/ui/progress";
 import StepTwo from "./step-two";
@@ -101,7 +100,7 @@ export default function MultiStepForm() {
           href="/login"
           className="text-blue-600 hover:underline"
         >
-          Log In
+        Log In
         </Link>
       </p>
     </div>

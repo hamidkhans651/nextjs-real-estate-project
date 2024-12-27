@@ -34,13 +34,13 @@ export default async function Home() {
       type="search"
     />
   );
-  // if (!session) {
-  //   redirect("/login");
-  // }
+  if (!session) {
+    redirect("/login");
+  }
 
 
   return (
-    <div>
+    <main>
       <main className="w-full min-h-screen">
         <Navbar />
 
@@ -97,6 +97,6 @@ export default async function Home() {
 
       </nav>
       <h1 className="flex text-4xl  items-center">this is home page</h1>
-    </div>
+    </main>
   );
 }

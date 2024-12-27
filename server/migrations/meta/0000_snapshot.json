@@ -1,5 +1,5 @@
 {
-  "id": "693bb523-b4f0-4109-a6ad-631afe917943",
+  "id": "731c606f-b588-498e-8169-4dd1840bb68a",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "7",
   "dialect": "postgresql",
@@ -50,37 +50,35 @@
           "type": "text",
           "primaryKey": false,
           "notNull": false
-        },
-        "skill_level": {
-          "name": "skill_level",
-          "type": "skill_level",
-          "typeSchema": "public",
-          "primaryKey": false,
-          "notNull": true,
-          "default": "'Beginner'"
         }
       },
       "indexes": {},
       "foreignKeys": {},
       "compositePrimaryKeys": {},
-      "uniqueConstraints": {}
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
     }
   },
   "enums": {
-    "public.skill_level": {
-      "name": "skill_level",
+    "public.user_domain": {
+      "name": "user_domain",
       "schema": "public",
       "values": [
-        "Beginner",
-        "Intermediate",
-        "Advanced",
-        "Expert",
-        "Master"
+        "Buyer",
+        "Seller",
+        "Realtor",
+        "Agent",
+        "Marketer"
       ]
     }
   },
   "schemas": {},
   "sequences": {},
+  "roles": {},
+  "policies": {},
+  "views": {},
   "_meta": {
     "columns": {},
     "schemas": {},
