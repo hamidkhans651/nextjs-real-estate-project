@@ -9,7 +9,7 @@ import { Input } from "@nextui-org/input";
 import Midsections from "../components/Midsections";
 import { Navbar } from "@/components/navbar";
 import Footer from "@/components/Footer";
-import  NavbarMenuToggle from "@/components/textnav"
+import NavbarMenuToggle from "@/components/textnav"
 
 
 
@@ -71,32 +71,6 @@ export default async function Home() {
         <Footer />
 
       </main>
-
-      <nav className=" flex justify-center w-full h-20px">
-        <ul className="flex items-center gap-x-20">
-          <li>
-            <Link href="/login">
-              Sign-up
-            </Link>
-          </li>
-          <li>
-            <Link href="/register">
-              register
-            </Link>
-          </li>
-          <li>
-            <Link href="/login">
-              contact
-            </Link>
-          </li>
-          <li>
-            <LogoutButton />
-
-          </li>
-        </ul>
-
-      </nav>
-      <h1 className="flex text-4xl  items-center">this is home page</h1>
     </main>
   );
 }
