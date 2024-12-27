@@ -2,11 +2,10 @@ import {
   pgTable,
   text,
   pgEnum,
-  varchar,
 } from "drizzle-orm/pg-core"
 
-export const SkillLevelEnum = pgEnum("user_domain", [
-  "Buyer", "Seller", "Realtor", "Agent", "Marketer",
+export const SkillLevelEnum = pgEnum("skill_level", [
+  "Buyer", "Seller", "Advanced", "Expert", "Master",
 ]);
 
 export const users = pgTable("user", {
@@ -19,6 +18,5 @@ export const users = pgTable("user", {
   email: text("email").notNull(),
   image: text("image").default("no-image"),
   password: text("password"),
-  role: varchar("role").notNull().default("user"), // Add role field
-
+  skillLevel: SkillLevelEnum("skill_level").notNull().default("Buyer"),
 })

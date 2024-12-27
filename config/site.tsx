@@ -1,5 +1,7 @@
 export type SiteConfig = typeof siteConfig;
 
+import LogoutButton from "@/components/auth/logout-button";
+
 export const siteConfig = {
   name: "Real Estate",
   description: "Search properties.",
@@ -13,9 +15,14 @@ export const siteConfig = {
       href: "/Properties",
     },
     {
+      label: "Dashboard",
+      href: "/dashboard",
+    },
+    {
       label: "Login",
       href: "/login",
     },
+    
   ],
   navMenuItems: [
     {

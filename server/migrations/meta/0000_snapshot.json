@@ -1,5 +1,5 @@
 {
-  "id": "731c606f-b588-498e-8169-4dd1840bb68a",
+  "id": "e911aa8c-2efc-4531-bba4-451a0c6c559d",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "7",
   "dialect": "postgresql",
@@ -50,6 +50,14 @@
           "type": "text",
           "primaryKey": false,
           "notNull": false
+        },
+        "skill_level": {
+          "name": "skill_level",
+          "type": "skill_level",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "'Buyer'"
         }
       },
       "indexes": {},
@@ -62,15 +70,15 @@
     }
   },
   "enums": {
-    "public.user_domain": {
-      "name": "user_domain",
+    "public.skill_level": {
+      "name": "skill_level",
       "schema": "public",
       "values": [
         "Buyer",
         "Seller",
-        "Realtor",
-        "Agent",
-        "Marketer"
+        "Advanced",
+        "Expert",
+        "Master"
       ]
     }
   },

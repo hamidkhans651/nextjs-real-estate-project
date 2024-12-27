@@ -7,6 +7,8 @@ import {
   DropdownItem,
   Avatar,
 } from "@nextui-org/react";
+import LogoutButton from "@/components/auth/logout-button";
+
 import {
   Navbar as NextUINavbar,
   NavbarContent,
@@ -79,7 +81,7 @@ export const Navbar = () => {
             ))}
           </ul>
         </NavbarContent>
-        <NavbarContent as="div"  justify="end" className="hidden md:flex ">
+        {/* <NavbarContent as="div"  justify="end" className="hidden md:flex ">
           <Dropdown placement="bottom-end">
             <DropdownTrigger>
               <Avatar
@@ -108,7 +110,7 @@ export const Navbar = () => {
               </DropdownItem>
             </DropdownMenu>
           </Dropdown>
-        </NavbarContent>
+        </NavbarContent> */}
 
         {/* Right-side Content (Theme switch, search, etc.) */}
         <NavbarContent className="hidden sm:flex basis-1/5 sm:basis-full " justify="end">
@@ -122,11 +124,11 @@ export const Navbar = () => {
         </NavbarContent>
 
         {/* Mobile View */}
-        <NavbarContent className="sm:hidden basis-1 pl-4  " justify="end">
+        <NavbarContent className="md:hidden basis-1 pl-4  " justify="end">
           {/* Mobile Theme Switch */}
-          <ThemeSwitch  />
+          <ThemeSwitch />
           {/* Mobile Menu Toggle */}
-          <NavbarMenuToggle  />
+          <NavbarMenuToggle />
         </NavbarContent>
 
         {/* Mobile Menu */}
@@ -151,7 +153,13 @@ export const Navbar = () => {
                   {item.label}
                 </Link>
               </NavbarMenuItem>
+
             ))}
+            <button className="flex justify-start ">
+              <LogoutButton />
+            </button>
+
+
           </div>
         </NavbarMenu>
       </NextUINavbar>

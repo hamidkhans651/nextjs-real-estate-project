@@ -15,7 +15,7 @@ import  NavbarMenuToggle from "@/components/textnav"
 
 
 export default async function Home() {
-  const session = await auth();
+  // const session = await auth();
   const searchInput = (
     <Input
       aria-label="Search"
@@ -34,9 +34,9 @@ export default async function Home() {
       type="search"
     />
   );
-  if (!session) {
-    redirect("/login");
-  }
+  // if (!session) {
+  //   redirect("/login");
+  // }
 
 
   return (
