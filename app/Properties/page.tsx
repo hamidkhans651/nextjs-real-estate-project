@@ -7,7 +7,6 @@ import { Card, CardBody, CardFooter, Image, Button } from "@nextui-org/react";
 import { Autocomplete, AutocompleteItem } from "@nextui-org/react";
 import { HeartIcon } from './icons/HeartIcon';
 import { ChevronIcon } from "./icons/ChevronIcon";
-import { animals } from "./Data";
 
 const heroCards = [
   { seller: "TARRANT AND HARMAN REAL ESTATE", img: "/assets/images/prop3.webp", price: "$2,000,000", address: "7753 S Sawyer Ave, chicago,IL 60652", bed: "2 bed 2 bath  1200 SQ FT" },

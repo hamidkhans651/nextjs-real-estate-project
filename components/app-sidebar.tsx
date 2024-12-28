@@ -1,6 +1,7 @@
 "use client"
 
 import * as React from "react"
+import { useState } from "react";
 import {
     AudioWaveform,
     BookOpen,
@@ -15,7 +16,7 @@ import {
 } from "lucide-react"
 
 import { NavMain } from "@/components/nav-main"
-import { NavProjects } from "@/components/nav-projects"
+import { Button}  from    "@/components/ui/button"
 import { NavUser } from "@/components/nav-user"
 import { TeamSwitcher } from "@/components/team-switcher"
 import {
@@ -50,69 +51,55 @@ const data = {
             plan: "Free",
         },
     ],
-    navMain: [
+ navMain: [
         {
-            title: "Playground",
+            id: "properties",
+            title: "Properties",
             url: "#",
             icon: SquareTerminal,
             isActive: true,
             items: [
                 {
-                    title: "History",
+                    id: "add-properties",
+                    title: "Add properties",
                     url: "#",
                 },
                 {
+                    id: "starred-properties",
                     title: "Starred",
                     url: "#",
                 },
                 {
+                    id: "property-settings",
                     title: "Settings",
                     url: "#",
                 },
             ],
         },
         {
+            id: "models",
             title: "Models",
             url: "#",
             icon: Bot,
             items: [
                 {
+                    id: "genesis",
                     title: "Genesis",
                     url: "#",
                 },
                 {
+                    id: "explorer",
                     title: "Explorer",
                     url: "#",
                 },
                 {
+                    id: "quantum",
                     title: "Quantum",
                     url: "#",
                 },
             ],
         },
-        {
-            title: "Documentation",
-            url: "#",
-            icon: BookOpen,
-            items: [
-                {
-                    title: "Introduction",
-                    url: "#",
-                },
-                {
-                    title: "Get Started",
-                    url: "#",
-                },
-                {
-                    title: "Tutorials",
-                    url: "#",
-                },
-                {
-                    title: "Changelog",
-                    url: "#",
-                },
-            ],
-        },
+       
         {
             title: "Settings",
             url: "#",
@@ -137,26 +124,12 @@ const data = {
             ],
         },
     ],
-    projects: [
-        {
-            name: "Design Engineering",
-            url: "#",
-            icon: Frame,
-        },
-        {
-            name: "Sales & Marketing",
-            url: "#",
-            icon: PieChart,
-        },
-        {
-            name: "Travel",
-            url: "#",
-            icon: Map,
-        },
-    ],
+    
 }
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+    const [activeSection, setActiveSection] = useState("home"); // Manage active section
+
     return (
         <Sidebar collapsible="icon" {...props}>
             <SidebarHeader>
@@ -164,7 +137,33 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
             </SidebarHeader>
             <SidebarContent>
                 <NavMain items={data.navMain} />
-                <NavProjects projects={data.projects} />
+                
+          <aside className="w-1/4 h-screen  p-4">
+        <ul className="space-y-4">
+          <li>
+            <button
+              onClick={() => setActiveSection("home")}
+              className="w-full text-left p-2  rounded"
+            >
+              Home
+            </button>
+          </li>
+          <li>
+            <button
+              onClick={() => setActiveSection("addProperties")}
+              className="w-full text-left p-2"
+            >
+              Add Properties
+            </button>
+            <button
+              onClick={() => setActiveSection("Addapartments")}
+              className="w-full text-left p-2"
+            >
+              Addapartments
+            </button>
+          </li>
+        </ul>
+      </aside>
             </SidebarContent>
             <SidebarFooter>
                 <NavUser user={data.user} />

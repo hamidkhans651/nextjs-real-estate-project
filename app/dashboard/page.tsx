@@ -1,66 +1,60 @@
-import { AppSidebar } from "@/components/app-sidebar"
-// import LogoutButton from "@/components/auth/logout-button";
+"use client";
 
-import Propertyform from "@/components/PropertyForm"
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbList,
-  BreadcrumbPage,
-  BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb"
-import { Separator } from "@/components/ui/separator"
-import {
-  SidebarInset,
-  SidebarProvider,
-  SidebarTrigger,
-} from "@/components/ui/sidebar"
+
+import AddPropertyForm from "@/components/forms/PropertyForm";
+import { Navbar } from "@/components/navbar";
+import {Dashboardnav} from "./dashboard-nav"
 import { auth } from "@/server/auth";
 import { redirect } from "next/navigation";
+import { useState } from "react";
 
 
+export default  function SidebarLayout() {
 
-export default async function Page() {
-    const session = await auth();
-      if (!session) {
-        redirect("/login");
-      }
-  
+  const [activeSection, setActiveSection] = useState("home"); // Manage active section
+
   return (
-    <SidebarProvider>
-      <AppSidebar />
-      <SidebarInset>
-        <header className="flex h-16 shrink-0 items-center gap-2 border-b">
-          <div className="flex items-center gap-2 px-3">
-            <SidebarTrigger />
-            <Separator orientation="vertical" className="mr-2 h-4" />
-            <Breadcrumb>
-              <BreadcrumbList>
-                <BreadcrumbItem className="hidden md:block">
-                  <BreadcrumbLink href="#">
-                    Building Your Application
-                  </BreadcrumbLink>
-                </BreadcrumbItem>
-                <BreadcrumbSeparator className="hidden md:block" />
-                <BreadcrumbItem>
-                  <BreadcrumbPage>Data Fetching</BreadcrumbPage>
-                </BreadcrumbItem>
-              </BreadcrumbList>
-            </Breadcrumb>
-          </div>
-        </header>
-        <div className="flex flex-1 flex-col gap-4 p-4">
-          <div className="grid auto-rows-min gap-4 md:grid-cols-3">
-            <div className="aspect-video rounded-xl bg-muted/50" />
-            <div className="aspect-video rounded-xl bg-muted/50" />
-            <div className="aspect-video rounded-xl bg-muted/50" />
-            <Propertyform />
-            Property
-          </div>
-          <div className="min-h-[100vh] flex-1 rounded-xl bg-muted/50 md:min-h-min" />
-        </div>
-      </SidebarInset>
-    </SidebarProvider>
-  )
+    <>
+      <header>
+        <Dashboardnav />
+
+      </header>
+      <div className="flex">
+        {/* Sidebar */}
+
+        <aside className="w-1/4 h-screen  p-4 text-black">
+          <ul className="space-y-4">
+            <li>
+
+              <button
+                onClick={() => setActiveSection("home")}
+                className="w-full text-left p-2 bg-gray-200 rounded"
+              >
+                Home
+              </button>
+            </li>
+            <li>
+              <button
+                onClick={() => setActiveSection("addProperties")}
+                className="w-full text-left p-2 bg-gray-200 rounded"
+              >
+                Add Properties
+              </button>
+            </li>
+          </ul>
+        </aside>
+
+        {/* Main Content */}
+        <main className="w-3/4 h-screen p-4">
+          {activeSection === "home" && (
+            <div>
+              <h1>Welcome to the Dashboard</h1>
+              <p>Select an option from the sidebar to get started.</p>
+            </div>
+          )}
+          {activeSection === "addProperties" && <AddPropertyForm />}
+        </main>
+      </div>
+    </>
+  );
 }
