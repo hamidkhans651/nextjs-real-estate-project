@@ -3,7 +3,7 @@
 
 import AddPropertyForm from "@/components/forms/PropertyForm";
 import { Navbar } from "@/components/navbar";
-import {Dashboardnav} from "./dashboard-nav"
+import {Dashboardnav} from "./components/dashboard-nav"
 import { auth } from "@/server/auth";
 import { redirect } from "next/navigation";
 import { useState } from "react";
@@ -22,21 +22,21 @@ export default  function SidebarLayout() {
       <div className="flex">
         {/* Sidebar */}
 
-        <aside className="w-1/4 h-screen  p-4 text-black">
+        <aside className="w-1/5 h-screen p-4 text-black">
           <ul className="space-y-4">
             <li>
 
               <button
                 onClick={() => setActiveSection("home")}
-                className="w-full text-left p-2 bg-gray-200 rounded"
+                className="w-1/2 p-2 text-center bg-white shadow-md rounded-full"
               >
-                Home
+                Dashboard
               </button>
             </li>
             <li>
               <button
                 onClick={() => setActiveSection("addProperties")}
-                className="w-full text-left p-2 bg-gray-200 rounded"
+                className="w-1/2 p-2 text-center bg-white shadow-md rounded-full"
               >
                 Add Properties
               </button>

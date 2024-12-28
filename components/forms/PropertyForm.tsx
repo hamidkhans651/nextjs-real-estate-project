@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
@@ -16,6 +17,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Select, SelectItem, SelectTrigger, SelectContent, SelectValue } from "@/components/ui/select";
+import { LoaderIcon } from "@/components/icons/LoaderIcon";
 
 // Zod validation schema
 const addPropertySchema = z.object({
@@ -32,6 +34,7 @@ const addPropertySchema = z.object({
 });
 
 export default function AddPropertyForm() {
+  const [isLoading, setIsLoading] = useState(false);
   const form = useForm({
     resolver: zodResolver(addPropertySchema),
     defaultValues: {
@@ -49,25 +52,39 @@ export default function AddPropertyForm() {
   });
 
   const onSubmit = async (values: z.infer<typeof addPropertySchema>) => {
-    const response = await fetch("/api/properties", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(values),
-    });
-
-    if (response.ok) {
-      alert("Property added successfully!");
-      form.reset();
-    } else {
-      alert("Failed to add property.");
+    try {
+      console.log("Submitting Data:", values);
+      const response = await fetch("/api/properties", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(values),
+      });
+  
+      if (!response.ok) {
+        const errorData = await response.json();
+        console.error("Error from API:", errorData);
+        alert(`Failed to add property: ${errorData.error || "Unknown error"}`);
+      } else {
+        alert("Property added successfully!");
+        form.reset();
+      }
+    } catch (error) {
+      if (error instanceof Error) {
+        console.error("Error submitting form:", error.message);
+        alert(`An unexpected error occurred: ${error.message}`);
+      } else {
+        console.error("Unknown error:", error);
+        alert("An unexpected error occurred.");
+      }
     }
   };
+  
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-        {/* Title and Description in Parallel */}
-        <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+        {/* Title and Description */}
+        <div className="flex flex-col md:flex-row gap-4">
           <FormField
             name="title"
             render={({ field }) => (
@@ -94,52 +111,84 @@ export default function AddPropertyForm() {
           />
         </div>
 
-        {/* Other Form Fields */}
-        <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4">
-
+        {/* Price and Location */}
+        <div className="flex flex-col md:flex-row gap-4">
           <FormField
             name="price"
             render={({ field }) => (
               <FormItem className="flex-1">
-                <FormLabel>Price</FormLabel>
+                <FormLabel>Price ($)</FormLabel>
                 <FormControl>
-                  <Input type="number" placeholder="Price" {...field} />
+                  <Input
+                    type="number"
+                    placeholder="Enter price"
+                    {...field}
+                    onChange={(e) => field.onChange(Number(e.target.value))} // Convert to number
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
             )}
           />
+
           <FormField
             name="location"
             render={({ field }) => (
               <FormItem className="flex-1">
                 <FormLabel>Location</FormLabel>
                 <FormControl>
-                  <Input placeholder="Location" {...field} />
+                  <Input placeholder="Enter location" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
             )}
           />
         </div>
-        <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4">
 
+        {/* Image URL and Property Type */}
+        <div className="flex flex-col md:flex-row gap-4">
           <FormField
             name="imageUrl"
             render={({ field }) => (
-              <FormItem>
+              <FormItem className="flex-1">
                 <FormLabel>Image URL</FormLabel>
                 <FormControl>
-                  <Input placeholder="Image URL" {...field} />
+                  <Input placeholder="https://example.com/image.jpg" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
             )}
           />
           <FormField
+            name="propertyType"
+            render={({ field }) => (
+              <FormItem className="flex-1">
+                <FormLabel>Property Type</FormLabel>
+                <FormControl>
+                  <Select onValueChange={field.onChange}>
+                    <SelectTrigger>
+                      <SelectValue placeholder="Select a type" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="apartment">Apartment</SelectItem>
+                      <SelectItem value="villa">Villa</SelectItem>
+                      <SelectItem value="condo">Condo</SelectItem>
+                      <SelectItem value="bungalow">Bungalow</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        </div>
+
+        {/* Bedrooms, Bathrooms, and Square Footage */}
+        <div className="flex flex-col md:flex-row gap-4">
+          <FormField
             name="bedrooms"
             render={({ field }) => (
-              <FormItem>
+              <FormItem className="flex-1">
                 <FormLabel>Bedrooms</FormLabel>
                 <FormControl>
                   <Input type="number" placeholder="Number of bedrooms" {...field} />
@@ -148,13 +197,10 @@ export default function AddPropertyForm() {
               </FormItem>
             )}
           />
-        </div>
-        <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4">
-
           <FormField
             name="bathrooms"
             render={({ field }) => (
-              <FormItem>
+              <FormItem className="flex-1">
                 <FormLabel>Bathrooms</FormLabel>
                 <FormControl>
                   <Input type="number" placeholder="Number of bathrooms" {...field} />
@@ -166,48 +212,47 @@ export default function AddPropertyForm() {
           <FormField
             name="sqft"
             render={({ field }) => (
-              <FormItem>
+              <FormItem className="flex-1">
                 <FormLabel>Square Footage</FormLabel>
                 <FormControl>
-                  <Input type="number" placeholder="Square footage" {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-        </div>
-        <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4">
-
-          <FormField
-            name="propertyType"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Property Type</FormLabel>
-                <FormControl>
-                  <Input placeholder="e.g., Apartment, Villa" {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormField
-            name="isForSale"
-            render={({ field }) => (
-              <FormItem className=" flex items-center">
-                <FormLabel className="flex p-2 items-center">For Sale</FormLabel>
-                <FormControl>
-                  <Checkbox
-                    checked={field.value}
-                    onCheckedChange={(value) => field.onChange(value)}
+                  <Input
+                    type="number"
+                    placeholder="Square footage"
+                    {...field}
+                    onChange={(e) => field.onChange(Number(e.target.value))} // Convert to number
                   />
                 </FormControl>
                 <FormMessage />
               </FormItem>
             )}
           />
+
+
         </div>
 
-        <Button type="submit">Add Property</Button>
+        {/* Is For Sale */}
+        <FormField
+          name="isForSale"
+          render={({ field }) => (
+            <FormItem className="flex items-center">
+              <FormControl>
+                <Checkbox
+                  checked={field.value}
+                  onCheckedChange={(value) => field.onChange(value)}
+                />
+              </FormControl>
+              <FormLabel className="ml-2">For Sale</FormLabel>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        {/* Submit Button */}
+        <div className="flex justify-end">
+          <Button type="submit" disabled={isLoading}>
+            {isLoading ? <LoaderIcon className="animate-spin" /> : "Add Property"}
+          </Button>
+        </div>
       </form>
     </Form>
   );
