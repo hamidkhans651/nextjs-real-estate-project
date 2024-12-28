@@ -1,6 +1,6 @@
 # Project Title
 
-![Project Screenshot](assets/example-image.png "Project Screenshot")
+![Project Screenshot](assets/example-image.png "example-image.png")
 
 This is a sample project showcasing how to add an image in the README.
 
