@@ -51,7 +51,6 @@ export const Dashboardnav = () => {
 
   return (
     <main className="">
-
       <NextUINavbar maxWidth="xl" position="sticky">
         {/* Left-side Branding */}
         <NavbarContent className="basis-1/5 sm:basis-full" justify="start">
@@ -114,13 +113,10 @@ export const Dashboardnav = () => {
 
         {/* Right-side Content (Theme switch, search, etc.) */}
         <NavbarContent className="hidden sm:flex basis-1/5 sm:basis-full " justify="end">
-
           {/* Theme Switcher */}
           <NavbarItem className="hidden lg:flex  gap-2">
             <ThemeSwitch />
           </NavbarItem>
-
-
         </NavbarContent>
 
         {/* Mobile View */}
@@ -158,8 +154,6 @@ export const Dashboardnav = () => {
             <button className="flex justify-start ">
               <LogoutButton />
             </button>
-
-
           </div>
         </NavbarMenu>
       </NextUINavbar>

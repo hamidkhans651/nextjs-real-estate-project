@@ -12,6 +12,7 @@
   "dependencies": {
     "@auth/drizzle-adapter": "^1.7.4",
     "@hookform/resolvers": "^3.9.1",
+    "@mapbox/node-pre-gyp": "^1.0.11",
     "@neondatabase/serverless": "^0.10.4",
     "@nextui-org/autocomplete": "^2.3.8",
     "@nextui-org/button": "^2.0.38",
@@ -57,6 +58,7 @@
     "next-auth": "^5.0.0-beta.20",
     "next-safe-action": "^7.10.2",
     "next-themes": "^0.4.4",
+    "nock": "^13.5.6",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-hook-form": "^7.54.2",
