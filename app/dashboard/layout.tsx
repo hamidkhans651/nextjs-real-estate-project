@@ -19,7 +19,7 @@ export default async function DashboardLayout({
   return (
     <div className="dashboard-layout">
       <header className="dashboard-header">
-        <Dashboardnav />
+        {/* <Dashboardnav /> */}
       </header>
       <div className="dashboard-content">
         <aside className="dashboard-sidebar"></aside>

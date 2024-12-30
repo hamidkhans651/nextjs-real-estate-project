@@ -3,7 +3,6 @@ import { Metadata, Viewport } from "next";
 import clsx from "clsx";
 import { Providers } from "./providers";
 import { siteConfig } from "@/config/site";
-import { Navbar } from "@/components/navbar";
 import { fontSans } from "@/config/fonts";
 
 // Set metadata for light and dark theme color scheme
