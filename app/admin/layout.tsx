@@ -1,6 +1,6 @@
-"use client"
+// "use client"
 
-import { useState } from "react";
+// import { useState } from "react";
 import { auth } from "@/server/auth"; // Replace with the correct path to your auth function
 import { redirect } from "next/navigation";
 import Sidebar from "./components/Sidebar";
@@ -13,12 +13,12 @@ export default async function Layout({
     children: React.ReactNode;
 }) {
     // Perform session check
-    // const session = await auth();
+    const session = await auth();
 
-    // // If no session, redirect to login
-    // if (!session) {
-    //     redirect("/login");
-    // }
+    // If no session, redirect to login
+    if (!session) {
+        redirect("/login");
+    }
 
 
     return (

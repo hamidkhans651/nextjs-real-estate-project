@@ -43,11 +43,11 @@ const LoginForm = () => {
   };
 
   return (
-    <div className="bg-white p-8 rounded-lg shadow-md max-w-md w-full mx-auto">
-      <h3 className="text-3xl font-bold text-center text-gray-800 mb-2">
+    <div className=" p-8 rounded-lg shadow-md max-w-md w-full mx-auto bg-slate-950">
+      <h3 className="text-3xl font-bold text-center mb-2">
         Welcome Back
       </h3>
-      <p className="text-gray-600 text-sm text-center mb-8">
+      <p className=" text-sm text-center mb-8">
         👋 Please enter your credentials to log in
       </p>
       <Form {...form}>
@@ -60,7 +60,7 @@ const LoginForm = () => {
             name="email"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="text-gray-700">
+                <FormLabel>
                   Email
                 </FormLabel>
                 <FormControl>
@@ -79,7 +79,7 @@ const LoginForm = () => {
             name="password"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="text-gray-700">
+                <FormLabel>
                   Password
                 </FormLabel>
                 <FormControl>
@@ -100,7 +100,7 @@ const LoginForm = () => {
           </Button>
         </form>
       </Form>
-      <p className="text-center text-gray-600 text-sm mt-6">
+      <p className="text-center text-sm mt-6">
         Don't have an account?{" "}
         <a
           href="/register"

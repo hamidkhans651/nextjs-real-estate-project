@@ -89,7 +89,7 @@ const StepThree = ({
       <h3 className="text-3xl font-bold">
         Choose a password
       </h3>
-      <p className="text-gray-500 text-sm mt-3">
+      <p className=" text-sm mt-3">
         🥷 Make sure you choose a strong one
       </p>
       <div className="mt-10">

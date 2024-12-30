@@ -40,7 +40,7 @@ const StepOne = ({ onNext }: StepOneProps) => {
       <h3 className="text-3xl from-bold">
         Register for an account
       </h3>
-      <p className="text-gray-500 text-sm mt-3">
+      <p className=" text-sm mt-3">
         👋 Let's start with a little bit of information
       </p>
       <div className="mt-10">

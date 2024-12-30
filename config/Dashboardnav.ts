@@ -24,7 +24,7 @@ export const siteConfig = {
     },
     {
       label: "Dashboard",
-      href: "/dashboard",
+      href: "/admin",
     },
     {
       label: "Properties",
