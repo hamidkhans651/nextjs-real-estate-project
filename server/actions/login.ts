@@ -2,7 +2,7 @@
 
 import { LoginSchema } from "@/types/login-schema";
 import { actionClient } from "@/lib/safe-action";
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs";
 import { db } from "../db";
 import { eq } from "drizzle-orm";
 import { users } from "../schema";

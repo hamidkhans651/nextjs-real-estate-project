@@ -1,12 +1,13 @@
 // components/Tab.tsx
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { JSX } from "react/jsx-runtime";
 
 // Define the type for the menu item
 interface MenuItem {
     name: string;
     link: string;
-    icon: TSX.Element;
+    icon: JSX.Element;
 
 }
 

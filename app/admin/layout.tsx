@@ -1,33 +1,33 @@
 "use client"
 
 import { useState } from "react";
+import { auth } from "@/server/auth"; // Replace with the correct path to your auth function
+import { redirect } from "next/navigation";
 import Sidebar from "./components/Sidebar";
-import { Navbar } from "@/components/navbar";
 import Header from "./components/Header";
 
 
-export default function Layout({
+export default async function Layout({
     children,
 }: {
     children: React.ReactNode;
 }) {
-    const [isOpen, setIsOpen] = useState(false);
-    const toggleSidebar = () => {
-        setIsOpen(!isOpen);
-    }
+    // Perform session check
+    // const session = await auth();
+
+    // // If no session, redirect to login
+    // if (!session) {
+    //     redirect("/login");
+    // }
+
+
     return (
 
         <main className=" flex">
             <div className="hidden md:block ">
                 <Sidebar />
             </div>
-            <div className={`fixed md:hidden
-            ${isOpen ? "translate-x-0" : "-translate-x-[1000px]"}
-            `}
 
-            >
-                <Sidebar />
-            </div>
 
             <section className="flex-1 flex flex-col">
                 <Header />

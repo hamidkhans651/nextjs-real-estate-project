@@ -21,6 +21,7 @@ import {
 // components/Sidebar.tsx
 
 import { Tab } from "./Tab"; // Import the Tab component
+import { JSX } from "react";
 
 // Define the type for the menu item
 interface MenuItem {
