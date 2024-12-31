@@ -1,4 +1,5 @@
 "use client";
+import { toast } from "react-hot-toast";
 
 import { useState } from "react";
 import { useForm } from "react-hook-form";
@@ -54,31 +55,40 @@ export default function AddPropertyForm() {
   const onSubmit = async (values: z.infer<typeof addPropertySchema>) => {
     try {
       console.log("Submitting Data:", values);
-      const response = await fetch("/api/properties", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(values),
-      });
-  
-      if (!response.ok) {
-        const errorData = await response.json();
-        console.error("Error from API:", errorData);
-        alert(`Failed to add property: ${errorData.error || "Unknown error"}`);
-      } else {
-        alert("Property added successfully!");
-        form.reset();
-      }
-    } catch (error) {
-      if (error instanceof Error) {
-        console.error("Error submitting form:", error.message);
-        alert(`An unexpected error occurred: ${error.message}`);
-      } else {
-        console.error("Unknown error:", error);
-        alert("An unexpected error occurred.");
-      }
+
+      // Show a loading toast while the fetch is ongoing
+      const response = await toast.promise(
+        fetch("/api/properties", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(values),
+        }),
+        {
+          loading: "Adding property...",
+          success: "Property added successfully!",
+          error: "Failed to add property. Please try again.",
+        }
+      );
+
+
+    // Check if the response is OK
+    if (!response.ok) {
+      const errorData = await response.json();
+      console.error("Error from API:", errorData);
+      toast.error(`Failed to add property: ${errorData.error || "Unknown error"}`);
+    } else {
+      form.reset();
     }
-  };
-  
+  } catch (error) {
+    if (error instanceof Error) {
+      console.error("Error submitting form:", error.message);
+      toast.error(`An unexpected error occurred: ${error.message}`);
+    } else {
+      console.error("Unknown error:", error);
+      toast.error("An unexpected error occurred.");
+    }
+  }
+};
 
   return (
     <Form {...form}>
