@@ -1,6 +1,7 @@
 import "@/styles/globals.css";
 import { Metadata, Viewport } from "next";
 import clsx from "clsx";
+import { Toaster } from "react-hot-toast"; // Import the Toaster
 import { Providers } from "./providers";
 import { siteConfig } from "@/config/site";
 import { fontSans } from "@/config/fonts";
@@ -40,12 +41,11 @@ export default function RootLayout({
         )}
       >
         <Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
-     
+          {/* Toaster for notifications */}
+          <Toaster position="top-center" reverseOrder={false} />
 
           {/* Main content */}
           <main>{children}</main>
-
-          {/* Footer */}
         </Providers>
       </body>
     </html>

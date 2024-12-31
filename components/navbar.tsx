@@ -1,12 +1,12 @@
 'use client'
 
-import {
-  Dropdown,
-  DropdownTrigger,
-  DropdownMenu,
-  DropdownItem,
-  Avatar,
-} from "@nextui-org/react";
+// import {
+//   Dropdown,
+//   DropdownTrigger,
+//   DropdownMenu,
+//   DropdownItem,
+//   Avatar,
+// } from "@nextui-org/react";
 import LogoutButton from "@/components/auth/logout-button";
 
 import {

@@ -1,6 +1,9 @@
 "use client"
 
 import Link from "next/link";
+// import toast from "react-hot-toast";
+import LogoutButton from "@/components/auth/logout-button";
+
 
 
 import {
@@ -17,8 +20,6 @@ import {
     House
 } from "lucide-react";
 
-
-// components/Sidebar.tsx
 
 import { Tab } from "./Tab"; // Import the Tab component
 import { JSX } from "react";
@@ -61,6 +62,25 @@ export default function Sidebar() {
                     return <Tab item={item} key={key} />;
                 })}
             </ul>
+            <div className="flex justify-center">
+                <button
+                    //   onClick={async () => {
+                    //     try {
+                    //       await toast.promise(signOut(auth), {
+                    //         error: (e) => e?.message,
+                    //         loading: "Loading...",
+                    //         success: "Successfully Logged out",
+                    //       });
+                    //     } catch (error) {
+                    //       toast.error(error?.message);
+                    //     }
+                    //   }}
+                    className="flex gap-2 items-center px-3 py-2 rounded-xl w-full justify-center ease-soft-spring duration-400 transition-all">
+                    {/* <LogOut className="h-5 w-5" />  */}
+                    <LogoutButton />
+
+                </button>
+            </div>
         </section>
     );
 }

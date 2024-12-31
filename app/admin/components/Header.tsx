@@ -4,7 +4,6 @@
 // import { useAdmin } from "@/lib/firestore/admins/read";
 // import { Avatar } from "@nextui-org/react";
 import { Menu } from "lucide-react";
-import { useState } from "react";
 import {
     Navbar as NextUINavbar,
     NavbarContent,
@@ -15,11 +14,6 @@ import { ThemeSwitch } from "@/components/theme-switch";
 
 
 export default function Header() {
-    const [isOpen, setIsOpen] = useState(false);
-    const toggleSidebar = () => {
-        setIsOpen(!isOpen);
-    };
-
     // const { user } = useAuth();
     // const { data: admin } = useAdmin({ email: user?.email });
 
@@ -30,7 +24,7 @@ export default function Header() {
 
                 <div className="flex justify-center items-center md:hidden ">
 
-                    <button onClick={toggleSidebar} >
+                    <button >
                         <Menu />
                     </button>
 
@@ -62,8 +56,8 @@ export default function Header() {
 
     <NavbarContent className="pl-[30vw]  " justify="end">
         {/* Mobile Theme Switch */}
-        <ThemeSwitch />
-        {/* Mobile Menu Toggle */}
-    // </NavbarContent>
-    // </NextUINavbar>
+<ThemeSwitch />
+{/* Mobile Menu Toggle */ }
+// </NavbarContent>
+// </NextUINavbar>
 // </nav> */}
