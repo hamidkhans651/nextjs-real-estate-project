@@ -89,6 +89,14 @@ export default function PropertiesList() {
                                     className="w-full object-cover h-100%"
                                     src={property.imageUrl} // Dynamic image URL
                                 />
+                                <Button
+                                    size="sm"
+                                    isIconOnly
+                                    // color="none"
+                                    aria-label="Like"
+                                    className="absolute top-2 right-2 z-10">
+                                    <Ellipsis />
+                                </Button>
                                 <CardBody className="overflow-visible p-3">
                                     <p className="text-xl text-start">{property.price}</p>
                                     <p className="p-2 text-sm text-start">
