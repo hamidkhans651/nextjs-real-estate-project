@@ -39,7 +39,7 @@ const menuList: MenuItem[] = [
     },
     {
         name: "Properties",
-        link: "/admin/products",
+        link: "/admin/properties",
         icon: <House className="h-5 w-5" />,
     },
     {

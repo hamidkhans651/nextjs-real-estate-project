@@ -1,5 +1,6 @@
 
-import AddPropertyForm from "@/components/forms/PropertyForm";
+import AddPropertyForm from "./components/PropertyForm";
+
 
 
 
@@ -8,7 +9,7 @@ const page = () => {
 
 
     <div className='px-10 '>
-      <AddPropertyForm />
+      {/* <AddPropertyForm /> */}
     </div>
 
   )
