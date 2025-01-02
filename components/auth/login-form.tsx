@@ -1,6 +1,7 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
+import Link from "next/link";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import {
@@ -32,7 +33,7 @@ const LoginForm = () => {
     onSuccess(data) {
       if (data.data?.error) {
         toast.error(data.data.error);
-      } 
+      }
     },
   });
 
@@ -43,7 +44,7 @@ const LoginForm = () => {
   };
 
   return (
-    <div className=" p-8 rounded-lg shadow-md max-w-md w-full mx-auto bg-slate-950">
+    <div className=" p-8 rounded-lg shadow-md max-w-md w-full mx-auto bg-[#313131]">
       <h3 className="text-3xl font-bold text-center mb-2">
         Welcome Back
       </h3>
@@ -108,6 +109,15 @@ const LoginForm = () => {
         >
           Sign up
         </a>
+      </p>
+      <p className="text-center  text-sm mt-6">
+        Let's back to home?{" "}
+        <Link
+          href="/"
+          className="text-blue-600 hover:underline"
+        >
+          Home
+        </Link>
       </p>
     </div>
   );

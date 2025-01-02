@@ -39,7 +39,7 @@ export default function MultiStepForm() {
       case 1:
         return "Step 1 - Create Account";
       case 2:
-        return "Step Two - Skill Level";
+        return "Step Two - Purpose";
       case 3:
         return "Step Three - Create Password";
       default:
@@ -67,7 +67,7 @@ export default function MultiStepForm() {
   };
 
   return (
-    <div className="w-2/3 p-8 flex flex-col">
+    <div className="w-full p-8 flex h-screen flex-col bg-[#313131]">
       <div className="mb-8">
         <h1 className="text-2xl font-bold mb-2">
           {stepText()}
@@ -100,7 +100,16 @@ export default function MultiStepForm() {
           href="/login"
           className="text-blue-600 hover:underline"
         >
-        Log In
+          Log In
+        </Link>
+      </p>
+      <p className="text-center  text-sm mt-6">
+        Let's back to home?{" "}
+        <Link
+          href="/"
+          className="text-blue-600 hover:underline"
+        >
+          Home
         </Link>
       </p>
     </div>
