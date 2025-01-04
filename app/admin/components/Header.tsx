@@ -49,13 +49,13 @@ export default function Header() {
                         <DashboardMenu />
                     </button>
                 </div>
-                <div className="  border border-red-400 grid grid-cols-2 w-full gap-2 items-center ">
-                <h1 className="col-span-1 text-xl font-semibold border border-red-400 object-fill">
+                <div className="   grid grid-cols-2 w-full gap-2 items-center ">
+                <h1 className="col-span-1 text-xl font-semibold   object-fill">
                 Dashboard
                     </h1>
 
                     {/* Search Input shifted to the right */}
-                    <div className="ml-auto flex items-center justify-end   pr-2 border border-red-400">
+                    <div className="ml-auto flex items-center justify-end   pr-2 ">
                         <div className="flex justify-end">
                             {searchInput}
                         </div>
