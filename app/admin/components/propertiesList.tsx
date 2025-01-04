@@ -74,9 +74,22 @@ export default function PropertiesList() {
         <main>
             {loading ? (
                 <div className="flex justify-center items-center h-screen">
-                    <Loader />          </div>
+                    <Loader />
+
+
+                </div>
             ) : (
                 <>
+                    <div className="flex justify-center items-center mt-6">
+                        <Button className=" sm:w-auto px-6 py-3 text-center">
+                            Add new property
+                        </Button>
+                    </div>
+
+
+
+                    <h1 className="flex p-6 font-bold text-2xl items-center justify-center">Available Properties </h1>
+
                     {/* Displaying properties */}
                     <div className="p-4 gap-5 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
                         {propertiesToShow.map((property) => (

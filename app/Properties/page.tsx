@@ -67,7 +67,7 @@ export default function Hero() {
 
   return (
     <main>
-      <div className="rounded-2xl flex justify-center items-center text-white pb-4">
+      <div className="rounded-2xl flex justify-center items-center text-white ">
         <Input
           label=""
           isClearable
