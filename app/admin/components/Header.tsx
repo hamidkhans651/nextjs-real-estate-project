@@ -43,7 +43,7 @@ export default function Header() {
 
         <div className=" ">
 
-            <section className=" items-center w-full top-0 flex items-center gap-3  border-b px-4 py-4">
+            <section className="  w-full top-0 flex items-center gap-3  border-b px-4 py-4">
                 <div className="flex justify-end items-center md:hidden  ">
                     <button >
                         <DashboardMenu />
