@@ -43,18 +43,23 @@ export default function Header() {
 
         <div className=" ">
 
-            <section className=" w-full top-0 flex items-center gap-3  border-b px-4 py-4">
-                <div className="flex justify-center items-center md:hidden  ">
+            <section className=" items-center w-full top-0 flex items-center gap-3  border-b px-4 py-4">
+                <div className="flex justify-end items-center md:hidden  ">
                     <button >
                         <DashboardMenu />
                     </button>
                 </div>
-                <div className="w-full flex justify-between items-center pr-0 md:pr-[260px] ">
-                    <h1 className=" flex gap-8 text-xl font-semibold items-center ">Dashboard
-                    {searchInput}
-
+                <div className="  border border-red-400 grid grid-cols-2 w-full gap-2 items-center ">
+                <h1 className="col-span-1 text-xl font-semibold border border-red-400 object-fill">
+                Dashboard
                     </h1>
-                  
+
+                    {/* Search Input shifted to the right */}
+                    <div className="ml-auto flex items-center justify-end   pr-2 border border-red-400">
+                        <div className="flex justify-end">
+                            {searchInput}
+                        </div>
+                    </div>
                     <div className="flex gap-2 items-center ">
                         <div className="md:flex flex-col items-end hidden ">
 
