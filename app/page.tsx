@@ -10,6 +10,7 @@ import Midsections from "../components/Midsections";
 import { Navbar } from "@/components/navbar";
 import Footer from "@/components/Footer";
 import NavbarMenuToggle from "@/components/textnav"
+import DropdownButton from "./admin/components/DropdownButton";
 
 
 
@@ -63,6 +64,7 @@ export default async function Home() {
           </div>
 
           {/* /* Your search input */}
+          <DropdownButton/>
           <div className="mt-8 rounded-xl">{searchInput}</div>
         </section>
 
