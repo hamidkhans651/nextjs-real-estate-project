@@ -20,6 +20,7 @@ import { Loader } from "lucide-react";
 import { Ellipsis, Share2 } from "lucide-react"
 import { ChevronIcon } from "@/app/Properties/icons/ChevronIcon";
 import { Property } from "@/types/property"; // Use the Property type
+import DropdownButton from "./DropdownButton";
 
 export default function PropertiesList() {
     const [currentPage, setCurrentPage] = useState(1);
@@ -115,8 +116,8 @@ export default function PropertiesList() {
                                     className="w-full object-cover h-100%"
                                     src={property.imageUrl} // Dynamic image URL
                                 />
-                        
-                                <Dropdown >
+
+                                {/* <Dropdown >
                                     <DropdownTrigger>
                                         <Avatar
                                             // isBordered
@@ -133,7 +134,8 @@ export default function PropertiesList() {
                                         <DropdownItem key="Delete">Delete</DropdownItem>
                                         <DropdownItem key="team_settings">Update</DropdownItem>
                                     </DropdownMenu>
-                                </Dropdown>
+                                </Dropdown> */}
+                                <DropdownButton />
 
                                 <Button
 

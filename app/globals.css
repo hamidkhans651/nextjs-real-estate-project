@@ -19,3 +19,11 @@ body {
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+
+.custom-dropdown-menu {
+  margin: 0;
+  padding: 0;
+  box-shadow: none; /* Optional: Remove default shadow if present */
+  border: none; /* Optional: Adjust border if necessary */
+}
