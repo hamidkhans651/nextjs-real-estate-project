@@ -7,6 +7,7 @@ import { Share2, Loader } from "lucide-react"
 import { ChevronIcon } from "@/app/Properties/icons/ChevronIcon";
 import { Property } from "@/types/property"; // Use the Property type
 import DropdownButton from "../../components/DropdownButton";
+import ShareButton from "../../components/ShareButton";
 
 export default function PropertiesList() {
     const [currentPage, setCurrentPage] = useState(1);
@@ -98,17 +99,9 @@ export default function PropertiesList() {
                                 />
 
                                 <DropdownButton />
+                                <ShareButton />
 
-                                <button className="bg-transparent ">
-                                    <Button
-                                        size="sm"
-                                        isIconOnly
-                                        // color="none"
-                                        aria-label="Like"
-                                        className="absolute top-2 right-12 z-10">
-                                        <Share2 />
-                                    </Button>
-                                </button>
+
                                 <CardBody className="overflow-visible p-3">
                                     <p className="text-xl text-start">{property.price}</p>
                                     <p className="p-2 text-sm text-start">
