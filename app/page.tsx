@@ -1,3 +1,5 @@
+'use client'
+
 import { auth } from "@/server/auth";
 import { redirect } from "next/navigation";
 import LogoutButton from "@/components/auth/logout-button";
@@ -64,7 +66,6 @@ export default async function Home() {
           </div>
 
           {/* /* Your search input */}
-          <DropdownButton/>
           <div className="mt-8 rounded-xl">{searchInput}</div>
         </section>
 

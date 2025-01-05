@@ -31,6 +31,7 @@ import NextLink from "next/link";
 import clsx from "clsx";
 import { siteConfig } from "@/config/site";
 import { ThemeSwitch } from "@/components/theme-switch";
+import DropdownButton from "@/app/admin/components/DropdownButton";
 
 export const Navbar = () => {
   const searchInput = (
@@ -56,6 +57,8 @@ export const Navbar = () => {
     <main className="">
 
       <NextUINavbar maxWidth="xl" position="sticky">
+      <DropdownButton/>
+
         {/* Left-side Branding */}
         <NavbarContent className="basis-1/5 sm:basis-full" justify="start">
           <NavbarBrand as="li" className="gap-3 max-w-fit">
@@ -63,6 +66,7 @@ export const Navbar = () => {
 
 
               <p className="font-bold text-inherit">Hamid-Homes</p>
+
             </NextLink>
           </NavbarBrand>
 
