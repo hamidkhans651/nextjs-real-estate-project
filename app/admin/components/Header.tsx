@@ -50,8 +50,8 @@ export default function Header() {
                     </button>
                 </div>
                 <div className="   grid grid-cols-2 w-full gap-2 items-center ">
-                <h1 className="col-span-1 text-xl font-semibold   object-fill">
-                Dashboard
+                    <h1 className="col-span-1 text-xl font-semibold   object-fill">
+                        Dashboard
                     </h1>
 
                     {/* Search Input shifted to the right */}

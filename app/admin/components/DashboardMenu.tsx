@@ -1,20 +1,11 @@
-"use client"
+"use client";
 
 import Link from "next/link";
 import LogoutButton from "@/components/auth/logout-button";
-
-
-
-import {
-    Layers2,
-    LayoutDashboard,
-    House,
-} from "lucide-react";
-
+import { Layers2, LayoutDashboard, House } from "lucide-react";
 
 import { Tab } from "./Tab"; // Import the Tab component
 import { JSX } from "react";
-
 import React from "react";
 import {
     Drawer,
@@ -23,7 +14,6 @@ import {
     Button,
     useDisclosure,
 } from "@nextui-org/react";
-import Sidebar from "./Sidebar";
 import { Menu } from "lucide-react";
 
 export default function DashboardMenu() {
@@ -79,7 +69,13 @@ export default function DashboardMenu() {
                                 </div>
                                 <ul className="flex-1 h-full overflow-y-auto flex flex-col gap-4">
                                     {menuList?.map((item, key) => {
-                                        return <Tab item={item} key={key} />;
+                                        return (
+                                            <Tab
+                                                item={item}
+                                                key={key}
+                                                onClose={onClose} // Pass the onClose function
+                                            />
+                                        );
                                     })}
                                 </ul>
                                 <div className="flex justify-center">
