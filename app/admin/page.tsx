@@ -1,4 +1,4 @@
-import PropertiesList from "@/app/admin/components/propertiesList"
+import PropertiesList from "@/app/admin/properties/components/propertiesList"
 
 
 export default function () {

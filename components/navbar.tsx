@@ -57,8 +57,6 @@ export const Navbar = () => {
     <main className="">
 
       <NextUINavbar maxWidth="xl" position="sticky">
-      <DropdownButton/>
-
         {/* Left-side Branding */}
         <NavbarContent className="basis-1/5 sm:basis-full" justify="start">
           <NavbarBrand as="li" className="gap-3 max-w-fit">
@@ -126,10 +124,7 @@ export const Navbar = () => {
           <NavbarItem className="hidden lg:flex  gap-2">
             <ThemeSwitch />
           </NavbarItem>
-
-
         </NavbarContent>
-
         {/* Mobile View */}
         <NavbarContent className="md:hidden basis-1 pl-4  " justify="end">
           {/* Mobile Theme Switch */}

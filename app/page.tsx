@@ -1,9 +1,5 @@
 'use client'
 
-import { auth } from "@/server/auth";
-import { redirect } from "next/navigation";
-import LogoutButton from "@/components/auth/logout-button";
-import Link from "next/link";
 import { title, subtitle } from "@/components/primitives";
 import { SearchIcon } from "@/components/icons";
 import { Kbd } from "@nextui-org/kbd";
@@ -11,8 +7,7 @@ import { Input } from "@nextui-org/input";
 import Midsections from "../components/Midsections";
 import { Navbar } from "@/components/navbar";
 import Footer from "@/components/Footer";
-import NavbarMenuToggle from "@/components/textnav"
-import DropdownButton from "./admin/components/DropdownButton";
+
 
 
 

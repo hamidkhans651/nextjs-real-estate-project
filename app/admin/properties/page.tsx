@@ -1,16 +1,13 @@
-import PropertiesList from "@/app/admin/components/propertiesList"
-import { Button } from "@/components/ui/button";
 
+
+import PropertiesList from "@/app/admin/properties/components/propertiesList"
 const page = () => {
   return (
 
 
     <div className='  '>
-
-      {/* <AddPropertyForm /> */}
       <section>
         <PropertiesList />
-
       </section>
     </div>
 

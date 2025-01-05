@@ -20,7 +20,7 @@ import { Loader } from "lucide-react";
 import { Ellipsis, Share2 } from "lucide-react"
 import { ChevronIcon } from "@/app/Properties/icons/ChevronIcon";
 import { Property } from "@/types/property"; // Use the Property type
-import DropdownButton from "./DropdownButton";
+import DropdownButton from "../../components/DropdownButton";
 
 export default function PropertiesList() {
     const [currentPage, setCurrentPage] = useState(1);
@@ -89,8 +89,6 @@ export default function PropertiesList() {
             {loading ? (
                 <div className="flex justify-center items-center h-screen">
                     <Loader />
-
-
                 </div>
             ) : (
                 <>
@@ -105,7 +103,7 @@ export default function PropertiesList() {
                     <h1 className="flex p-6 font-bold text-2xl items-center justify-center">Available Properties </h1>
 
                     {/* Displaying properties */}
-                    <div className="p-4 gap-5 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+                    <div className="p-5 gap-5 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
                         {propertiesToShow.map((property) => (
                             <Card shadow="sm" key={property.id} isPressable className="relative">
                                 <Image
@@ -117,35 +115,14 @@ export default function PropertiesList() {
                                     src={property.imageUrl} // Dynamic image URL
                                 />
 
-                                {/* <Dropdown >
-                                    <DropdownTrigger>
-                                        <Avatar
-                                            // isBordered
-                                            as="button"
-                                            className="transition-transform absolute top-2 right-2 z-10"
-                                            // color="defual"
-                                            name="button"
-                                            size="sm"
-                                            src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLWVsbGlwc2lzIj48Y2lyY2xlIGN4PSIxMiIgY3k9IjEyIiByPSIxIi8+PGNpcmNsZSBjeD0iMTkiIGN5PSIxMiIgcj0iMSIvPjxjaXJjbGUgY3g9IjUiIGN5PSIxMiIgcj0iMSIvPjwvc3ZnPg=="
-                                        />
-                                    </DropdownTrigger>
-                                    <DropdownMenu aria-label="Profile Actions" variant="flat">
-                                 
-                                        <DropdownItem key="Delete">Delete</DropdownItem>
-                                        <DropdownItem key="team_settings">Update</DropdownItem>
-                                    </DropdownMenu>
-                                </Dropdown> */}
                                 <DropdownButton />
-
                                 <Button
-
                                     size="sm"
                                     isIconOnly
                                     // color="none"
                                     aria-label="Like"
                                     className="absolute top-2 right-12 z-10">
                                     <Share2 />
-
                                 </Button>
                                 <CardBody className="overflow-visible p-3">
                                     <p className="text-xl text-start">{property.price}</p>
@@ -161,18 +138,18 @@ export default function PropertiesList() {
                         ))}
                     </div>
 
-                    {/* Pagination Controls */}
-                    <Pagination
-                        disableCursorAnimation
-                        showControls
-                        total={Math.ceil(properties.length / 10)} // Total pages
-                        initialPage={1}
-                        className="gap-2 mt-4"
-                        radius="full"
-                        renderItem={renderItem}
-                        variant="light"
-                        onChange={setCurrentPage} // Update page when changed
-                    />
+                    {/* Pagination Controls
+                <Pagination
+                    disableCursorAnimation
+                    showControls
+                    total={Math.ceil(properties.length / 10)} // Total pages
+                    initialPage={1}
+                    className="gap-1 mt-4"
+                    radius="full"
+                    renderItem={renderItem}
+                    variant="light"
+                    onChange={setCurrentPage} // Update page when changed
+                /> */}
                 </>
             )}
         </main>
