@@ -1,23 +1,9 @@
 "use client";
 
-import {
-    Navbar,
-    NavbarBrand,
-    NavbarContent,
-    NavbarItem,
-    Link,
-    DropdownItem,
-    DropdownTrigger,
-    Dropdown,
-    DropdownMenu,
-    Avatar,
-} from "@nextui-org/react";
-
 import { useState, useEffect } from "react";
 import { Input, Pagination, PaginationItemRenderProps, PaginationItemType, CircularProgress } from "@nextui-org/react";
 import { Card, CardBody, CardFooter, Image, Button } from "@nextui-org/react";
-import { Loader } from "lucide-react";
-import { Ellipsis, Share2 } from "lucide-react"
+import { Share2, Loader } from "lucide-react"
 import { ChevronIcon } from "@/app/Properties/icons/ChevronIcon";
 import { Property } from "@/types/property"; // Use the Property type
 import DropdownButton from "../../components/DropdownButton";
@@ -97,13 +83,9 @@ export default function PropertiesList() {
                             Add new property
                         </Button>
                     </div>
-
-
-
                     <h1 className="flex p-6 font-bold text-2xl items-center justify-center">Available Properties </h1>
-
                     {/* Displaying properties */}
-                    <div className="p-5 gap-5 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+                    <div className="p-5 gap-5 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3">
                         {propertiesToShow.map((property) => (
                             <Card shadow="sm" key={property.id} isPressable className="relative">
                                 <Image
@@ -116,14 +98,17 @@ export default function PropertiesList() {
                                 />
 
                                 <DropdownButton />
-                                <Button
-                                    size="sm"
-                                    isIconOnly
-                                    // color="none"
-                                    aria-label="Like"
-                                    className="absolute top-2 right-12 z-10">
-                                    <Share2 />
-                                </Button>
+
+                                <button className="bg-transparent ">
+                                    <Button
+                                        size="sm"
+                                        isIconOnly
+                                        // color="none"
+                                        aria-label="Like"
+                                        className="absolute top-2 right-12 z-10">
+                                        <Share2 />
+                                    </Button>
+                                </button>
                                 <CardBody className="overflow-visible p-3">
                                     <p className="text-xl text-start">{property.price}</p>
                                     <p className="p-2 text-sm text-start">

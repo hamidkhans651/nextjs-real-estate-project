@@ -2,13 +2,13 @@ import { Dropdown, DropdownTrigger, DropdownMenu, DropdownItem, Avatar, Button }
 
 export default function DropdownButton() {
   return (
-    <Dropdown>
-      <DropdownTrigger>
-        <Avatar
+    <Dropdown className="flex">
+      <DropdownTrigger className="bg-transparent color-white md:size-6 sm:size-3 lg:size-7" >
+        <Avatar  
           // isBordered
           as="button"
           className="transition-transform absolute top-2 right-2 z-10"
-          // color="defual"
+          // color="danger"
           name="button"
           size="sm"
           src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLWVsbGlwc2lzIj48Y2lyY2xlIGN4PSIxMiIgY3k9IjEyIiByPSIxIi8+PGNpcmNsZSBjeD0iMTkiIGN5PSIxMiIgcj0iMSIvPjxjaXJjbGUgY3g9IjUiIGN5PSIxMiIgcj0iMSIvPjwvc3ZnPg=="
