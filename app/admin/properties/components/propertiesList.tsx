@@ -79,11 +79,11 @@ export default function PropertiesList() {
                 </div>
             ) : (
                 <>
-                    <div className="flex justify-center items-center mt-6">
+                    {/* <div className="flex justify-center items-center mt-6">
                         <Button className=" sm:w-auto px-6 py-3 text-center">
                             Add new property
                         </Button>
-                    </div>
+                    </div> */}
                     <h1 className="flex p-6 font-bold text-2xl items-center justify-center">Available Properties</h1>
                     <div className="p-5 gap-5 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3">
                         {propertiesToShow.map((property) => (
