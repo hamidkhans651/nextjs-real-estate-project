@@ -121,17 +121,17 @@ export default function PropertiesList() {
                             </Card>
                         ))}
                     </div>
-                    <Pagination
+                    {/* <Pagination
                         disableCursorAnimation
                         showControls
                         total={Math.ceil(properties.length / 10)}
                         initialPage={1}
                         className="gap-1 mt-4"
                         radius="full"
-                        renderItem={renderItem}
+                        renderItem={}
                         variant="light"
                         onChange={setCurrentPage}
-                    />
+                    /> */}
                 </>
             )}
         </main>
