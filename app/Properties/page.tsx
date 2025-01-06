@@ -112,6 +112,7 @@ export default function Hero() {
         ))}
       </div>
 
+
       {/* Pagination Controls */}
       <Pagination
         disableCursorAnimation

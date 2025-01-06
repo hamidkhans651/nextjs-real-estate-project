@@ -1,4 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next";
+import { eq } from "drizzle-orm"; // Ensure this import is present
 import { db } from "@/server/db";
 import { properties } from "@/server/schema";
 
@@ -25,8 +26,20 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       console.error("Error adding property:", error);
       res.status(500).json({ error: "Failed to add property" });
     }
-  } else {
-    // Handle unsupported methods
-    res.status(405).json({ error: "Method Not Allowed" });
+  }else if (req.method === "DELETE") {
+    try {
+      const id = req.query.id as string | undefined;
+      if (!id) {
+        res.status(400).json({ error: "Property ID is required" });
+        return;
+      }
+  
+      // Use the `eq` helper for equality
+      await db.delete(properties).where(eq(properties.id, Number(id)));
+      res.status(200).json({ message: "Property deleted successfully!" });
+    } catch (error) {
+      console.error("Error deleting property:", error);
+      res.status(500).json({ error: "Failed to delete property" });
+    }
   }
-}
+}  
