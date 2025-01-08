@@ -1,4 +1,3 @@
-# Project Title
 
 ![Project Screenshot](assets/example-image.png.jpg "Project-screenshort")
 
