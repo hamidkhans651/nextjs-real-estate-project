@@ -107,7 +107,7 @@ export default function PropertiesList() {
                                     <ShareButton />
                                 </div>
                                 <CardBody className="overflow-visible p-3">
-                                    <p className="text-xl text-start">{property.price}</p>
+                                    <p className="text-xl text-start">$ {property.price}</p>
                                     <p className="p-2 text-sm text-start">
                                         {property.bedrooms} bed, {property.bathrooms} bath, {property.sqft} SQ FT
                                     </p>
