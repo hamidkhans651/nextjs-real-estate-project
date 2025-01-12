@@ -39,8 +39,9 @@ export default function Sidebar() {
     return (
         <section className="sticky top-0 flex flex-col gap-10 border-r px-5 py-3 h-screen overflow-hidden w-[260px] z-50">
             <div className="flex justify-center py-4">
-                <Link href={`/`}>
-                    <img className="h-8" src="/logo.png" alt="Logo" />
+                <Link href={`/`} className="font-bold hover:divide-sky-600">
+                    <h1>HAMID-HOMES
+                    </h1>
                 </Link>
             </div>
             <ul className="flex-1 h-full overflow-y-auto flex flex-col gap-4">

@@ -1,5 +1,6 @@
 'use client'
 
+
 import { title, subtitle } from "@/components/primitives";
 import { SearchIcon } from "@/components/icons";
 import { Kbd } from "@nextui-org/kbd";
@@ -7,9 +8,6 @@ import { Input } from "@nextui-org/input";
 import Midsections from "../components/Midsections";
 import { Navbar } from "@/components/navbar";
 import Footer from "@/components/Footer";
-
-
-
 
 
 export default async function Home() {
@@ -35,8 +33,7 @@ export default async function Home() {
   // if (!session) {
   //   redirect("/login");
   // }
-
-
+  
   return (
     <main>
       <main className="w-full min-h-screen">

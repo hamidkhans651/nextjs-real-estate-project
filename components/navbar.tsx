@@ -69,7 +69,8 @@ export const Navbar = () => {
           </NavbarBrand>
 
           {/* Navbar Links (Desktop) */}
-          <ul className="hidden lg:flex gap-9 justify-center ml-80 " >
+          <ul
+            className="hidden md:flex  gap-9 justify-center md:ml-40 lg:ml-80" >
             {siteConfig.navItems.map((item) => (
               <NavbarItem key={item.href}>
                 <NextLink
@@ -121,12 +122,12 @@ export const Navbar = () => {
         <NavbarContent className="hidden sm:flex basis-1/5 sm:basis-full " justify="end">
 
           {/* Theme Switcher */}
-          <NavbarItem className="hidden lg:flex  gap-2">
+          <NavbarItem className="hidden md:flex  gap-2">
             <ThemeSwitch />
           </NavbarItem>
         </NavbarContent>
         {/* Mobile View */}
-        <NavbarContent className="md:hidden basis-1 pl-4  " justify="end">
+        <NavbarContent className="sm:hidden basis-1 pl-4  " justify="end">
           {/* Mobile Theme Switch */}
           <ThemeSwitch />
           {/* Mobile Menu Toggle */}
