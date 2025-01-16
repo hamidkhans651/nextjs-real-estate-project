@@ -6,7 +6,7 @@ export default function () {
         <div>
             <h3 className="flex justify-center items-center">admin panel </h3>
             {/* <PropertiesList /> */}
-
+check
         </div>
     )
 }
