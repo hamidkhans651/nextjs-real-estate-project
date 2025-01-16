@@ -7,6 +7,7 @@ import { SearchIcon } from "./icons/SearchIcon";
 import { HeartIcon } from './icons/HeartIcon';
 import { ChevronIcon } from "./icons/ChevronIcon";
 import { Property } from "@/types/property"; // Use the Property type
+import Forsale from "../Properties/components/FiltersButtons/Forsale"
 
 export default function Hero() {
   const [currentPage, setCurrentPage] = useState(1);
@@ -43,6 +44,7 @@ export default function Hero() {
           <ChevronIcon className="rotate-180" />
         </button>
       );
+
     }
     if (value === PaginationItemType.PREV) {
       return (
@@ -67,7 +69,7 @@ export default function Hero() {
 
   return (
     <main>
-      <div className="rounded-2xl flex justify-center items-center text-white ">
+      <div className="rounded-2xl flex gap-9 justify-center items-center text-white  ">
         <Input
           label=""
           isClearable
@@ -75,7 +77,9 @@ export default function Hero() {
           placeholder="Type to search..."
           startContent={<SearchIcon className="text-black/50 mb-0.5 dark:text-white/90 text-slate-400 pointer-events-none flex-shrink-0" />}
         />
+        <Forsale />
       </div>
+
 
       {/* Displaying properties */}
       <div className="p-4 gap-5 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
@@ -96,7 +100,8 @@ export default function Hero() {
               aria-label="Like"
               className="absolute top-2 right-2 z-10"
             >
-              <HeartIcon size={20} />
+              <HeartIcon size={20}
+              />
             </Button>
             <CardBody className="overflow-visible p-3">
               <p className="text-xl text-start">${property.price}</p>
