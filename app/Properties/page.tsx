@@ -4,14 +4,17 @@ import { useState, useEffect } from "react";
 import { Input, Pagination, PaginationItemRenderProps, PaginationItemType } from "@nextui-org/react";
 import { Card, CardBody, CardFooter, Image, Button } from "@nextui-org/react";
 import { SearchIcon } from "./icons/SearchIcon";
-import { HeartIcon } from './icons/HeartIcon';
+import { HeartIcon } from "./icons/HeartIcon";
+import { useRouter } from "next/navigation";
+
 import { ChevronIcon } from "./icons/ChevronIcon";
-import { Property } from "@/types/property"; // Use the Property type
+import { Property } from "@/types/property";
 
 export default function Hero() {
   const [currentPage, setCurrentPage] = useState(1);
   const [properties, setProperties] = useState<Property[]>([]);
   const [propertiesToShow, setPropertiesToShow] = useState<Property[]>([]);
+  const router = useRouter();
 
   // Fetch properties from the API
   useEffect(() => {
@@ -36,7 +39,15 @@ export default function Hero() {
   }, [currentPage, properties]);
 
   // Render pagination item
-  const renderItem = ({ key, value, isActive, onNext, onPrevious, setPage, className }: PaginationItemRenderProps) => {
+  const renderItem = ({
+    key,
+    value,
+    isActive,
+    onNext,
+    onPrevious,
+    setPage,
+    className,
+  }: PaginationItemRenderProps) => {
     if (value === PaginationItemType.NEXT) {
       return (
         <button key={key} className={className} onClick={onNext}>
@@ -80,7 +91,13 @@ export default function Hero() {
       {/* Displaying properties */}
       <div className="p-4 gap-5 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         {propertiesToShow.map((property) => (
-          <Card shadow="sm" key={property.id} isPressable className="relative">
+          <Card
+            shadow="sm"
+            key={property.id}
+            isPressable
+            className="relative"
+            onPress={() => router.push(`/Properties/${property.id}`)} // Add navigation
+          >
             <Image
               shadow="sm"
               radius="lg"
@@ -111,7 +128,6 @@ export default function Hero() {
           </Card>
         ))}
       </div>
-
 
       {/* Pagination Controls */}
       <Pagination
