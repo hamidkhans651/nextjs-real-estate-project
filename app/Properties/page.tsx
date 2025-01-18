@@ -8,12 +8,8 @@ import { HeartIcon } from "./icons/HeartIcon";
 import { useRouter } from "next/navigation";
 
 import { ChevronIcon } from "./icons/ChevronIcon";
-<<<<<<< HEAD
-import { Property } from "@/types/property";
-=======
 import { Property } from "@/types/property"; // Use the Property type
 import Forsale from "../Properties/components/FiltersButtons/Forsale"
->>>>>>> d718e4fe2e1706a6ee8c89f39c59d1c588136ec9
 
 export default function Hero() {
   const [currentPage, setCurrentPage] = useState(1);
