@@ -236,8 +236,6 @@ export default function AddPropertyForm() {
               </FormItem>
             )}
           />
-
-
         </div>
 
         {/* Is For Sale */}
