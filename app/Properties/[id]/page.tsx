@@ -4,13 +4,12 @@ import { sql } from "drizzle-orm";
 import PropertyDetails from "./PropertyDetails"; // Import client component
 
 type PageProps = {
-  params: { id: string }; // Params for dynamic routing
+  params: Promise<{ id: string }>; // Params are treated as a Promise
 };
 
 export default async function Page({ params }: PageProps) {
-  const { id } = params;
+  const { id } = await params; // Await params before destructuring
 
-  // Fetch property details using the ID
   const property = await db
     .select()
     .from(properties)

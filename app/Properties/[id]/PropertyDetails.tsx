@@ -21,6 +21,7 @@ type PropertyDetailsProps = {
 export default function PropertyDetails({ property }: PropertyDetailsProps) {
     const [showMore, setShowMore] = useState(false); // State for "Show More"
     const toggleShowMore = () => setShowMore(!showMore);
+    
 
 
     return (
