@@ -6,12 +6,12 @@ import { images } from "@/server/schema";
 
 interface UploadResponse {
     success: boolean;
-    image?: {
+    uploadedImages?: Array<{
         id: string;
         fileName: string;
         fileUrl: string;
         description?: string;
-    };
+    }>;
     error?: string;
 }
 
@@ -20,38 +20,53 @@ export default async function handler(
     res: NextApiResponse<UploadResponse>
 ) {
     if (req.method === "POST") {
-        const { file, fileName, description } = req.body;
+        const { files, descriptions } = req.body;
 
-        if (!file || !fileName) {
-            return res.status(400).json({ success: false, error: "Missing file or fileName." });
+        if (!files || !Array.isArray(files)) {
+            return res.status(400).json({ success: false, error: "Invalid files input." });
         }
 
         try {
-            // Upload file to ImageKit
-            const uploadResponse = await imageKit.upload({
-                file, // Base64 string or file URL
-                fileName,
-                folder: "uploads", // Optional folder in ImageKit
-            });
+            const uploadedImages = await Promise.all(
+                files.map(async (file: string, index: number) => {
+                    const uploadResponse = await imageKit.upload({
+                        file,
+                        fileName: `image-${Date.now()}-${index}`,
+                        folder: "uploads",
+                    });
+                    // Inside your API handler in upload-image.ts
+                    console.log({
+                        fileName: uploadResponse.name,
+                        fileUrl: uploadResponse.url,
+                        description: descriptions?.[index] || null,
+                    });
 
-            // Save metadata to Neon DB
-            const [newImage] = await db.insert(images).values({
-                fileName: uploadResponse.name,
-                fileUrl: uploadResponse.url,
-                description: description || null,
-            }).returning();
 
-            return res.status(200).json({
-                success: true,
-                image: {
-                    id: newImage.id,
-                    fileName: newImage.fileName,
-                    fileUrl: newImage.fileUrl,
-                },
-            });
+                    const [newImage] = await db.insert(images).values({
+                        fileName: uploadResponse.name,
+                        fileUrl: uploadResponse.url,
+                        description: descriptions?.[index] || null,
+                    }).returning();
+
+                    return {
+                        id: newImage.id,
+                        fileName: newImage.fileName,
+                        fileUrl: newImage.fileUrl,
+                        description: newImage.description ?? undefined, // Convert null to undefined
+                        // Inside your API handler in upload-image.ts
+
+
+                    };
+
+                })
+
+            );
+
+
+            res.status(200).json({ success: true, uploadedImages });
         } catch (error) {
-            console.error("Error uploading image:", error);
-            return res.status(500).json({ success: false, error: "Image upload failed." });
+            console.error("Error uploading images:", error);
+            res.status(500).json({ success: false, error: "Failed to upload images." });
         }
     } else {
         res.setHeader("Allow", ["POST"]);
