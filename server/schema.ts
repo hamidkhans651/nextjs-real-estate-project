@@ -1,8 +1,10 @@
 import {
   pgTable,
+  uuid,
   text,
   pgEnum,
   serial,
+  timestamp,
   integer,
   varchar,
   boolean, // Ensure boolean is imported
@@ -32,9 +34,19 @@ export const properties = pgTable("properties", {
   price: integer("price").notNull(),
   location: varchar("location", { length: 255 }).notNull(),
   imageUrl: varchar("image_url", { length: 500 }).notNull(),
-  bedrooms:integer("bedrooms").notNull(),
-  bathrooms:integer("bathrooms").notNull(),
-  sqft:integer("sqft").notNull(),
-  propertyType:varchar("property_type", { length: 255 }).notNull(),
+  bedrooms: integer("bedrooms").notNull(),
+  bathrooms: integer("bathrooms").notNull(),
+  sqft: integer("sqft").notNull(),
+  propertyType: varchar("property_type", { length: 255 }).notNull(),
   isForSale: boolean("is_for_sale").notNull().default(true), // New column
+});
+
+
+
+export const images = pgTable("images", {
+  id: uuid("id").defaultRandom().primaryKey(),         // Unique identifier
+  fileName: varchar("file_name", { length: 255 }).notNull(), // Original file name
+  fileUrl: text("file_url").notNull(),                // Image URL from ImageKit
+  description: text("description"),                   // Optional description
+  createdAt: timestamp("created_at", { withTimezone: true }).defaultNow().notNull(), // Upload timestamp
 });
