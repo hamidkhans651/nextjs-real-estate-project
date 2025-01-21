@@ -1,8 +1,7 @@
-// lib/imagekit.ts
-import ImageKit from "imagekit";
+import ImageKit from "imagekit"; // If ImageKit is the default export
 
 export const imageKit = new ImageKit({
-  publicKey: process.env.IMAGEKIT_PUBLIC_KEY!, // Add your ImageKit public key
-  privateKey: process.env.IMAGEKIT_PRIVATE_KEY!, // Add your private key
-  urlEndpoint: process.env.IMAGEKIT_URL_ENDPOINT!, // Add your URL endpoint
+  publicKey: process.env.IMAGEKIT_PUBLIC_KEY!,
+  privateKey: process.env.IMAGEKIT_PRIVATE_KEY!,
+  urlEndpoint: process.env.IMAGEKIT_URL_ENDPOINT!,
 });
