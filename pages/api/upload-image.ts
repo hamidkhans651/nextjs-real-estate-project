@@ -14,62 +14,58 @@ interface UploadResponse {
     }>;
     error?: string;
 }
-
-export default async function handler(
-    req: NextApiRequest,
-    res: NextApiResponse<UploadResponse>
-) {
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     if (req.method === "POST") {
-        const { files, descriptions } = req.body;
-
-        if (!files || !Array.isArray(files)) {
-            return res.status(400).json({ success: false, error: "Invalid files input." });
-        }
-
-        try {
-            const uploadedImages = await Promise.all(
-                files.map(async (file: string, index: number) => {
-                    const uploadResponse = await imageKit.upload({
-                        file,
-                        fileName: `image-${Date.now()}-${index}`,
-                        folder: "uploads",
-                    });
-                    // Inside your API handler in upload-image.ts
-                    console.log({
-                        fileName: uploadResponse.name,
-                        fileUrl: uploadResponse.url,
-                        description: descriptions?.[index] || null,
-                    });
-
-
-                    const [newImage] = await db.insert(images).values({
-                        fileName: uploadResponse.name,
-                        fileUrl: uploadResponse.url,
-                        description: descriptions?.[index] || null,
-                    }).returning();
-
-                    return {
-                        id: newImage.id,
-                        fileName: newImage.fileName,
-                        fileUrl: newImage.fileUrl,
-                        description: newImage.description ?? undefined, // Convert null to undefined
-                        // Inside your API handler in upload-image.ts
-
-
-                    };
-
-                })
-
-            );
-
-
-            res.status(200).json({ success: true, uploadedImages });
-        } catch (error) {
-            console.error("Error uploading images:", error);
-            res.status(500).json({ success: false, error: "Failed to upload images." });
-        }
+      const { files, descriptions, details } = req.body;
+  
+      if (!files || !Array.isArray(files)) {
+        return res.status(400).json({ success: false, error: "Invalid files input." });
+      }
+  
+      if (!details) {
+        return res.status(400).json({ success: false, error: "Details are required." });
+      }
+  
+      try {
+        const uploadedImages = await Promise.all(
+          files.map(async (file: string, index: number) => {
+            const uploadResponse = await imageKit.upload({
+              file,
+              fileName: `image-${Date.now()}-${index}`,
+              folder: "uploads",
+            });
+  
+            const [newImage] = await db.insert(images).values({
+              title: details.title,
+              description: details.description,
+              price: details.price,
+              location: details.location,
+              imageUrl: uploadResponse.url,
+              bedrooms: details.bedrooms,
+              bathrooms: details.bathrooms,
+              sqft: details.sqft,
+              propertyType: details.propertyType,
+              isForSale: details.isForSale,
+            }).returning();
+  
+            return {
+              id: newImage.id,
+              fileName: uploadResponse.name,
+              fileUrl: uploadResponse.url,
+              title: details.title,
+              description: details.description,
+            };
+          })
+        );
+  
+        res.status(200).json({ success: true, uploadedImages });
+      } catch (error) {
+        console.error("Error uploading images:", error);
+        res.status(500).json({ success: false, error: "Failed to upload images." });
+      }
     } else {
-        res.setHeader("Allow", ["POST"]);
-        res.status(405).end(`Method ${req.method} Not Allowed`);
+      res.setHeader("Allow", ["POST"]);
+      res.status(405).end(`Method ${req.method} Not Allowed`);
     }
-}
+  }
+  
