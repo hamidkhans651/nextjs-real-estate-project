@@ -100,11 +100,11 @@ const PropertiesForm = () => {
                 details,
             });
 
-            alert("Images uploaded successfully!");
-            console.log("Uploaded images:", response.data.uploadedImages);
+            alert("Property added successfully!");
+            console.log("added property:", response.data.uploadedImages);
         } catch (error) {
-            console.error("Error uploading images:", error);
-            alert("Failed to upload images.");
+            console.error("Error adding property:", error);
+            alert("Failed to add property.");
         }
     };
 
@@ -300,13 +300,7 @@ const PropertiesForm = () => {
                         alt={`Preview ${index}`}
                         className="w-64 h-64 object-cover"
                     />
-                    <input
-                        type="text"
-                        placeholder="Description"
-                        value={descriptions[index]}
-                        onChange={(e) => handleDescriptionChange(index, e.target.value)}
-                        className="block w-full border rounded p-2"
-                    />
+                   
                 </div>
             ))}
             {errors.descriptions && (
@@ -318,7 +312,7 @@ const PropertiesForm = () => {
                 type="submit"
                 className="mt-4 bg-blue-500 text-white px-4 py-2 rounded"
             >
-                Upload Images with Details
+                Submit
             </button>
         </form>
     );
