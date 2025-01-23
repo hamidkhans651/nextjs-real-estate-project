@@ -6,11 +6,12 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import axios from "axios";
 import { Toaster, toast } from "react-hot-toast";
+import { Spinner } from "@heroui/react"; // Import the Spinner component
 
 // Zod validation schema
 const imageUploadSchema = z.object({
     title: z.string().min(1, "Title is required"),
-    description: z.string().min(1, "Description is required"),
+    description: z.string().min(1, "Description is requi ed"),
     price: z.number().min(1, "Price must be greater than 0"),
     location: z.string().min(1, "Location is required"),
     bedrooms: z.number().min(1, "Bedrooms must be at least 1"),
@@ -27,6 +28,7 @@ type FormData = z.infer<typeof imageUploadSchema>;
 
 const PropertiesForm = () => {
     const [previews, setPreviews] = useState<string[]>([]);
+    const [loading, setLoading] = useState(false); // State for the loader
 
     const {
         handleSubmit,
@@ -74,8 +76,8 @@ const PropertiesForm = () => {
     const onSubmit = async (data: FormData) => {
         const { imageFiles, descriptions, ...details } = data;
 
-        // Show loading toaster
-        const toastId = toast.loading("Uploading property details...");
+        // Show loading spinner
+        setLoading(true);
 
         try {
             const filesBase64 = await Promise.all(
@@ -95,17 +97,30 @@ const PropertiesForm = () => {
                 details,
             });
 
-            toast.success("Property added successfully!", { id: toastId });
+            toast.success("Property added successfully!");
             setTimeout(() => window.location.reload(), 1500); // Refresh page
         } catch (error) {
-            toast.error("Failed to add property. Please try again.", { id: toastId });
+            toast.error("Failed to add property. Please try again.");
+        } finally {
+            setLoading(false); // Hide loading spinner
         }
     };
 
     return (
         <>
             <Toaster position="top-center" />
-            <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+
+            {/* Loading spinner with blur effect */}
+            {loading && (
+                <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 backdrop-blur-sm">
+                    <Spinner />
+                </div>
+            )}
+
+            <form
+                onSubmit={handleSubmit(onSubmit)}
+                className={`space-y-4 ${loading ? "filter blur-sm pointer-events-none" : ""}`}
+            >
                 {/* Title */}
                 <Controller
                     name="title"
@@ -124,6 +139,7 @@ const PropertiesForm = () => {
                         </div>
                     )}
                 />
+
                 {/* Description */}
                 <Controller
                     name="description"
@@ -141,7 +157,6 @@ const PropertiesForm = () => {
                         </div>
                     )}
                 />
-
                 {/* Price */}
                 <Controller
                     name="price"

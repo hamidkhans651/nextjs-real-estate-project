@@ -3,6 +3,7 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import { imageKit } from "@/lib/imagekit";
 import { db } from "@/server/db"; // Drizzle database instance
 import { properties } from "@/server/schema";
+import { v4 as uuidv4 } from "uuid"; // Import UUID for fallback zpid generation
 
 interface UploadResponse {
   success: boolean;
@@ -14,6 +15,7 @@ interface UploadResponse {
   }>;
   error?: string;
 }
+
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method === "POST") {
     const { files, details } = req.body;
@@ -35,7 +37,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             folder: "uploads",
           });
 
+          // Generate zpid (ensure you have a valid zpid source, or use a UUID as a fallback)
+          const zpid = details.zpid || uuidv4();
+
           const [newImage] = await db.insert(properties).values({
+            zpid, // Include the zpid field
             title: details.title,
             description: details.description,
             price: details.price,
