@@ -1,7 +1,9 @@
 // pages/api/get-images.ts
 import type { NextApiRequest, NextApiResponse } from "next";
 import { db } from "@/server/db";
-import { images } from "@/server/schema";
+import {
+    propertyImages
+} from "@/server/schema";
 import { desc } from "drizzle-orm";
 
 
@@ -11,8 +13,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         try {
             const allImages = await db
                 .select()
-                .from(images)
-                .orderBy(desc(images.createdAt)); // Use desc() utility here
+                .from(propertyImages)
+                .orderBy(desc(propertyImages.createdAt)); // Use desc() utility here
 
             res.status(200).json(allImages);
         } catch (error) {
