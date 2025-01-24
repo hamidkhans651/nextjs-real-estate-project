@@ -44,9 +44,6 @@ export const properties = pgTable("properties", {
   createdAt: timestamp("created_at", { withTimezone: true }).defaultNow().notNull(),
 });
 
-
-
-
 export const propertyDetails = pgTable("property_details", {
   id: serial("id").primaryKey(),
   zpid: varchar("zpid", { length: 50 }).references(() => properties.zpid).notNull(),

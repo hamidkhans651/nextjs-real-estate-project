@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import LogoutButton from "@/components/auth/logout-button";
-import { Layers2, LayoutDashboard, House } from "lucide-react";
+import { Layers2, Settings, LayoutDashboard, House } from "lucide-react";
 import { Tab } from "./Tab"; // Import the Tab component
 import { JSX } from "react";
 
@@ -28,6 +28,11 @@ const menuList: MenuItem[] = [
         name: "Add new property",
         link: "/admin/Addproperties",
         icon: <Layers2 className="h-5 w-5" />,
+    },
+    {
+        name: "Settings",
+        link: "/admin/settings",
+        icon: <Settings className="h-5 w-5" />,
     },
 ];
 

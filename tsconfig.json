@@ -33,7 +33,7 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts"
-, "app/admin/layout.jsx", "app/admin/components/Header.tsx", "app/admin/categories/page.jsx"  ],
+, "app/admin/layout.jsx", "app/admin/components/Header.tsx", "app/admin/categories/page.jsx", "app/admin/components/Userdetails.jsx"  ],
   "exclude": [
     "node_modules"
   ]
