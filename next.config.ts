@@ -8,6 +8,11 @@ const nextConfig: NextConfig = {
         hostname: "ssl.cdn-redfin.com",
         pathname: "/photo/**", // Matches all paths under /photo
       },
+      {
+        protocol: "https",
+        hostname: "ik.imagekit.io",
+        pathname: "/**", // Matches all paths under the root
+      },
     ],
   },
   api: {
