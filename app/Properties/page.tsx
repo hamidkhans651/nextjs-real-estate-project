@@ -73,9 +73,8 @@ export default function Hero() {
     return (
       <button
         key={key}
-        className={`${className} ${
-          isActive ? "text-white bg-gradient-to-br from-indigo-500 to-pink-500 font-bold" : ""
-        }`}
+        className={`${className} ${isActive ? "text-white bg-gradient-to-br from-indigo-500 to-pink-500 font-bold" : ""
+          }`}
         onClick={() => setPage(value)}
       >
         {value}
@@ -117,14 +116,18 @@ export default function Hero() {
               className="relative"
               onPress={() => router.push(`/Properties/${property.id}`)} // Add navigation
             >
-              <Image
-                shadow="sm"
-                radius="lg"
-                width="100%"
-                alt={property.title}
-                className="w-full object-cover h-100%"
-                src={property.imageUrl} // Dynamic image URL
-              />
+              <div className="relative w-full h-[200px] overflow-hidden rounded-t-lg">
+
+                <Image
+                  shadow="sm"
+                  radius="lg"
+                  width="100%"
+                  alt={property.title}
+                  className="w-full object-cover h-100%"
+                  src={property.imageUrl} // Dynamic image URL
+                />
+              </div>
+
               <Button
                 size="sm"
                 isIconOnly
@@ -134,7 +137,7 @@ export default function Hero() {
               >
                 <HeartIcon size={20} />
               </Button>
-              <CardBody className="overflow-visible p-3">
+              <CardBody className="overflow-visible  p-3">
                 <p className="text-xl text-start">${property.price}</p>
                 <p className="p-2 text-sm text-start">
                   {property.bedrooms} bed, {property.bathrooms} bath, {property.sqft} SQ FT

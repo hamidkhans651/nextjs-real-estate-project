@@ -58,14 +58,17 @@ export default function PropertiesList() {
                 <div className="p-5 gap-5 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3">
                     {propertiesToShow.map((property) => (
                         <Card shadow="sm" key={property.id} isPressable className="relative">
-                            <Image
-                                shadow="sm"
-                                radius="lg"
-                                width="100%"
-                                alt={property.title}
-                                className="w-full object-cover h-100%"
-                                src={property.imageUrl}
-                            />
+                            <div className="relative w-full h-[200px] overflow-hidden rounded-t-lg">
+
+                                <Image
+                                    shadow="sm"
+                                    radius="lg"
+                                    width="100%"
+                                    alt={property.title}
+                                    className="w-full object-cover h-100%"
+                                    src={property.imageUrl}
+                                />
+                            </div>
                             {/* Dropdown Button */}
                             <div>
                                 <DropdownButton
@@ -77,7 +80,7 @@ export default function PropertiesList() {
                             <div>
                                 <ShareButton />
                             </div>
-                            <CardBody className="overflow-visible p-3">
+                            <CardBody className=" overflow-visible  p-3">
                                 <p className="text-xl text-start">$ {property.price}</p>
                                 <p className="p-2 text-sm text-start">
                                     {property.bedrooms} bed, {property.bathrooms} bath, {property.sqft} SQ FT
