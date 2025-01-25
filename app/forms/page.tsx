@@ -21,7 +21,30 @@ type HomeFactsFormData = {
   openHouses: { date: string; startTime: string; endTime: string }[];
   website: string;
   additionalDescription: string;
+  appliances: string[];
+  basement: string;
+  floorCovering: string[];
+  coolingType: string[];
+  heatingType: string[];
+  heatingFuel: string[];
+  rooms: string[];
+  totalRooms: number;
+  indoorFeatures: string[];
+  buildingAmenities: string[];
+  architecturalStyle: string;
+  exterior: string[];
+  outdoorAmenities: string[];
+  numberOfStories: number;
+  parking: string[];
+  parkingSpaces: number;
+  roof: string[];
+  view: string[];
+  phoneNumber: string;
+  agreement: boolean;
 };
+
+
+
 
 export default function CombinedForm() {
   const {
@@ -48,6 +71,26 @@ export default function CombinedForm() {
       openHouses: [{ date: "", startTime: "1:00 PM", endTime: "4:00 PM" }],
       website: "",
       additionalDescription: "",
+      appliances: [],
+      basement: "",
+      floorCovering: [],
+      coolingType: [],
+      heatingType: [],
+      heatingFuel: [],
+      rooms: [],
+      totalRooms: 0,
+      indoorFeatures: [],
+      buildingAmenities: [],
+      architecturalStyle: "",
+      exterior: [],
+      outdoorAmenities: [],
+      numberOfStories: 0,
+      parking: [],
+      parkingSpaces: 0,
+      roof: [],
+      view: [],
+      phoneNumber: "",
+      agreement: false,
     },
   });
 
@@ -375,6 +418,518 @@ export default function CombinedForm() {
           className="mt-1 block w-full border rounded p-2"
           rows={4}
         ></textarea>
+      </div>
+
+
+      <h1 className="text-2xl font-bold">Room Details</h1>
+      {/* Appliances Section */}
+      <div>
+        <h2 className="font-semibold mb-2">Appliances</h2>
+        <div className="grid grid-cols-2 gap-4">
+          {["Dishwasher", "Dryer", "Freezer", "Garbage disposal", "Microwave", "Range / Oven", "Refrigerator", "Trash compactor", "Washer"].map((appliance) => (
+            <label key={appliance} className="flex items-center">
+              <input
+                type="checkbox"
+                value={appliance}
+                {...register("appliances")}
+                className="mr-2"
+              />
+              {appliance}
+            </label>
+          ))}
+        </div>
+      </div>
+
+      {/* Basement Section */}
+      <div>
+        <h2 className="font-semibold mb-2">Basement</h2>
+        <div className="flex flex-col">
+          {["Finished", "Partially finished", "Unfinished", "None"].map((basement) => (
+            <label key={basement} className="flex items-center">
+              <input
+                type="radio"
+                value={basement}
+                {...register("basement")}
+                className="mr-2"
+              />
+              {basement}
+            </label>
+          ))}
+        </div>
+      </div>
+
+      {/* Floor Covering Section */}
+      <div>
+        <h2 className="font-semibold mb-2">Floor Covering</h2>
+        <div className="grid grid-cols-2 gap-4">
+          {["Carpet", "Concrete", "Hardwood", "Laminate", "Linoleum / Vinyl", "Slate", "Softwood", "Tile", "Other"].map((floor) => (
+            <label key={floor} className="flex items-center">
+              <input
+                type="checkbox"
+                value={floor}
+                {...register("floorCovering")}
+                className="mr-2"
+              />
+              {floor}
+            </label>
+          ))}
+        </div>
+      </div>
+
+      {/* Utility Details Section */}
+      <h1 className="text-2xl font-bold mt-10">Utility Details</h1>
+
+      {/* Cooling Type Section */}
+      <div>
+        <h2 className="font-semibold mb-2">Cooling Type</h2>
+        <div className="grid grid-cols-2 gap-4">
+          {["Central", "Evaporative", "Geothermal", "Refrigeration", "Solar", "Wall", "Other", "None"].map((cooling) => (
+            <label key={cooling} className="flex items-center">
+              <input
+                type="checkbox"
+                value={cooling}
+                {...register("coolingType")}
+                className="mr-2"
+              />
+              {cooling}
+            </label>
+          ))}
+        </div>
+      </div>
+
+      {/* Heating Type Section */}
+      <div>
+        <h2 className="font-semibold mb-2">Heating Type</h2>
+        <div className="grid grid-cols-2 gap-4">
+          {["Baseboard", "Forced air", "Geothermal", "Heat pump", "Radiant", "Stove", "Wall", "Other"].map((heating) => (
+            <label key={heating} className="flex items-center">
+              <input
+                type="checkbox"
+                value={heating}
+                {...register("heatingType")}
+                className="mr-2"
+              />
+              {heating}
+            </label>
+          ))}
+        </div>
+      </div>
+
+      {/* Heating Fuel Section */}
+      <div>
+        <h2 className="font-semibold mb-2">Heating Fuel</h2>
+        <div className="grid grid-cols-2 gap-4">
+          {["Coal", "Electric", "Gas", "Oil", "Propane / Butane", "Solar", "Wood / Pellet", "Other", "None"].map((fuel) => (
+            <label key={fuel} className="flex items-center">
+              <input
+                type="checkbox"
+                value={fuel}
+                {...register("heatingFuel")}
+                className="mr-2"
+              />
+              {fuel}
+            </label>
+          ))}
+        </div>
+      </div>
+      <h1 className="text-2xl font-bold">Room Details</h1>
+
+      {/* Rooms Section */}
+      <div>
+        <h2 className="font-semibold mb-2">Rooms</h2>
+        <div className="grid grid-cols-2 gap-4">
+          {[
+            "Breakfast nook",
+            "Dining room",
+            "Family room",
+            "Laundry room",
+            "Library",
+            "Master bath",
+            "Mud room",
+            "Office",
+            "Pantry",
+            "Recreation room",
+            "Workshop",
+            "Solarium / Atrium",
+            "Sun room",
+            "Walk-in closet",
+          ].map((room) => (
+            <label key={room} className="flex items-center">
+              <input
+                type="checkbox"
+                value={room}
+                {...register("rooms")}
+                className="mr-2"
+              />
+              {room}
+            </label>
+          ))}
+        </div>
+        <div className="mt-4">
+          <label
+            htmlFor="totalRooms"
+            className="block text-sm font-medium text-gray-700"
+          >
+            Total Rooms
+          </label>
+          <Controller
+            name="totalRooms"
+            control={control}
+            render={({ field }) => (
+              <input
+                {...field}
+                type="number"
+                id="totalRooms"
+                className="mt-1 block w-full border rounded p-2"
+              />
+            )}
+          />
+        </div>
+      </div>
+
+      {/* Indoor Features Section */}
+      <div>
+        <h2 className="font-semibold mb-2">Indoor Features</h2>
+        <div className="grid grid-cols-2 gap-4">
+          {[
+            "Attic",
+            "Cable ready",
+            "Ceiling fans",
+            "Double pane/storm windows",
+            "Fireplace",
+            "Intercom system",
+            "Jetted tub",
+            "Mother-in-law apartment",
+            "Security system",
+            "Skylights",
+            "Vaulted ceiling",
+            "Wet bar",
+            "Wired",
+          ].map((feature) => (
+            <label key={feature} className="flex items-center">
+              <input
+                type="checkbox"
+                value={feature}
+                {...register("indoorFeatures")}
+                className="mr-2"
+              />
+              {feature}
+            </label>
+          ))}
+        </div>
+      </div>
+
+      {/* Building Amenities Section */}
+      <h1 className="text-2xl font-bold mb-4">Building Details</h1>
+      <div>
+        <h2 className="font-semibold mb-2">Building Amenities</h2>
+        <div className="grid grid-cols-2 gap-4">
+          {[
+            "Assisted living community",
+            "Basketball court",
+            "Controlled access",
+            "Disabled access",
+            "Doorman",
+            "Elevator",
+            "Fitness center",
+            "Gated entry",
+            "Near transportation",
+            "Over 55+ active community",
+            "Sports court",
+            "Storage",
+            "Tennis court",
+          ].map((amenity) => (
+            <label key={amenity} className="flex items-center">
+              <input
+                type="checkbox"
+                value={amenity}
+                {...register("buildingAmenities")}
+                className="mr-2"
+              />
+              {amenity}
+            </label>
+          ))}
+        </div>
+      </div>
+
+      {/* Architectural Style Section */}
+      <div>
+        <h2 className="font-semibold mb-2">Architectural Style</h2>
+        <div className="grid grid-cols-2 gap-4">
+          {[
+            "Bungalow",
+            "Cape Cod",
+            "Colonial",
+            "Contemporary",
+            "Craftsman",
+            "French",
+            "Georgian",
+            "Loft",
+            "Modern",
+            "Queen Anne / Victorian",
+            "Ranch / Rambler",
+            "Santa Fe / Pueblo Style",
+            "Spanish",
+            "Split-level",
+            "Tudor",
+            "Other",
+          ].map((style) => (
+            <label key={style} className="flex items-center">
+              <input
+                type="radio"
+                value={style}
+                {...register("architecturalStyle")}
+                className="mr-2"
+              />
+              {style}
+            </label>
+          ))}
+        </div>
+      </div>
+
+
+
+      <h1 className="text-2xl font-bold mb-4">Exterior and Outdoor Amenities</h1>
+
+      {/* Exterior Section */}
+      <div>
+        <h2 className="font-semibold mb-2">Exterior</h2>
+        <div className="grid grid-cols-2 gap-4">
+          {[
+            "Brick",
+            "Cement / Concrete",
+            "Composition",
+            "Metal",
+            "Shingle",
+            "Stone",
+            "Stucco",
+            "Vinyl",
+            "Wood",
+            "Wood products",
+            "Other",
+          ].map((item) => (
+            <label key={item} className="flex items-center">
+              <input
+                type="checkbox"
+                value={item}
+                {...register("exterior")}
+                className="mr-2"
+              />
+              {item}
+            </label>
+          ))}
+        </div>
+      </div>
+
+      {/* Outdoor Amenities Section */}
+      <div>
+        <h2 className="font-semibold mb-2">Outdoor Amenities</h2>
+        <div className="grid grid-cols-2 gap-4">
+          {[
+            "Balcony/patio",
+            "Barbecue area",
+            "Deck",
+            "Dock",
+            "Fenced yard",
+            "Garden",
+            "Greenhouse",
+            "Hot tub/spa",
+            "Lawn",
+            "Pond",
+            "Pool",
+            "Porch",
+            "RV parking",
+            "Sauna",
+            "Sprinkler system",
+            "Waterfront",
+          ].map((amenity) => (
+            <label key={amenity} className="flex items-center">
+              <input
+                type="checkbox"
+                value={amenity}
+                {...register("outdoorAmenities")}
+                className="mr-2"
+              />
+              {amenity}
+            </label>
+          ))}
+        </div>
+      </div>
+
+      {/* Number of Stories */}
+      <div>
+        <label htmlFor="numberOfStories" className="block text-sm font-medium text-gray-700">
+          # of Stories
+        </label>
+        <input
+          type="number"
+          id="numberOfStories"
+          {...register("numberOfStories")}
+          className="mt-1 block w-full border rounded p-2"
+        />
+      </div>
+
+      <h1 className="text-2xl font-bold mb-4">Parking, Roof, and View</h1>
+
+      {/* Parking Section */}
+      <div>
+        <h2 className="font-semibold mb-2">Parking</h2>
+        <div className="grid grid-cols-2 gap-4">
+          {[
+            "Carport",
+            "Garage - Attached",
+            "Garage - Detached",
+            "Off-street",
+            "On-street",
+            "None",
+          ].map((option) => (
+            <label key={option} className="flex items-center">
+              <input
+                type="checkbox"
+                value={option}
+                {...register("parking")}
+                className="mr-2"
+              />
+              {option}
+            </label>
+          ))}
+        </div>
+        <label htmlFor="parkingSpaces" className="block mt-4 text-sm font-medium text-gray-700">
+          # Parking Spaces
+        </label>
+        <input
+          type="number"
+          id="parkingSpaces"
+          {...register("parkingSpaces")}
+          className="mt-1 block w-full border rounded p-2"
+        />
+      </div>
+
+      {/* Roof Section */}
+      <div>
+        <h2 className="font-semibold mb-2">Roof</h2>
+        <div className="grid grid-cols-2 gap-4">
+          {[
+            "Asphalt",
+            "Built-up",
+            "Composition",
+            "Metal",
+            "Shake / Shingle",
+            "Slate",
+            "Tile",
+            "Other",
+          ].map((option) => (
+            <label key={option} className="flex items-center">
+              <input
+                type="checkbox"
+                value={option}
+                {...register("roof")}
+                className="mr-2"
+              />
+              {option}
+            </label>
+          ))}
+        </div>
+      </div>
+
+
+      {/* View Section */}
+      <div>
+        <h2 className="font-semibold mb-2">View</h2>
+        <div className="grid grid-cols-2 gap-4">
+          {["City", "Mountain", "Park", "Territorial", "Water", "None"].map((option) => (
+            <label key={option} className="flex items-center">
+              <input
+                type="checkbox"
+                value={option}
+                {...register("view")}
+                className="mr-2"
+              />
+              {option}
+            </label>
+          ))}
+        </div>
+      </div>
+
+
+
+
+
+
+      <h1 className="text-2xl font-bold mb-4">Contact Information</h1>
+
+      {/* Instruction Section */}
+      <p className="text-gray-600 mb-4">
+        Potential buyers will contact you through the email address you use to register on Zillow.
+        You must also add your phone number to the listing here.
+      </p>
+
+      {/* Phone Number Section */}
+      <div>
+        <label htmlFor="phoneNumber" className="block text-sm font-medium text-gray-700">
+          Phone Number
+        </label>
+        <input
+          type="text"
+          id="phoneNumber"
+          {...register("phoneNumber", {
+            required: "Phone number is required",
+            pattern: {
+              value: /^\(\d{3}\)\s\d{3}-\d{4}(\s(x\d{1,5})?)?$/,
+              message: "Please enter a valid phone number",
+            },
+          })}
+          placeholder="(555) 555-5555 x5555"
+          className={`mt-1 block w-full border rounded p-2 ${errors.phoneNumber ? "border-red-500" : ""
+            }`}
+        />
+        {errors.phoneNumber && (
+          <p className="text-red-500 text-sm mt-1">{errors.phoneNumber.message}</p>
+        )}
+      </div>
+
+      {/* Agreement Section */}
+      <div>
+        <label className="flex items-start space-x-2">
+          <input
+            type="checkbox"
+            {...register("agreement", {
+              required: "You must agree to the terms",
+            })}
+            className="mt-1"
+          />
+          <span className="text-sm text-gray-600">
+            I agree to, acknowledge and understand the following: (i) I am (or I have authority to
+            act on behalf of) the owner of this home; (ii) I will not provide incorrect information
+            or state a discriminatory preference; (iii) I will be posting my property "for sale by
+            owner" on zillow.com and other affiliated websites and that I will solely be responsible
+            for maintaining and updating the posting and responding to and negotiating potential
+            offers to purchase the property; (iv) Zillow, Inc. ("Zillow") is a licensed real estate
+            brokerage, that I am not entering into any agency or brokerage relationship with Zillow
+            as part of this posting and that Zillow is not providing me with any real estate
+            brokerage services as part of this posting; and (v) I will comply with the{" "}
+            <a
+              href="https://www.zillow.com/terms/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-500 underline"
+            >
+              Zillow Terms of Use
+            </a>{" "}
+            and{" "}
+            <a
+              href="https://www.zillow.com/listing-policy/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-500 underline"
+            >
+              Listing Quality Policy
+            </a>.
+          </span>
+        </label>
+        {errors.agreement && (
+          <p className="text-red-500 text-sm mt-1">{errors.agreement.message}</p>
+        )}
       </div>
 
       <div className="text-right">
