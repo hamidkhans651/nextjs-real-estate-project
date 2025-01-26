@@ -233,3 +233,193 @@
 // // api of user
 
 // // hasDashboardAccess: boolean("hasDashboardAccess").default(false), // Add this column
+
+
+
+
+// export const properties = pgTable("properties", {
+//   id: serial("id").primaryKey(),
+//   zpid: varchar("zpid", { length: 50 }).unique().notNull(), // Zillow Property ID
+//   title: varchar("title", { length: 255 }).notNull(),
+//   description: text("description").notNull(),
+//   price: integer("price").notNull(),
+//   location: varchar("location", { length: 255 }).notNull(),
+//   imageUrl: varchar("image_url", { length: 500 }).notNull(),
+//   bedrooms: integer("bedrooms").notNull(),
+//   bathrooms: integer("bathrooms").notNull(),
+//   sqft: integer("sqft").notNull(),
+//   propertyType: varchar("property_type", { length: 255 }).notNull(),
+//   isForSale: boolean("is_for_sale").notNull().default(true),
+//   createdAt: timestamp("created_at", { withTimezone: true }).defaultNow().notNull(),
+// });
+
+// export const propertyDetails = pgTable("property_details", {
+//   id: serial("id").primaryKey(),
+//   walkScore: integer("walk_score"),
+//   transitScore: integer("transit_score"),
+//   bikeScore: integer("bike_score"),
+//   yearBuilt: integer("year_built"),
+//   taxHistory: jsonb("tax_history"), // Store tax history as JSON
+//   priceHistory: jsonb("price_history"), // Store price history as JSON
+//   zestimate: integer("zestimate"), // Zestimate Value
+//   rentalEstimate: integer("rental_estimate"), // Rent Zestimate
+//   updatedAt: timestamp("updated_at", { withTimezone: true }).defaultNow().notNull(),
+// });
+
+// export const propertyImages = pgTable("property_images", {
+//   id: serial("id").primaryKey(),
+//   imageUrl: varchar("image_url", { length: 500 }).notNull(),
+//   type: varchar("type", { length: 50 }), // e.g., image, video
+//   createdAt: timestamp("created_at", { withTimezone: true }).defaultNow().notNull(),
+// });
+
+// import {
+//     pgTable,
+//     text,
+//     jsonb,
+//     pgEnum,
+//     serial,
+//     timestamp,
+//     integer,
+//     varchar,
+//     boolean, // Ensure boolean is imported
+//   } from "drizzle-orm/pg-core";
+  
+//   export const SkillLevelEnum = pgEnum("skill_level", [
+//     "Buyer", "Seller", "Advanced", "Expert", "Master",
+//   ]);
+  
+//   export const users = pgTable("user", {
+//     id: text("id")
+//       .primaryKey()
+//       .$defaultFn(() => crypto.randomUUID()),
+//     firstName: text("firstName"),
+//     lastName: text("lastName"),
+//     location: text("location"),
+//     email: text("email").notNull(),
+//     image: text("image").default("no-image"),
+//     password: text("password"),
+//     skillLevel: SkillLevelEnum("skill_level").notNull().default("Buyer"),
+//   })
+  
+  
+//   // Enums for specific fields
+//   export const HomeTypeEnum = pgEnum("home_type", ["Single family", "Condo", "Townhouse", "Apartment"]);
+//   export const CoolingTypeEnum = pgEnum("cooling_type", ["Central", "Evaporative", "Geothermal", "Refrigeration", "Solar", "Wall", "Other", "None"]);
+//   export const HeatingTypeEnum = pgEnum("heating_type", ["Baseboard", "Forced air", "Geothermal", "Heat pump", "Radiant", "Stove", "Wall", "Other"]);
+//   export const HeatingFuelEnum = pgEnum("heating_fuel", ["Coal", "Electric", "Gas", "Oil", "Propane / Butane", "Solar", "Wood / Pellet", "Other", "None"]);
+//   export const BasementTypeEnum = pgEnum("basement", ["Finished", "Partially finished", "Unfinished", "None"]);
+//   export const ArchitecturalStyleEnum = pgEnum("architectural_style", [
+//     "Bungalow",
+//     "Cape Cod",
+//     "Colonial",
+//     "Contemporary",
+//     "Craftsman",
+//     "French",
+//     "Georgian",
+//     "Loft",
+//     "Modern",
+//     "Queen Anne / Victorian",
+//     "Ranch / Rambler",
+//     "Santa Fe / Pueblo Style",
+//     "Spanish",
+//     "Split-level",
+//     "Tudor",
+//     "Other",
+//   ]);
+  
+//   // Main properties table
+//   export const properties = pgTable("properties", {
+//     id: serial("id").primaryKey(),
+//     title: varchar("title", { length: 255 }).notNull(),
+//     description: varchar("description", { length: 5000 }).notNull(),
+//     price: integer("price").notNull(),
+//     location: varchar("location", { length: 255 }).notNull(),
+//     homeType: HomeTypeEnum("home_type").notNull(),
+//     bedrooms: integer("bedrooms").notNull(),
+//     bathrooms: integer("bathrooms").notNull(),
+//     sqft: integer("sqft").notNull(),
+//     lotSize: integer("lot_size"), // Optional
+//     yearBuilt: integer("year_built"),
+//     remodelYear: integer("remodel_year"),
+//     hoaDues: integer("hoa_dues"),
+//     isForSale: boolean("is_for_sale").notNull().default(true),
+//     phoneNumber: varchar("phone_number", { length: 20 }),
+//     agreement: boolean("agreement").default(false).notNull(),
+//     createdAt: timestamp("created_at", { withTimezone: true }).defaultNow().notNull(),
+//     updatedAt: timestamp("updated_at", { withTimezone: true }).defaultNow().notNull(),
+//     coolingType: CoolingTypeEnum("cooling_type"),
+//     heatingType: HeatingTypeEnum("heating_type"),
+//     heatingFuel: HeatingFuelEnum("heating_fuel"),
+//     basement: BasementTypeEnum("basement"),
+//     architecturalStyle: ArchitecturalStyleEnum("architectural_style"),
+//     totalRooms: integer("total_rooms"),
+//     indoorFeatures: jsonb("indoor_features"), // Store as a JSON array for flexibility
+//     buildingAmenities: jsonb("building_amenities"),
+//     exterior: jsonb("exterior"),
+//     outdoorAmenities: jsonb("outdoor_amenities"),
+//     parking: jsonb("parking"),
+//     parkingSpaces: integer("parking_spaces"),
+//     roof: jsonb("roof"),
+//     view: jsonb("view"),
+//     appliances: jsonb("appliances"),
+//     date: timestamp("date", { withTimezone: true }).notNull(),
+//     startTime: varchar("start_time", { length: 10 }).notNull(), // Time stored as string
+//     endTime: varchar("end_time", { length: 10 }).notNull(),
+//     walkScore: integer("walk_score"),
+//     transitScore: integer("transit_score"),
+//     bikeScore: integer("bike_score"),
+//     score: integer("score"), // Add this field
+//   });
+  
+//   // Utility Details
+//   export const propertyDetails = pgTable("property_details", {
+//     id: serial("id").primaryKey(),
+//     propertyId: integer("property_id").references(() => properties.id).notNull(),
+//     coolingType: CoolingTypeEnum("cooling_type"),
+//     heatingType: HeatingTypeEnum("heating_type"),
+//     heatingFuel: HeatingFuelEnum("heating_fuel"),
+//     basement: BasementTypeEnum("basement"),
+//     architecturalStyle: ArchitecturalStyleEnum("architectural_style"),
+//     totalRooms: integer("total_rooms"),
+//     indoorFeatures: jsonb("indoor_features"), // Store as a JSON array for flexibility
+//     buildingAmenities: jsonb("building_amenities"),
+//     exterior: jsonb("exterior"),
+//     outdoorAmenities: jsonb("outdoor_amenities"),
+//     parking: jsonb("parking"),
+//     parkingSpaces: integer("parking_spaces"),
+//     roof: jsonb("roof"),
+//     view: jsonb("view"),
+//     appliances: jsonb("appliances"),
+    
+//   });
+  
+//   // Open Houses Table (for many-to-one relation with properties)
+//   export const openHouses = pgTable("open_houses", {
+//     id: serial("id").primaryKey(),
+//     propertyId: integer("property_id").references(() => properties.id).notNull(),
+//     date: timestamp("date", { withTimezone: true }).notNull(),
+//     startTime: varchar("start_time", { length: 10 }).notNull(), // Time stored as string
+//     endTime: varchar("end_time", { length: 10 }).notNull(),
+//   });
+  
+//   // Property Images
+//   export const propertyImages = pgTable("property_images", {
+//     id: serial("id").primaryKey(),
+//     propertyId: integer("property_id").references(() => properties.id).notNull(),
+//     imageUrl: varchar("image_url", { length: 500 }).notNull(),
+//     type: varchar("type", { length: 50 }), // image/video
+//     createdAt: timestamp("created_at", { withTimezone: true }).defaultNow().notNull(),
+//   });
+  
+//   // Walk, Transit, and Bike Scores
+//   export const propertyScores = pgTable("property_scores", {
+//     id: serial("id").primaryKey(),
+//     propertyId: integer("property_id").references(() => properties.id).notNull(),
+//     walkScore: integer("walk_score"),
+//     transitScore: integer("transit_score"),
+//     bikeScore: integer("bike_score"),
+//     score: integer("score"), // Add this field
+//   });
+  
+  
