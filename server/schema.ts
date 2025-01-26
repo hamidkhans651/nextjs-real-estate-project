@@ -65,4 +65,3 @@ export const propertyImages = pgTable("property_images", {
   type: varchar("type", { length: 50 }), // e.g., image, video
   createdAt: timestamp("created_at", { withTimezone: true }).defaultNow().notNull(),
 });
-
