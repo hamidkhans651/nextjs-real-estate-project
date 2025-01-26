@@ -26,10 +26,11 @@ export default function PropertyDetails({ property }: PropertyDetailsProps) {
 
         <main className="p-2">
 
+
             {/* Tabs for navigation */}
-            <div className="tabs-container flex justify-between border-b  border-gray-300 mb-4">
+            <div className="tabs-container flex flex-wrap sm:flex-nowrap  font-medium text-xs sm:text-sm md:text-base justify-between border-b border-gray-300 mb-4 gap-2">
                 <button
-                    className="tab-button px-4 py-2 font-medium"
+                    className="tab-button p-2 font-medium whitespace-nowrap"
                     onClick={() =>
                         document.getElementById("overview")?.scrollIntoView({
                             behavior: "smooth",
@@ -37,10 +38,9 @@ export default function PropertyDetails({ property }: PropertyDetailsProps) {
                     }
                 >
                     Overview
-
                 </button>
                 <button
-                    className="tab-button px-4 py-2 font-medium"
+                    className="tab-button  py-2 font-medium whitespace-nowrap"
                     onClick={() =>
                         document.getElementById("description")?.scrollIntoView({
                             behavior: "smooth",
@@ -50,7 +50,7 @@ export default function PropertyDetails({ property }: PropertyDetailsProps) {
                     Property Description
                 </button>
                 <button
-                    className="tab-button px-4 py-2 font-medium"
+                    className="tab-button  py-2 font-medium whitespace-nowrap"
                     onClick={() =>
                         document.getElementById("contact")?.scrollIntoView({
                             behavior: "smooth",
@@ -60,7 +60,7 @@ export default function PropertyDetails({ property }: PropertyDetailsProps) {
                     Contact Us
                 </button>
                 <button
-                    className="tab-button px-4 py-2 font-medium"
+                    className="tab-button py-2 font-medium whitespace-nowrap"
                     onClick={() =>
                         document.getElementById("price")?.scrollIntoView({
                             behavior: "smooth",
@@ -71,18 +71,23 @@ export default function PropertyDetails({ property }: PropertyDetailsProps) {
                 </button>
             </div>
 
-            <Image
-                className="rounded-md"
-                src={property.imageUrl}
-                alt={property.title}
-                width={1000}
-                height={200}
-            />
+
+
+            <div className="flex ">
+                <Image
+                    className="rounded-md"
+                    src={property.imageUrl}
+                    alt={property.title}
+                    width={12000}
+                    height={200}
+                />
+            </div>
+
 
             {/* Overview Section */}
 
             <div className="py-4">
-
+                {/* 
                 <section
                     id="overview"
                     className="p-2  border-slate-200 rounded-xl border-2 mb-4"
@@ -94,6 +99,66 @@ export default function PropertyDetails({ property }: PropertyDetailsProps) {
                         <p className="flex font-bold p-2">Beds {property.bedrooms}</p>
                         <p className="flex font-bold p-2">Baths {property.bathrooms}</p>
                         <p className="font-bold p-2">Sq Ft {property.sqft}</p>
+                    </div>
+                </section> */}
+                <section
+                    id="overview"
+                    className="p-6 border-slate-200 rounded-xl border-2 mb-4 bg-white shadow-md"
+                >
+                    {/* Price and Location */}
+                    <div className="mb-4">
+                        <h2 className="text-3xl font-bold text-gray-900 mb-2">${property.price.toLocaleString()}</h2>
+                        <p className="text-gray-700">{property.location}</p>
+                    </div>
+
+                    {/* Beds, Baths, and Sqft */}
+                    <div className="flex items-center justify-between border-t border-b py-4 border-gray-300">
+                        <div className="flex flex-col items-center text-center">
+                            <h3 className="text-xl font-bold text-gray-900">{property.bedrooms}</h3>
+                            <p className="text-gray-600">Beds</p>
+                        </div>
+                        <div className="flex flex-col items-center text-center">
+                            <h3 className="text-xl font-bold text-gray-900">{property.bathrooms}</h3>
+                            <p className="text-gray-600">Baths</p>
+                        </div>
+                        <div className="flex flex-col items-center text-center">
+                            <h3 className="text-xl font-bold text-gray-900">{property.sqft.toLocaleString()}</h3>
+                            <p className="text-gray-600">Sq Ft</p>
+                        </div>
+                    </div>
+
+                    {/* Additional Details */}
+                    <div className="grid grid-cols-2 gap-4 mt-4 text-sm text-gray-700">
+                        <div className="flex items-center gap-2">
+                            <span className="inline-block w-6 h-6 bg-gray-200 rounded-full flex items-center justify-center">
+                                🏠
+                            </span>
+                            <p>{property.propertyType}</p>
+                        </div>
+                        <div className="flex items-center gap-2">
+                            <span className="inline-block w-6 h-6 bg-gray-200 rounded-full flex items-center justify-center">
+                                🛠️
+                            </span>
+                            <p>Built in</p>
+                        </div>
+                        <div className="flex items-center gap-2">
+                            <span className="inline-block w-6 h-6 bg-gray-200 rounded-full flex items-center justify-center">
+                                📏
+                            </span>
+                            <p></p>
+                        </div>
+                        <div className="flex items-center gap-2">
+                            <span className="inline-block w-6 h-6 bg-gray-200 rounded-full flex items-center justify-center">
+                                💰
+                            </span>
+                            <p>{property.price}</p>
+                        </div>
+                        <div className="flex items-center gap-2">
+                            <span className="inline-block w-6 h-6 bg-gray-200 rounded-full flex items-center justify-center">
+                                💳
+                            </span>
+                            <p></p>
+                        </div>
                     </div>
                 </section>
 
