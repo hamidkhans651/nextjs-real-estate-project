@@ -24,10 +24,10 @@ export default function PropertyDetails({ property }: PropertyDetailsProps) {
 
     return (
 
-        <main className="">
+        <main className="p-2">
 
             {/* Tabs for navigation */}
-            <div className="tabs-container flex justify-between border-b border-gray-300 mb-4">
+            <div className="tabs-container flex justify-between border-b  border-gray-300 mb-4">
                 <button
                     className="tab-button px-4 py-2 font-medium"
                     onClick={() =>
@@ -75,139 +75,144 @@ export default function PropertyDetails({ property }: PropertyDetailsProps) {
                 className="rounded-md"
                 src={property.imageUrl}
                 alt={property.title}
-                width={600}
-                height={600}
+                width={1000}
+                height={200}
             />
 
             {/* Overview Section */}
-            <section
-                id="overview"
-                className="p-2 border-slate-200 rounded-xl border-2 mb-4"
-            >
-                <p>For Sale: {property.isForSale ? "Yes" : "No"}</p>
-                <p className="font-bold p-2">{property.location}</p>
-                <div className="flex items-center justify-between">
-                    <h2 className="text-2xl font-bold ">${property.price}</h2>
-                    <p className="flex font-bold p-2">Beds {property.bedrooms}</p>
-                    <p className="flex font-bold p-2">Baths {property.bathrooms}</p>
-                    <p className="font-bold p-2">Sq Ft {property.sqft}</p>
-                </div>
-            </section>
 
-            {/* Property Description Section */}
-            <section
-                id="description"
-                className="p-4 border-slate-200 rounded-xl border-2 mb-4"
-            >
-                <h2 className="text-xl font-bold mb-2">Property Description</h2>
-                <p>
-                    {showMore
-                        ? property.description
-                        : property.description.slice(0, 200) + "..."}
-                </p>
-                <button
-                    onClick={toggleShowMore}
-                    className="text-blue-500 underline mt-2"
+            <div className="py-4">
+
+                <section
+                    id="overview"
+                    className="p-2  border-slate-200 rounded-xl border-2 mb-4"
                 >
-                    {showMore ? "Show Less" : "Show More"}
-                </button>
-            </section>
+                    <p>For Sale: {property.isForSale ? "Yes" : "No"}</p>
+                    <p className="font-bold p-2">{property.location}</p>
+                    <div className="flex items-center justify-between">
+                        <h2 className="text-2xl font-bold ">${property.price}</h2>
+                        <p className="flex font-bold p-2">Beds {property.bedrooms}</p>
+                        <p className="flex font-bold p-2">Baths {property.bathrooms}</p>
+                        <p className="font-bold p-2">Sq Ft {property.sqft}</p>
+                    </div>
+                </section>
 
-            {/* Contact Section */}
-            <section
-                id="contact"
-                className="p-4 border-slate-200 rounded-xl border-2 mb-4"
-            >
-                <h2 className="text-xl font-bold mb-2">Contact Us</h2>
-                <p>For inquiries, please contact us via email or phone.</p>
-            </section>
+                {/* Property Description Section */}
+                <section
+                    id="description"
+                    className="p-4 border-slate-200 rounded-xl border-2 mb-4"
+                >
+                    <h2 className="text-xl font-bold mb-2">Property Description</h2>
+                    <p>
+                        {showMore
+                            ? property.description
+                            : property.description.slice(0, 200) + "..."}
+                    </p>
+                    <button
+                        onClick={toggleShowMore}
+                        className="text-blue-500 underline mt-2"
+                    >
+                        {showMore ? "Show Less" : "Show More"}
+                    </button>
+                </section>
 
-            {/* Property Price Section */}
-            <section
-                id="price"
-                className="p-4 border-slate-200 rounded-xl border-2 mb-4"
-            >
-                <h2 className="text-xl font-bold mb-2">Property Price</h2>
-                <p>${property.price}</p>
-            </section>
+                {/* Contact Section */}
+                <section
+                    id="contact"
+                    className="p-4 border-slate-200 rounded-xl border-2 mb-4"
+                >
+                    <h2 className="text-xl font-bold mb-2">Contact Us</h2>
+                    <p>For inquiries, please contact us via email or phone.</p>
+                </section>
 
-            <section
-                id="price"
-                className="p-4 border-slate-200 rounded-xl border-2 mb-4"
-            >
-                <h2 className="text-xl font-bold mb-2">Around this home</h2>
-                <p>${property.price}</p>
-            </section>
-            <section
-                id="price"
-                className="p-4 border-slate-200 rounded-xl border-2 mb-4"
-            >
-                <h2 className="text-xl font-bold mb-2">Payment calculator</h2>
-                <p>${property.price}</p>
-            </section>
-            <section
-                id="price"
-                className="p-4 border-slate-200 rounded-xl border-2 mb-4"
-            >
-                <h2 className="text-xl font-bold mb-2">Payment calculator</h2>
-                <p>${property.price}</p>
-            </section>
-            <section
-                id="price"
-                className="p-4 border-slate-200 rounded-xl border-2 mb-4"
-            >
-                <h2 className="text-xl font-bold mb-2">Payment calculator</h2>
-                <p>${property.price}</p>
-            </section>
-            <section
-                id="price"
-                className="p-4 border-slate-200 rounded-xl border-2 mb-4"
-            >
-                <h2 className="text-xl font-bold mb-2">Payment calculator</h2>
-                <p>${property.price}</p>
-            </section>
-            <section
-                id="price"
-                className="p-4 border-slate-200 rounded-xl border-2 mb-4"
-            >
-                <h2 className="text-xl font-bold mb-2">Payment calculator</h2>
-                <p>${property.price}</p>
-            </section>
-            <section
-                id="price"
-                className="p-4 border-slate-200 rounded-xl border-2 mb-4"
-            >
-                <h2 className="text-xl font-bold mb-2">Payment calculator</h2>
-                <p>${property.price}</p>
-            </section>
-            <section
-                id="price"
-                className="p-4 border-slate-200 rounded-xl border-2 mb-4"
-            >
-                <h2 className="text-xl font-bold mb-2">Payment calculator</h2>
-                <p>${property.price}</p>
-            </section>
-            <section
-                id="price"
-                className="p-4 border-slate-200 rounded-xl border-2 mb-4"
-            >
-                <h2 className="text-xl font-bold mb-2">Payment calculator</h2>
-                <p>${property.price}</p>
-            </section>
-            <section
-                id="price"
-                className="p-4 border-slate-200 rounded-xl border-2 mb-4"
-            >
-                <h2 className="text-xl font-bold mb-2">Payment calculator</h2>
-                <p>${property.price}</p>
-            </section>
-            <section
-                id="price"
-                className="p-4 border-slate-200 rounded-xl border-2 mb-4"
-            >
-                <h2 className="text-xl font-bold mb-2">Payment calculator</h2>
-                <p>${property.price}</p>
-            </section>
+                {/* Property Price Section */}
+                <section
+                    id="price"
+                    className="p-4 border-slate-200 rounded-xl border-2 mb-4"
+                >
+                    <h2 className="text-xl font-bold mb-2">Property Price</h2>
+                    <p>${property.price}</p>
+                </section>
+
+                <section
+                    id="price"
+                    className="p-4 border-slate-200 rounded-xl border-2 mb-4"
+                >
+                    <h2 className="text-xl font-bold mb-2">Around this home</h2>
+                    <p>${property.price}</p>
+                </section>
+                <section
+                    id="price"
+                    className="p-4 border-slate-200 rounded-xl border-2 mb-4"
+                >
+                    <h2 className="text-xl font-bold mb-2">Payment calculator</h2>
+                    <p>${property.price}</p>
+                </section>
+                <section
+                    id="price"
+                    className="p-4 border-slate-200 rounded-xl border-2 mb-4"
+                >
+                    <h2 className="text-xl font-bold mb-2">Payment calculator</h2>
+                    <p>${property.price}</p>
+                </section>
+                <section
+                    id="price"
+                    className="p-4 border-slate-200 rounded-xl border-2 mb-4"
+                >
+                    <h2 className="text-xl font-bold mb-2">Payment calculator</h2>
+                    <p>${property.price}</p>
+                </section>
+                <section
+                    id="price"
+                    className="p-4 border-slate-200 rounded-xl border-2 mb-4"
+                >
+                    <h2 className="text-xl font-bold mb-2">Payment calculator</h2>
+                    <p>${property.price}</p>
+                </section>
+                <section
+                    id="price"
+                    className="p-4 border-slate-200 rounded-xl border-2 mb-4"
+                >
+                    <h2 className="text-xl font-bold mb-2">Payment calculator</h2>
+                    <p>${property.price}</p>
+                </section>
+                <section
+                    id="price"
+                    className="p-4 border-slate-200 rounded-xl border-2 mb-4"
+                >
+                    <h2 className="text-xl font-bold mb-2">Payment calculator</h2>
+                    <p>${property.price}</p>
+                </section>
+                <section
+                    id="price"
+                    className="p-4 border-slate-200 rounded-xl border-2 mb-4"
+                >
+                    <h2 className="text-xl font-bold mb-2">Payment calculator</h2>
+                    <p>${property.price}</p>
+                </section>
+                <section
+                    id="price"
+                    className="p-4 border-slate-200 rounded-xl border-2 mb-4"
+                >
+                    <h2 className="text-xl font-bold mb-2">Payment calculator</h2>
+                    <p>${property.price}</p>
+                </section>
+                <section
+                    id="price"
+                    className="p-4 border-slate-200 rounded-xl border-2 mb-4"
+                >
+                    <h2 className="text-xl font-bold mb-2">Payment calculator</h2>
+                    <p>${property.price}</p>
+                </section>
+                <section
+                    id="price"
+                    className="p-4 border-slate-200 rounded-xl border-2 mb-4"
+                >
+                    <h2 className="text-xl font-bold mb-2">Payment calculator</h2>
+                    <p>${property.price}</p>
+                </section>
+
+            </div>
         </main>
     );
 }
