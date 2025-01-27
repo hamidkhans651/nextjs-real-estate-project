@@ -8,6 +8,13 @@
       "when": 1736785313329,
       "tag": "0000_serious_zeigeist",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1737963781182,
+      "tag": "0001_daffy_amphibian",
+      "breakpoints": true
     }
   ]
 }

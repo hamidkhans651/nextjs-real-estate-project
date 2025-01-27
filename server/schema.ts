@@ -33,6 +33,7 @@ export const properties = pgTable("properties", {
   zpid: varchar("zpid", { length: 50 }).unique().notNull(), // Zillow Property ID
   title: varchar("title", { length: 255 }).notNull(),
   description: text("description").notNull(),
+  propdetails: text("propdetails").notNull(),
   price: integer("price").notNull(),
   location: varchar("location", { length: 255 }).notNull(),
   imageUrl: varchar("image_url", { length: 500 }).notNull(),

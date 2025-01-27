@@ -12,6 +12,7 @@ interface UploadResponse {
     fileName: string;
     fileUrl: string;
     description?: string;
+
   }>;
   error?: string;
 }
@@ -44,6 +45,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             zpid, // Include the zpid field
             title: details.title,
             description: details.description,
+            propdetails: details.propdetails,
             price: details.price,
             location: details.location,
             imageUrl: uploadResponse.url,

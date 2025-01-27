@@ -4,6 +4,7 @@ export const propertySchema = z.object({
   id: z.number().optional(), // Optional because it's auto-generated
   title: z.string().min(1, "Title is required"),
   description: z.string().min(1, "Description is required"),
+  details: z.string().min(1, "details is required"),
   price: z.number().positive("Price must be greater than 0"),
   location: z.string().min(1, "Location is required"),
   imageUrl: z.string().url("Image URL must be a valid URL"),

@@ -12,6 +12,7 @@ import { Spinner } from "@heroui/react"; // Import the Spinner component
 const imageUploadSchema = z.object({
     title: z.string().min(1, "Title is required"),
     description: z.string().min(1, "Description is requi ed"),
+    propdetails: z.string().min(1, "propdetails is requi ed"),
     price: z.number().min(1, "Price must be greater than 0"),
     location: z.string().min(1, "Location is required"),
     bedrooms: z.number().min(1, "Bedrooms must be at least 1"),
@@ -41,6 +42,7 @@ const PropertiesForm = () => {
         defaultValues: {
             title: "",
             description: "",
+            propdetails: "",
             price: 0,
             location: "",
             bedrooms: 1,
@@ -153,6 +155,23 @@ const PropertiesForm = () => {
                             />
                             {errors.description && (
                                 <span className="text-red-500">{errors.description.message}</span>
+                            )}
+                        </div>
+                    )}
+                />
+                "detials"
+                <Controller
+                    name="propdetails"
+                    control={control}
+                    render={({ field }) => (
+                        <div>
+                            <textarea
+                                {...field}
+                                placeholder="propdetails"
+                                className="block w-full border rounded p-2"
+                            />
+                            {errors.propdetails && (
+                                <span className="text-red-500">{errors.propdetails.message}</span>
                             )}
                         </div>
                     )}

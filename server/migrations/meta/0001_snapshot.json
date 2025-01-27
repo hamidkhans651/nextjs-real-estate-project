@@ -1,0 +1,348 @@
+{
+  "id": "fad659c2-ec1b-4087-8cbc-3d8b953ed2e4",
+  "prevId": "19e4e956-d0de-4324-8d50-0be9ddba6b29",
+  "version": "7",
+  "dialect": "postgresql",
+  "tables": {
+    "public.properties": {
+      "name": "properties",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "zpid": {
+          "name": "zpid",
+          "type": "varchar(50)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "title": {
+          "name": "title",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "description": {
+          "name": "description",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "price": {
+          "name": "price",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "location": {
+          "name": "location",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "image_url": {
+          "name": "image_url",
+          "type": "varchar(500)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "bedrooms": {
+          "name": "bedrooms",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "bathrooms": {
+          "name": "bathrooms",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "sqft": {
+          "name": "sqft",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "property_type": {
+          "name": "property_type",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "is_for_sale": {
+          "name": "is_for_sale",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": true,
+          "default": true
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "properties_zpid_unique": {
+          "name": "properties_zpid_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "zpid"
+          ]
+        }
+      },
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.property_details": {
+      "name": "property_details",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "zpid": {
+          "name": "zpid",
+          "type": "varchar(50)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "walk_score": {
+          "name": "walk_score",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "transit_score": {
+          "name": "transit_score",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "bike_score": {
+          "name": "bike_score",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "year_built": {
+          "name": "year_built",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "tax_history": {
+          "name": "tax_history",
+          "type": "jsonb",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "price_history": {
+          "name": "price_history",
+          "type": "jsonb",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "zestimate": {
+          "name": "zestimate",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "rental_estimate": {
+          "name": "rental_estimate",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "property_details_zpid_properties_zpid_fk": {
+          "name": "property_details_zpid_properties_zpid_fk",
+          "tableFrom": "property_details",
+          "tableTo": "properties",
+          "columnsFrom": [
+            "zpid"
+          ],
+          "columnsTo": [
+            "zpid"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.property_images": {
+      "name": "property_images",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "zpid": {
+          "name": "zpid",
+          "type": "varchar(50)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "image_url": {
+          "name": "image_url",
+          "type": "varchar(500)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "type": {
+          "name": "type",
+          "type": "varchar(50)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "property_images_zpid_properties_zpid_fk": {
+          "name": "property_images_zpid_properties_zpid_fk",
+          "tableFrom": "property_images",
+          "tableTo": "properties",
+          "columnsFrom": [
+            "zpid"
+          ],
+          "columnsTo": [
+            "zpid"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.user": {
+      "name": "user",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "firstName": {
+          "name": "firstName",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "lastName": {
+          "name": "lastName",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "location": {
+          "name": "location",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "email": {
+          "name": "email",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "image": {
+          "name": "image",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'no-image'"
+        },
+        "password": {
+          "name": "password",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "skill_level": {
+          "name": "skill_level",
+          "type": "skill_level",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "'Buyer'"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    }
+  },
+  "enums": {
+    "public.skill_level": {
+      "name": "skill_level",
+      "schema": "public",
+      "values": [
+        "Buyer",
+        "Seller",
+        "Advanced",
+        "Expert",
+        "Master"
+      ]
+    }
+  },
+  "schemas": {},
+  "sequences": {},
+  "roles": {},
+  "policies": {},
+  "views": {},
+  "_meta": {
+    "columns": {},
+    "schemas": {},
+    "tables": {}
+  }
+}
