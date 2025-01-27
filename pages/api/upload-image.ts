@@ -42,7 +42,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           const zpid = details.zpid || uuidv4();
 
           const [newImage] = await db.insert(properties).values({
-            zpid, // Include the zpid field
+            zpid,
             title: details.title,
             description: details.description,
             propdetails: details.propdetails,
@@ -54,7 +54,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             sqft: details.sqft,
             propertyType: details.propertyType,
             isForSale: details.isForSale,
+            appliances: details.appliances, // Save appliances
           }).returning();
+          
 
           return {
             id: newImage.id,

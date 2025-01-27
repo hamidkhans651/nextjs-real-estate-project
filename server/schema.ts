@@ -27,10 +27,9 @@ export const users = pgTable("user", {
   password: text("password"),
   skillLevel: SkillLevelEnum("skill_level").notNull().default("Buyer"),
 })
-
 export const properties = pgTable("properties", {
   id: serial("id").primaryKey(),
-  zpid: varchar("zpid", { length: 50 }).unique().notNull(), // Zillow Property ID
+  zpid: varchar("zpid", { length: 50 }).unique().notNull(),
   title: varchar("title", { length: 255 }).notNull(),
   description: text("description").notNull(),
   propdetails: text("propdetails").notNull(),
@@ -42,6 +41,7 @@ export const properties = pgTable("properties", {
   sqft: integer("sqft").notNull(),
   propertyType: varchar("property_type", { length: 255 }).notNull(),
   isForSale: boolean("is_for_sale").notNull().default(true),
+  appliances: jsonb("appliances").default([]), // Added appliances column
   createdAt: timestamp("created_at", { withTimezone: true }).defaultNow().notNull(),
 });
 

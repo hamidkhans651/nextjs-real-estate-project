@@ -11,8 +11,8 @@ import { Spinner } from "@heroui/react"; // Import the Spinner component
 // Zod validation schema
 const imageUploadSchema = z.object({
     title: z.string().min(1, "Title is required"),
-    description: z.string().min(1, "Description is requi ed"),
-    propdetails: z.string().min(1, "propdetails is requi ed"),
+    description: z.string().min(1, "Description is required"),
+    propdetails: z.string().min(1, "Property details are required"),
     price: z.number().min(1, "Price must be greater than 0"),
     location: z.string().min(1, "Location is required"),
     bedrooms: z.number().min(1, "Bedrooms must be at least 1"),
@@ -20,10 +20,10 @@ const imageUploadSchema = z.object({
     sqft: z.number().min(1, "Square footage must be greater than 0"),
     propertyType: z.string().min(1, "Property type is required"),
     isForSale: z.boolean(),
+    appliances: z.array(z.string()).optional(), // Added appliances array
     imageFiles: z.array(z.any()).min(1, "At least one image must be uploaded"),
     descriptions: z.array(z.string()).min(1, "Each image must have a description"),
 });
-
 // Type for the form data
 type FormData = z.infer<typeof imageUploadSchema>;
 
@@ -50,8 +50,9 @@ const PropertiesForm = () => {
             sqft: 0,
             propertyType: "apartment",
             isForSale: true,
+            appliances: [], // Default empty appliances array
             imageFiles: [],
-            descriptions: [],
+            descriptions: []
         },
     });
 
@@ -289,7 +290,50 @@ const PropertiesForm = () => {
                         </div>
                     )}
                 />
-
+                {/* Appliances Section */}
+                <div>
+                    <h1 className="text-2xl font-bold">Room Details</h1>
+                    <h2 className="font-semibold mb-2">Appliances</h2>
+                    <div className="grid grid-cols-2 gap-4">
+                        {[
+                            "Dishwasher",
+                            "Dryer",
+                            "Freezer",
+                            "Garbage disposal",
+                            "Microwave",
+                            "Range / Oven",
+                            "Refrigerator",
+                            "Trash compactor",
+                            "Washer",
+                        ].map((appliance) => (
+                            <label key={appliance} className="flex items-center">
+                                <Controller
+                                    name="appliances"
+                                    control={control}
+                                    render={({ field }) => (
+                                        <input
+                                            type="checkbox"
+                                            value={appliance}
+                                            onChange={(e) => {
+                                                const selected = field.value || [];
+                                                if (e.target.checked) {
+                                                    setValue("appliances", [...selected, appliance]);
+                                                } else {
+                                                    setValue(
+                                                        "appliances",
+                                                        selected.filter((item) => item !== appliance)
+                                                    );
+                                                }
+                                            }}
+                                            className="mr-2"
+                                        />
+                                    )}
+                                />
+                                {appliance}
+                            </label>
+                        ))}
+                    </div>
+                </div>
                 {/* Is For Sale */}
                 <Controller
                     name="isForSale"
@@ -321,7 +365,6 @@ const PropertiesForm = () => {
                     )}
                 </div>
 
-                {/* Descriptions */}
                 {previews.map((preview, index) => (
                     <div key={index} className="space-y-2">
                         <img

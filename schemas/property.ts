@@ -1,10 +1,10 @@
 import { z } from "zod";
 
 export const propertySchema = z.object({
-  id: z.number().optional(), // Optional because it's auto-generated
+  id: z.number().optional(),
   title: z.string().min(1, "Title is required"),
   description: z.string().min(1, "Description is required"),
-  details: z.string().min(1, "details is required"),
+  details: z.string().min(1, "Details are required"),
   price: z.number().positive("Price must be greater than 0"),
   location: z.string().min(1, "Location is required"),
   imageUrl: z.string().url("Image URL must be a valid URL"),
@@ -13,6 +13,8 @@ export const propertySchema = z.object({
   sqft: z.number().min(1, "Square footage must be greater than 0"),
   propertyType: z.string().min(1, "Property type is required"),
   isForSale: z.boolean(),
+  appliances: z.array(z.string()), // Added appliances
 });
+
 
 export const addPropertySchema = propertySchema.omit({ id: true }); // For adding a property
