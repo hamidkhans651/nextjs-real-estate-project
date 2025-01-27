@@ -27,6 +27,8 @@ export const users = pgTable("user", {
   password: text("password"),
   skillLevel: SkillLevelEnum("skill_level").notNull().default("Buyer"),
 })
+
+
 export const properties = pgTable("properties", {
   id: serial("id").primaryKey(),
   zpid: varchar("zpid", { length: 50 }).unique().notNull(),
@@ -41,9 +43,24 @@ export const properties = pgTable("properties", {
   sqft: integer("sqft").notNull(),
   propertyType: varchar("property_type", { length: 255 }).notNull(),
   isForSale: boolean("is_for_sale").notNull().default(true),
-  appliances: jsonb("appliances").default([]), // Added appliances column
+  appliances: varchar("appliances", { length: 255 }), // Retain this column
+  basement: varchar("basement", { length: 50 }), // New column
+  floorCovering: varchar("floor_covering", { length: 255 }), // New column
+  coolingType: varchar("cooling_type", { length: 255 }), // New column
+  heatingType: varchar("heating_type", { length: 255 }), // New column
+  heatingFuel: varchar("heating_fuel", { length: 255 }), // New column
+  rooms: varchar("rooms", { length: 255 }), // New column
+  indoorFeatures: varchar("indoor_features", { length: 255 }), // New column
+  buildingAmenities: varchar("building_amenities", { length: 255 }), // New column
+  architecturalStyle: varchar("architectural_style", { length: 255 }), // New column
+  exterior: varchar("exterior", { length: 255 }), // New column
+  outdoorAmenities: varchar("outdoor_amenities", { length: 255 }), // New column
+  parking: varchar("parking", { length: 255 }), // New column
+  roof: varchar("roof", { length: 255 }), // New column
+  view: varchar("view", { length: 255 }), // New column
   createdAt: timestamp("created_at", { withTimezone: true }).defaultNow().notNull(),
 });
+
 
 export const propertyDetails = pgTable("property_details", {
   id: serial("id").primaryKey(),

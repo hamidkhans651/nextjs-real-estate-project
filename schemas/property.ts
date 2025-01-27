@@ -13,8 +13,22 @@ export const propertySchema = z.object({
   sqft: z.number().min(1, "Square footage must be greater than 0"),
   propertyType: z.string().min(1, "Property type is required"),
   isForSale: z.boolean(),
-  appliances: z.array(z.string()), // Added appliances
+  basement: z.string().optional(),
+  floorCovering: z.array(z.string()).optional(),
+  coolingType: z.array(z.string()).optional(),
+  heatingType: z.array(z.string()).optional(),
+  heatingFuel: z.array(z.string()).optional(),
+  rooms: z.array(z.string()).optional(),
+  indoorFeatures: z.array(z.string()).optional(),
+  buildingAmenities: z.array(z.string()).optional(),
+  architecturalStyle: z.string().optional(),
+  exterior: z.array(z.string()).optional(),
+  outdoorAmenities: z.array(z.string()).optional(),
+  parking: z.array(z.string()).optional(),
+  roof: z.array(z.string()).optional(),
+  view: z.array(z.string()).optional(),
 });
+
 
 
 export const addPropertySchema = propertySchema.omit({ id: true }); // For adding a property

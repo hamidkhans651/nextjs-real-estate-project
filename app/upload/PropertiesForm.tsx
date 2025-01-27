@@ -23,6 +23,20 @@ const imageUploadSchema = z.object({
     appliances: z.array(z.string()).optional(), // Added appliances array
     imageFiles: z.array(z.any()).min(1, "At least one image must be uploaded"),
     descriptions: z.array(z.string()).min(1, "Each image must have a description"),
+    basement: z.string().optional(), // For single selection (radio)
+    floorCovering: z.array(z.string()).optional(), // For multiple selections (checkbox)
+    coolingType: z.array(z.string()).optional(),
+    heatingType: z.array(z.string()).optional(),
+    heatingFuel: z.array(z.string()).optional(),
+    rooms: z.array(z.string()).optional(),
+    indoorFeatures: z.array(z.string()).optional(),
+    buildingAmenities: z.array(z.string()).optional(),
+    architecturalStyle: z.string().optional(), // Single selection
+    exterior: z.array(z.string()).optional(),
+    outdoorAmenities: z.array(z.string()).optional(),
+    parking: z.array(z.string()).optional(),
+    roof: z.array(z.string()).optional(),
+    view: z.array(z.string()).optional(),
 });
 // Type for the form data
 type FormData = z.infer<typeof imageUploadSchema>;
@@ -32,6 +46,7 @@ const PropertiesForm = () => {
     const [loading, setLoading] = useState(false); // State for the loader
 
     const {
+        register,
         handleSubmit,
         control,
         setValue,
@@ -52,7 +67,21 @@ const PropertiesForm = () => {
             isForSale: true,
             appliances: [], // Default empty appliances array
             imageFiles: [],
-            descriptions: []
+            descriptions: [],
+            basement: "",
+            floorCovering: [],
+            coolingType: [],
+            heatingType: [],
+            heatingFuel: [],
+            rooms: [],
+            indoorFeatures: [],
+            buildingAmenities: [],
+            architecturalStyle: "",
+            exterior: [],
+            outdoorAmenities: [],
+            parking: [],
+            roof: [],
+            view: [],
         },
     });
 
@@ -334,6 +363,371 @@ const PropertiesForm = () => {
                         ))}
                     </div>
                 </div>
+                <div>
+                    {/* Basement Section */}
+                    <h2 className="font-semibold mb-2">Basement</h2>
+                    <div className="flex flex-col">
+                        {["Finished", "Partially finished", "Unfinished", "None"].map((basement) => (
+                            <label key={basement} className="flex items-center">
+                                <input
+                                    type="radio"
+                                    value={basement}
+                                    {...register("basement")}
+                                    className="mr-2"
+                                />
+                                {basement}
+                            </label>
+                        ))}
+                    </div>
+                </div>
+
+                {/* Floor Covering Section */}
+                <div>
+                    <h2 className="font-semibold mb-2">Floor Covering</h2>
+                    <div className="grid grid-cols-2 gap-4">
+                        {["Carpet", "Concrete", "Hardwood", "Laminate", "Linoleum / Vinyl", "Slate", "Softwood", "Tile", "Other"].map((floor) => (
+                            <label key={floor} className="flex items-center">
+                                <input
+                                    type="checkbox"
+                                    value={floor}
+                                    {...register("floorCovering")}
+                                    className="mr-2"
+                                />
+                                {floor}
+                            </label>
+                        ))}
+                    </div>
+                </div>
+
+                {/* Utility Details Section */}
+                <h1 className="text-2xl font-bold mt-10">Utility Details</h1>
+
+                {/* Cooling Type Section */}
+                <div>
+                    <h2 className="font-semibold mb-2">Cooling Type</h2>
+                    <div className="grid grid-cols-2 gap-4">
+                        {["Central", "Evaporative", "Geothermal", "Refrigeration", "Solar", "Wall", "Other", "None"].map((cooling) => (
+                            <label key={cooling} className="flex items-center">
+                                <input
+                                    type="checkbox"
+                                    value={cooling}
+                                    {...register("coolingType")}
+                                    className="mr-2"
+                                />
+                                {cooling}
+                            </label>
+                        ))}
+                    </div>
+                </div>
+
+                {/* Heating Type Section */}
+                <div>
+                    <h2 className="font-semibold mb-2">Heating Type</h2>
+                    <div className="grid grid-cols-2 gap-4">
+                        {["Baseboard", "Forced air", "Geothermal", "Heat pump", "Radiant", "Stove", "Wall", "Other"].map((heating) => (
+                            <label key={heating} className="flex items-center">
+                                <input
+                                    type="checkbox"
+                                    value={heating}
+                                    {...register("heatingType")}
+                                    className="mr-2"
+                                />
+                                {heating}
+                            </label>
+                        ))}
+                    </div>
+                </div>
+
+                {/* Heating Fuel Section */}
+                <div>
+                    <h2 className="font-semibold mb-2">Heating Fuel</h2>
+                    <div className="grid grid-cols-2 gap-4">
+                        {["Coal", "Electric", "Gas", "Oil", "Propane / Butane", "Solar", "Wood / Pellet", "Other", "None"].map((fuel) => (
+                            <label key={fuel} className="flex items-center">
+                                <input
+                                    type="checkbox"
+                                    value={fuel}
+                                    {...register("heatingFuel")}
+                                    className="mr-2"
+                                />
+                                {fuel}
+                            </label>
+                        ))}
+                    </div>
+                </div>
+
+                {/* Room Details */}
+                <h1 className="text-2xl font-bold mt-10">Room Details</h1>
+
+                {/* Rooms Section */}
+                <div>
+                    <h2 className="font-semibold mb-2">Rooms</h2>
+                    <div className="grid grid-cols-2 gap-4">
+                        {[
+                            "Breakfast nook",
+                            "Dining room",
+                            "Family room",
+                            "Laundry room",
+                            "Library",
+                            "Master bath",
+                            "Mud room",
+                            "Office",
+                            "Pantry",
+                            "Recreation room",
+                            "Workshop",
+                            "Solarium / Atrium",
+                            "Sun room",
+                            "Walk-in closet",
+                        ].map((room) => (
+                            <label key={room} className="flex items-center">
+                                <input
+                                    type="checkbox"
+                                    value={room}
+                                    {...register("rooms")}
+                                    className="mr-2"
+                                />
+                                {room}
+                            </label>
+                        ))}
+                    </div>
+                </div>
+
+                {/* Indoor Features */}
+                <div>
+                    <h2 className="font-semibold mb-2">Indoor Features</h2>
+                    <div className="grid grid-cols-2 gap-4">
+                        {[
+                            "Attic",
+                            "Cable ready",
+                            "Ceiling fans",
+                            "Double pane/storm windows",
+                            "Fireplace",
+                            "Intercom system",
+                            "Jetted tub",
+                            "Mother-in-law apartment",
+                            "Security system",
+                            "Skylights",
+                            "Vaulted ceiling",
+                            "Wet bar",
+                            "Wired",
+                        ].map((feature) => (
+                            <label key={feature} className="flex items-center">
+                                <input
+                                    type="checkbox"
+                                    value={feature}
+                                    {...register("indoorFeatures")}
+                                    className="mr-2"
+                                />
+                                {feature}
+                            </label>
+                        ))}
+                    </div>
+                </div>
+
+                {/* Building Details */}
+                <h1 className="text-2xl font-bold mt-10">Building Details</h1>
+                <div>
+                    <h2 className="font-semibold mb-2">Building Amenities</h2>
+                    <div className="grid grid-cols-2 gap-4">
+                        {[
+                            "Assisted living community",
+                            "Basketball court",
+                            "Controlled access",
+                            "Disabled access",
+                            "Doorman",
+                            "Elevator",
+                            "Fitness center",
+                            "Gated entry",
+                            "Near transportation",
+                            "Over 55+ active community",
+                            "Sports court",
+                            "Storage",
+                            "Tennis court",
+                        ].map((amenity) => (
+                            <label key={amenity} className="flex items-center">
+                                <input
+                                    type="checkbox"
+                                    value={amenity}
+                                    {...register("buildingAmenities")}
+                                    className="mr-2"
+                                />
+                                {amenity}
+                            </label>
+                        ))}
+                    </div>
+                </div>
+
+                {/* Architectural Style */}
+                <div>
+                    <h2 className="font-semibold mb-2">Architectural Style</h2>
+                    <div className="grid grid-cols-2 gap-4">
+                        {[
+                            "Bungalow",
+                            "Cape Cod",
+                            "Colonial",
+                            "Contemporary",
+                            "Craftsman",
+                            "French",
+                            "Georgian",
+                            "Loft",
+                            "Modern",
+                            "Queen Anne / Victorian",
+                            "Ranch / Rambler",
+                            "Santa Fe / Pueblo Style",
+                            "Spanish",
+                            "Split-level",
+                            "Tudor",
+                            "Other",
+                        ].map((style) => (
+                            <label key={style} className="flex items-center">
+                                <input
+                                    type="radio"
+                                    value={style}
+                                    {...register("architecturalStyle")}
+                                    className="mr-2"
+                                />
+                                {style}
+                            </label>
+                        ))}
+                    </div>
+                </div>
+
+                {/* Exterior and Outdoor Amenities */}
+                <h1 className="text-2xl font-bold mt-10">Exterior and Outdoor Amenities</h1>
+
+                {/* Exterior */}
+                <div>
+                    <h2 className="font-semibold mb-2">Exterior</h2>
+                    <div className="grid grid-cols-2 gap-4">
+                        {[
+                            "Brick",
+                            "Cement / Concrete",
+                            "Composition",
+                            "Metal",
+                            "Shingle",
+                            "Stone",
+                            "Stucco",
+                            "Vinyl",
+                            "Wood",
+                            "Wood products",
+                            "Other",
+                        ].map((item) => (
+                            <label key={item} className="flex items-center">
+                                <input
+                                    type="checkbox"
+                                    value={item}
+                                    {...register("exterior")}
+                                    className="mr-2"
+                                />
+                                {item}
+                            </label>
+                        ))}
+                    </div>
+                </div>
+
+                {/* Outdoor Amenities */}
+                <div>
+                    <h2 className="font-semibold mb-2">Outdoor Amenities</h2>
+                    <div className="grid grid-cols-2 gap-4">
+                        {[
+                            "Balcony/patio",
+                            "Barbecue area",
+                            "Deck",
+                            "Dock",
+                            "Fenced yard",
+                            "Garden",
+                            "Greenhouse",
+                            "Hot tub/spa",
+                            "Lawn",
+                            "Pond",
+                            "Pool",
+                            "Porch",
+                            "RV parking",
+                            "Sauna",
+                            "Sprinkler system",
+                            "Waterfront",
+                        ].map((amenity) => (
+                            <label key={amenity} className="flex items-center">
+                                <input
+                                    type="checkbox"
+                                    value={amenity}
+                                    {...register("outdoorAmenities")}
+                                    className="mr-2"
+                                />
+                                {amenity}
+                            </label>
+                        ))}
+                    </div>
+                </div>
+
+                {/* Parking */}
+                <h1 className="text-2xl font-bold mt-10">Parking, Roof, and View</h1>
+                <div>
+                    <h2 className="font-semibold mb-2">Parking</h2>
+                    <div className="grid grid-cols-2 gap-4">
+                        {["Carport", "Garage - Attached", "Garage - Detached", "Off-street", "On-street", "None"].map(
+                            (option) => (
+                                <label key={option} className="flex items-center">
+                                    <input
+                                        type="checkbox"
+                                        value={option}
+                                        {...register("parking")}
+                                        className="mr-2"
+                                    />
+                                    {option}
+                                </label>
+                            )
+                        )}
+                    </div>
+                </div>
+
+                {/* Roof */}
+                <div>
+                    <h2 className="font-semibold mb-2">Roof</h2>
+                    <div className="grid grid-cols-2 gap-4">
+                        {[
+                            "Asphalt",
+                            "Built-up",
+                            "Composition",
+                            "Metal",
+                            "Shake / Shingle",
+                            "Slate",
+                            "Tile",
+                            "Other",
+                        ].map((option) => (
+                            <label key={option} className="flex items-center">
+                                <input
+                                    type="checkbox"
+                                    value={option}
+                                    {...register("roof")}
+                                    className="mr-2"
+                                />
+                                {option}
+                            </label>
+                        ))}
+                    </div>
+                </div>
+
+                {/* View */}
+                <div>
+                    <h2 className="font-semibold mb-2">View</h2>
+                    <div className="grid grid-cols-2 gap-4">
+                        {["City", "Mountain", "Park", "Territorial", "Water", "None"].map((option) => (
+                            <label key={option} className="flex items-center">
+                                <input
+                                    type="checkbox"
+                                    value={option}
+                                    {...register("view")}
+                                    className="mr-2"
+                                />
+                                {option}
+                            </label>
+                        ))}
+                    </div>
+                </div>
+
+
+
                 {/* Is For Sale */}
                 <Controller
                     name="isForSale"
