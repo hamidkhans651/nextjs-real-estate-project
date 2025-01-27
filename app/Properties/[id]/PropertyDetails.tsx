@@ -1,8 +1,12 @@
 "use client";
-
+import {
+    Heart,
+    Share
+} from "lucide-react";
+import SaveShare from "@/components/SaveShare"
 import { useState } from "react";
 import Image from "next/image";
-import { BedDouble } from "lucide-react"
+import { BedDouble } from "lucide-react";
 
 type PropertyDetailsProps = {
     property: {
@@ -30,6 +34,7 @@ export default function PropertyDetails({ property }: PropertyDetailsProps) {
 
             {/* Tabs for navigation */}
             <div className="tabs-container flex flex-wrap sm:flex-nowrap  font-medium text-xs sm:text-sm md:text-base justify-between border-b border-gray-300 mb-4 ">
+
                 <button
                     className="tab-button p-2 font-medium whitespace-nowrap  "
                     onClick={() =>
@@ -40,6 +45,7 @@ export default function PropertyDetails({ property }: PropertyDetailsProps) {
                 >
                     Overview
                 </button>
+
                 <button
                     className="tab-button p-2  py-2 font-medium whitespace-nowrap rounded-xl "
                     onClick={() =>
@@ -90,10 +96,19 @@ export default function PropertyDetails({ property }: PropertyDetailsProps) {
                     id="overview"
                     className="p-6  rounded-xl border-2 mb-4 shadow-md"
                 >
+
+
                     {/* Price and Location */}
                     <div className="mb-4">
-                        <h2 className="text-3xl font-bold  mb-2">${property.price.toLocaleString()}</h2>
+                        <div className="flex items-center justify-between
+                        ">
+                            <h2 className="text-3xl font-bold  mb-2">${property.price.toLocaleString()}</h2>
+                            <SaveShare />
+
+
+                        </div>
                         <p className="">{property.location}</p>
+
                     </div>
 
                     {/* Beds, Baths, and Sqft */}
