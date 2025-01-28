@@ -41,6 +41,11 @@ export const properties = pgTable("properties", {
   bedrooms: integer("bedrooms").notNull(),
   bathrooms: integer("bathrooms").notNull(),
   sqft: integer("sqft").notNull(),
+  LotSize: integer("LotSize").notNull(),
+  HOADues: integer("HOADues").notNull(),
+  YearBuilt: integer("YearBuilt").notNull(),
+  GarageSqFt: integer("GarageSqFt").notNull(),
+  BasementSqFt: integer("BasementSqFt").notNull(),
   propertyType: varchar("property_type", { length: 255 }).notNull(),
   isForSale: boolean("is_for_sale").notNull().default(true),
   appliances: varchar("appliances", { length: 255 }), // Retain this column

@@ -18,8 +18,14 @@ const imageUploadSchema = z.object({
     bedrooms: z.number().min(1, "Bedrooms must be at least 1"),
     bathrooms: z.number().min(1, "Bathrooms must be at least 1"),
     sqft: z.number().min(1, "Square footage must be greater than 0"),
+    LotSize: z.coerce.number().min(1, "Lot Size must be greater than 0"),
+    HOADues: z.coerce.number().min(0, "HOA Dues must be at least 0"),
+    YearBuilt: z.coerce.number().min(1800, "Year Built must be a valid year"),
+    GarageSqFt: z.coerce.number().min(0, "Garage Square Footage must be at least 0"),
+    BasementSqFt: z.coerce.number().min(0, "Basement Square Footage must be at least 0"),
     propertyType: z.string().min(1, "Property type is required"),
     isForSale: z.boolean(),
+
     appliances: z.array(z.string()).optional(), // Added appliances array
     imageFiles: z.array(z.any()).min(1, "At least one image must be uploaded"),
     descriptions: z.array(z.string()).min(1, "Each image must have a description"),
@@ -63,6 +69,11 @@ const PropertiesForm = () => {
             bedrooms: 1,
             bathrooms: 1,
             sqft: 0,
+            LotSize: 0,
+            HOADues: 0,
+            YearBuilt: new Date().getFullYear(),
+            GarageSqFt: 0,
+            BasementSqFt: 0,
             propertyType: "apartment",
             isForSale: true,
             appliances: [], // Default empty appliances array
@@ -203,6 +214,97 @@ const PropertiesForm = () => {
                             {errors.propdetails && (
                                 <span className="text-red-500">{errors.propdetails.message}</span>
                             )}
+                        </div>
+                    )}
+                />
+
+
+                {/* Lot Size */}
+                <Controller
+                    name="LotSize"
+                    control={control}
+                    render={({ field }) => (
+                        <div>
+                            <input
+                                {...field}
+                                type="number"
+                                placeholder="Lot Size"
+                                onChange={(e) => field.onChange(Number(e.target.value) || 0)} // ✅ Convert to number
+                                className="block w-full border rounded p-2"
+                            />
+                            {errors.LotSize && <span className="text-red-500">{errors.LotSize.message}</span>}
+                        </div>
+                    )}
+                />
+
+                {/* HOA Dues */}
+                <Controller
+                    name="HOADues"
+                    control={control}
+                    render={({ field }) => (
+                        <div>
+                            <input
+                                {...field}
+                                type="number"
+                                placeholder="HOA Dues"
+                                onChange={(e) => field.onChange(Number(e.target.value) || 0)}
+                                className="block w-full border rounded p-2"
+                            />
+                            {errors.HOADues && <span className="text-red-500">{errors.HOADues.message}</span>}
+                        </div>
+                    )}
+                />
+
+                {/* Year Built */}
+                <Controller
+                    name="YearBuilt"
+                    control={control}
+                    render={({ field }) => (
+                        <div>
+                            <input
+                                {...field}
+                                type="number"
+                                placeholder="Year Built"
+                                onChange={(e) => field.onChange(Number(e.target.value) || 0)}
+                                className="block w-full border rounded p-2"
+                            />
+                            {errors.YearBuilt && <span className="text-red-500">{errors.YearBuilt.message}</span>}
+                        </div>
+                    )}
+                />
+
+                {/* Garage Sq Ft */}
+                <Controller
+                    name="GarageSqFt"
+                    control={control}
+                    render={({ field }) => (
+                        <div>
+                            <input
+                                {...field}
+                                type="number"
+                                placeholder="Garage Sq. Ft."
+                                onChange={(e) => field.onChange(Number(e.target.value) || 0)}
+                                className="block w-full border rounded p-2"
+                            />
+                            {errors.GarageSqFt && <span className="text-red-500">{errors.GarageSqFt.message}</span>}
+                        </div>
+                    )}
+                />
+
+                {/* Basement Sq Ft */}
+                <Controller
+                    name="BasementSqFt"
+                    control={control}
+                    render={({ field }) => (
+                        <div>
+                            <input
+                                {...field}
+                                type="number"
+                                placeholder="Basement Sq. Ft."
+                                onChange={(e) => field.onChange(Number(e.target.value) || 0)}
+                                className="block w-full border rounded p-2"
+                            />
+                            {errors.BasementSqFt && <span className="text-red-500">{errors.BasementSqFt.message}</span>}
                         </div>
                     )}
                 />
