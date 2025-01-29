@@ -2,7 +2,5 @@
 
 a fulstack web appliaction for real estate
 
-project 
-
 
 live Demo here= https://hamidestate.vercel.app/
