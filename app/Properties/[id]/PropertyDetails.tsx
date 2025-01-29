@@ -20,6 +20,25 @@ type PropertyDetailsProps = {
         sqft: number;
         propertyType: string;
         description: string;
+        LotSize: number,
+        HOADues: number,
+        YearBuilt: number,
+        GarageSqFt: number,
+        BasementSqFt: number,
+        basement: string,
+        floorCovering: [],
+        coolingType: [],
+        heatingType: [],
+        heatingFuel: [],
+        rooms: [],
+        indoorFeatures: [],
+        buildingAmenities: [],
+        architecturalStyle: string,
+        exterior: [],
+        outdoorAmenities: [],
+        parking: [],
+        roof: [],
+        view: [],
     };
 };
 
@@ -130,36 +149,36 @@ export default function PropertyDetails({ property }: PropertyDetailsProps) {
                     </div>
 
                     {/* Additional Details */}
-                    <div className="grid grid-cols-2 gap-4 mt-4 text-sm text-gray-700">
+                    <div className="grid grid-cols-2 gap-4 mt-4 text-sm ">
                         <div className="flex items-center gap-2">
-                            <span className=" w-6 h-6 bg-gray-200 rounded-full flex items-center justify-center">
+                            <span className=" w-6 h-6 rounded-full flex items-center justify-center">
                                 🏠
                             </span>
                             <p>{property.propertyType}</p>
                         </div>
                         <div className="flex items-center gap-2">
-                            <span className=" w-6 h-6 bg-gray-200 rounded-full flex items-center justify-center">
+                            <span className=" w-6 h-6 rounded-full flex items-center justify-center">
                                 🛠️
                             </span>
-                            <p>Built in</p>
+                            <p>Built in {property.YearBuilt}</p>
                         </div>
                         <div className="flex items-center gap-2">
-                            <span className=" w-6 h-6 bg-gray-200 rounded-full flex items-center justify-center">
+                            <span className=" w-6 h-6  rounded-full flex items-center justify-center">
                                 📏
                             </span>
-                            <p></p>
+                            <p>{property.LotSize} sqft lot</p>
                         </div>
                         <div className="flex items-center gap-2">
-                            <span className=" w-6 h-6 bg-gray-200 rounded-full flex items-center justify-center">
+                            <span className=" w-6 h-6  rounded-full flex items-center justify-center">
                                 💰
                             </span>
                             <p>{property.price}</p>
                         </div>
                         <div className="flex items-center gap-2">
-                            <span className=" w-6 h-6 bg-gray-200 rounded-full flex items-center justify-center">
+                            <span className=" w-6 h-6 rounded-full flex items-center justify-center">
                                 💳
                             </span>
-                            <p></p>
+                            <p>${property.HOADues}/mo HOA</p>
                         </div>
                     </div>
                 </section>
