@@ -21,28 +21,28 @@ type PropertyDetailsProps = {
         sqft: number;
         propertyType: string;
         description: string;
-        LotSize: number,
-        HOADues: number,
-        YearBuilt: number,
-        GarageSqFt: number,
-        BasementSqFt: number,
-        basement: string,
-        floorCovering: [],
-        coolingType: [],
-        heatingType: [],
-        heatingFuel: [],
-        rooms: [],
-        indoorFeatures: [],
-        buildingAmenities: [],
-        architecturalStyle: string,
-        exterior: [],
-        outdoorAmenities: [],
-        parking: [],
-        roof: [],
-        view: [],
-        createdAt: number,
+        LotSize: number;
+        HOADues: number;
+        YearBuilt: number;
+        GarageSqFt: number;
+        BasementSqFt: number;
+        basement: string; // ✅ Now handled as an empty string if null
+        floorCovering: string[]; // ✅ Expecting an array
+        coolingType: string[];
+        heatingType: string[];
+        heatingFuel: string[];
+        rooms: string[];
+        indoorFeatures: string[];
+        buildingAmenities: string[];
+        architecturalStyle: string;
+        exterior: string[];
+        outdoorAmenities: string[];
+        parking: string[];
+        roof: string[];
+        view: string[];
     };
 };
+
 
 export default function PropertyDetails({ property }: PropertyDetailsProps) {
     const [showMore, setShowMore] = useState(false); // State for "Show More"
