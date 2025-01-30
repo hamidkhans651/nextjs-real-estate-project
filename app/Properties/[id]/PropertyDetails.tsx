@@ -80,12 +80,12 @@ export default function PropertyDetails({ property }: PropertyDetailsProps) {
                 <button
                     className="tab-button  py-2 font-medium whitespace-nowrap"
                     onClick={() =>
-                        document.getElementById("contact")?.scrollIntoView({
+                        document.getElementById("Facts & features")?.scrollIntoView({
                             behavior: "smooth",
                         })
                     }
                 >
-                    Contact Us
+                    Facts & features
                 </button>
                 <button
                     className="tab-button py-2 font-medium whitespace-nowrap"
@@ -226,23 +226,132 @@ export default function PropertyDetails({ property }: PropertyDetailsProps) {
 
                 </section>
 
-                {/* Contact Section */}
+                {/* Facts & features */}
                 <section
-                    id="contact"
-                    className="p-4 rounded-xl border-2  shadow-md mb-4"
+                    id="Facts & features"
+                    className="flex p-6 rounded-xl border-2 shadow-md mb-4 items-start justify-between"
                 >
-                    <h2 className="text-xl font-bold mb-2">Contact Us</h2>
-                    <p>For inquiries, please contact us via email or phone.</p>
+                    {/* Left Column */}
+                    <div className="w-1/2 pr-4">
+                        <h1 className="text-xl font-bold mb-2">Facts & features</h1>
+                        <h1>Interior.</h1>
+
+                        <h3 className="font-semibold text-lg">Bedrooms & bathrooms</h3>
+                        <ul className="list-disc list-inside">
+                            <li>Bedrooms: 3</li>
+                            <li>Bathrooms: 3</li>
+                            <li>Full bathrooms: 2</li>
+                            <li>1/2 bathrooms: 1</li>
+                        </ul>
+
+                        <h3 className="font-semibold text-lg mt-4">Rooms</h3>
+                        <ul className="list-disc list-inside">
+                            <li>Room types: 1 Living Area, Den, Formal Dining</li>
+                        </ul>
+
+                        <h3 className="font-semibold text-lg mt-4">Heating</h3>
+                        <ul className="list-disc list-inside">
+                            <li>Natural Gas</li>
+                        </ul>
+
+                        <h3 className="font-semibold text-lg mt-4">Cooling</h3>
+                        <ul className="list-disc list-inside">
+                            <li>Electric</li>
+                        </ul>
+                    </div>
+
+                    {/* Right Column */}
+                    <div className="w-1/2 pl-4">
+                        <h3 className="font-semibold text-lg">Appliances</h3>
+                        <ul className="list-disc list-inside">
+                            <li>
+                                Included: Gas Oven, Gas Range, Trash Compactor, Dishwasher, Disposal,
+                                Microwave, Washer/Dryer
+                            </li>
+                            <li>Laundry: Electric Dryer Hookup, Gas Dryer Hookup</li>
+                        </ul>
+
+                        <h3 className="font-semibold text-lg mt-4">Features</h3>
+                        <ul className="list-disc list-inside">
+                            <li>Crown Molding, All Bedrooms Up, Countertops (Granite)</li>
+                            <li>Flooring: Carpet, Laminate</li>
+                            <li>Windows: Insulated/Low-E windows</li>
+                            <li>Number of fireplaces: 1</li>
+                            <li>Fireplace features: Wood Burning</li>
+                        </ul>
+
+                        <h3 className="font-semibold text-lg mt-4">Interior area</h3>
+                        <ul className="list-disc list-inside">
+                            <li>Total structure area: 2,156</li>
+                            <li>Total interior livable area: 2,156 sqft</li>
+                        </ul>
+                        <h3 className="font-semibold text-lg mt-4">Financial & listing details
+                        </h3>
+                        <ul className="list-disc list-inside">
+                            <li>Total structure area: 2,156</li>
+                            <li>Total interior livable area: 2,156 sqft</li>
+                        </ul>
+                    </div>
+                </section>
+                <section
+                    id="Facts & features"
+                    className="flex p-6 rounded-xl border-2 shadow-md mb-4 items-start justify-between"
+                >
+                    {/* Left Column */}
+                    <div className="w-1/2 pr-4">
+                        <h1 className="text-xl font-bold mb-2">Property</h1>
+                        <h1>Interior.</h1>
+
+                        <h3 className="font-semibold text-lg">Parking</h3>
+                        <ul className="list-disc list-inside">
+                            <li>Bedrooms: 3</li>
+                            <li>Bathrooms: 3</li>
+                            <li>Full bathrooms: 2</li>
+                            <li>1/2 bathrooms: 1</li>
+                        </ul>
+
+                        <h3 className="font-semibold text-lg mt-4">Features</h3>
+                        <ul className="list-disc list-inside">
+                            <li>Room types: 1 Living Area, Den, Formal Dining</li>
+                        </ul>
+                    </div>
+
+                    {/* Right Column */}
+                    <div className="w-1/2 pl-4">
+                        <h3 className="font-semibold text-lg">Lot</h3>
+                        <ul className="list-disc list-inside">
+                            <li>
+                                Included: Gas Oven, Gas Range, Trash Compactor, Dishwasher, Disposal,
+                                Microwave, Washer/Dryer
+                            </li>
+                            <li>Laundry: Electric Dryer Hookup, Gas Dryer Hookup</li>
+                        </ul>
+
+                        <h3 className="font-semibold text-lg mt-4">Features</h3>
+                        <ul className="list-disc list-inside">
+                            <li>Crown Molding, All Bedrooms Up, Countertops (Granite)</li>
+                            <li>Flooring: Carpet, Laminate</li>
+                            <li>Windows: Insulated/Low-E windows</li>
+                            <li>Number of fireplaces: 1</li>
+                            <li>Fireplace features: Wood Burning</li>
+                        </ul>
+
+                        <h3 className="font-semibold text-lg mt-4">Interior area</h3>
+                        <ul className="list-disc list-inside">
+                            <li>Total structure area: 2,156</li>
+                            <li>Total interior livable area: 2,156 sqft</li>
+                        </ul>
+                    </div>
                 </section>
 
                 {/* Property Price Section */}
-                <section
+                < section
                     id="price"
                     className="p-4 rounded-xl border-2 mb-4 shadow-md"
                 >
                     <h2 className="text-xl font-bold mb-2">Property Price</h2>
                     <p>${property.price}</p>
-                </section>
+                </section >
 
                 <section
                     id="price"
@@ -322,7 +431,7 @@ export default function PropertyDetails({ property }: PropertyDetailsProps) {
                     <p>${property.price}</p>
                 </section> */}
 
-            </div>
-        </main>
+            </div >
+        </main >
     );
 }
