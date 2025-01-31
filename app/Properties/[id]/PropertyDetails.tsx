@@ -26,15 +26,15 @@ type PropertyDetailsProps = {
         YearBuilt: number;
         GarageSqFt: number;
         BasementSqFt: number;
-        basement: string; // ✅ Now handled as an empty string if null
-        floorCovering: string[]; // ✅ Expecting an array
+        basement: string;
+        architecturalStyle: string; // ✅ Now always a string
+        floorCovering: string[];
         coolingType: string[];
         heatingType: string[];
         heatingFuel: string[];
         rooms: string[];
         indoorFeatures: string[];
         buildingAmenities: string[];
-        architecturalStyle: string;
         exterior: string[];
         outdoorAmenities: string[];
         parking: string[];
@@ -42,6 +42,7 @@ type PropertyDetailsProps = {
         view: string[];
     };
 };
+
 
 
 export default function PropertyDetails({ property }: PropertyDetailsProps) {
@@ -70,32 +71,43 @@ export default function PropertyDetails({ property }: PropertyDetailsProps) {
                 <button
                     className="tab-button p-2  py-2 font-medium whitespace-nowrap  "
                     onClick={() =>
-                        document.getElementById("description")?.scrollIntoView({
-                            behavior: "smooth",
-                        })
-                    }
-                >
-                    Property Description
-                </button>
-                <button
-                    className="tab-button  py-2 font-medium whitespace-nowrap"
-                    onClick={() =>
                         document.getElementById("Facts & features")?.scrollIntoView({
                             behavior: "smooth",
                         })
                     }
                 >
                     Facts & features
+
                 </button>
                 <button
-                    className="tab-button py-2 font-medium whitespace-nowrap"
+                    className="tab-button  py-2 font-medium whitespace-nowrap"
                     onClick={() =>
-                        document.getElementById("price")?.scrollIntoView({
+                        document.getElementById("Market value")?.scrollIntoView({
                             behavior: "smooth",
                         })
                     }
                 >
-                    Property Price
+                    Market value
+                </button>
+                <button
+                    className="tab-button py-2 font-medium whitespace-nowrap"
+                    onClick={() =>
+                        document.getElementById("Payment Calculator")?.scrollIntoView({
+                            behavior: "smooth",
+                        })
+                    }
+                >
+                    Payment Calculator
+                </button>
+                <button
+                    className="tab-button py-2 font-medium whitespace-nowrap"
+                    onClick={() =>
+                        document.getElementById("Neighburhood")?.scrollIntoView({
+                            behavior: "smooth",
+                        })
+                    }
+                >
+                    Neighburhood
                 </button>
             </div>
 
@@ -294,7 +306,6 @@ export default function PropertyDetails({ property }: PropertyDetailsProps) {
                     </div>
                 </section>
                 <section
-                    id="Facts & features"
                     className="flex p-6 rounded-xl border-2 shadow-md mb-4 items-start justify-between"
                 >
                     {/* Left Column */}
@@ -346,19 +357,171 @@ export default function PropertyDetails({ property }: PropertyDetailsProps) {
 
                 {/* Property Price Section */}
                 < section
-                    id="price"
+                    id="Market value"
                     className="p-4 rounded-xl border-2 mb-4 shadow-md"
                 >
-                    <h2 className="text-xl font-bold mb-2">Property Price</h2>
-                    <p>${property.price}</p>
+
+                    {/* Section Header */}
+                    <h2 className="text-2xl font-bold text-blue-700 mb-4">
+                        Estimated market value
+                    </h2>
+
+                    {/* Three-Column Overview */}
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
+                        {/* Zestimate */}
+                        <div className="p-4 border rounded-md text-center">
+                            <p className="font-semibold">Zestimate<sup>®</sup></p>
+                            <p className="text-gray-500">Not available</p>
+                        </div>
+
+                        {/* Estimated Sales Range */}
+                        <div className="p-4 border rounded-md text-center">
+                            <p className="font-semibold">Estimated sales range</p>
+                            <p className="text-gray-500">Not available</p>
+                        </div>
+
+                        {/* Rent Zestimate */}
+                        <div className="p-4 border rounded-md text-center">
+                            <p className="font-semibold">Rent Zestimate<sup>®</sup></p>
+                            <p className="text-gray-500">Not available</p>
+                        </div>
+                    </div>
+
+                    {/* Price History */}
+                    <h3 className="text-xl font-bold mb-2">Price history</h3>
+                    <table className="w-full text-left border-collapse">
+                        <thead>
+                            <tr className="border-b border-gray-300 text-gray-600 font-semibold">
+                                <th className="py-2 px-2 w-1/4">Date</th>
+                                <th className="py-2 px-2 w-1/4">Event</th>
+                                <th className="py-2 px-2 w-1/4">Price</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr className="border-b border-gray-200">
+                                <td className="py-3 px-2">1/25/2025</td>
+                                <td className="py-3 px-2">Listed for sale</td>
+                                <td className="py-3 px-2">
+                                    <p>$200,000</p>
+                                    <p className="text-sm text-gray-500">$93/sqft</p>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    {/* Source Info */}
+                    <p className="text-sm text-gray-500 mt-2">
+                        Source:{" "}
+                        <span className="text-blue-600">
+                            HAR #89058153
+                        </span>{" "}
+                        <a href="#" className="underline">
+                            Report
+                        </a>
+                    </p>
+
+                    <h1>
+                        Public tax history
+
+                    </h1>
+                    <p>
+
+                        Tax history is unavailable.
+                    </p>
                 </section >
 
                 <section
-                    id="price"
+                    id="Payment Calculator"
                     className="p-4 rounded-xl border-2 mb-4 shadow-md"
                 >
-                    <h2 className="text-xl font-bold mb-2">Around this home</h2>
-                    <p>${property.price}</p>
+                    {/* Heading */}
+                    <h2 className="text-xl font-bold mb-4">Monthly payment</h2>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-center">
+                        {/* Left Section: Pie Chart + Legend */}
+                        <div className="flex items-center  rounded p-4">
+                            {/* Pie Chart */}
+                            <div className="relative w-40 h-40 flex-none mr-6">
+                                {/* Background circle */}
+                                <div
+                                    className="absolute inset-0 rounded-full"
+                                    style={{
+                                        background: "conic-gradient(#0069B4 25%, #7D00A3 25% 35%, #222F89 35% 50%, #08CB9A 50% 100%)",
+                                    }}
+                                />
+                                {/* Center text overlay */}
+                                <div className="absolute inset-0 flex flex-col items-center justify-center">
+                                    <p className="text-sm ">Est.</p>
+                                    <p className="text-xl font-bold">$1,526</p>
+                                </div>
+                            </div>
+
+                            {/* Legend */}
+                            <div className="text-sm space-y-2">
+                                <div className="flex items-center">
+                                    <span className="inline-block w-3 h-3 rounded-full bg-[#222F89] mr-2" />
+                                    <p>
+                                        Principal & interest: <strong>$984</strong>
+                                    </p>
+                                </div>
+                                <div className="flex items-center">
+                                    <span className="inline-block w-3 h-3 rounded-full bg-[#7D00A3] mr-2" />
+                                    <p>
+                                        Property taxes: <strong>$267</strong>
+                                    </p>
+                                </div>
+                                <div className="flex items-center">
+                                    <span className="inline-block w-3 h-3 rounded-full bg-[#06B6D4] mr-2" />
+                                    <p>
+                                        Home insurance: <strong>$70</strong>
+                                    </p>
+                                </div>
+                                <div className="flex items-center">
+                                    <span className="inline-block w-3 h-3 rounded-full bg-[#08CB9A] mr-2" />
+                                    <p>
+                                        HOA: <strong>$205</strong>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Right Section: Info Box */}
+                        <div className="rounded p-4">
+                            <div className="flex items-start space-x-2 mb-2">
+                                <div className="text-blue-500">
+                                    {/* Info icon, e.g. Lucide or Material icon */}
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        className="h-6 w-6"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                        stroke="currentColor"
+                                        strokeWidth="2"
+                                    >
+                                        <path
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                            d="M13 16h-1v-4h-1m1-4h.01M12 4.5c4.142 0 7.5 
+                   3.358 7.5 7.5s-3.358 7.5-7.5 7.5-7.5-3.358-7.5-7.5
+                   3.358-7.5 7.5-7.5z"
+                                        />
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h3 className="font-semibold">Your custom payment is not available</h3>
+                                    <p className="text-sm text-gray-600">
+                                        We're using a representative interest rate for this calculation.
+                                    </p>
+                                </div>
+                            </div>
+
+                            {/* Links */}
+                            <div className="flex items-center space-x-6 text-blue-600 text-sm mt-2">
+                                <button className="underline">Edit your info</button>
+                                <button className="underline">Learn more</button>
+                            </div>
+                        </div>
+                    </div>
                 </section>
                 <section
                     id="price"
