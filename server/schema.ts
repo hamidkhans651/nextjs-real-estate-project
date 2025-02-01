@@ -88,3 +88,10 @@ export const propertyImages = pgTable("property_images", {
   type: varchar("type", { length: 50 }), // e.g., image, video
   createdAt: timestamp("created_at", { withTimezone: true }).defaultNow().notNull(),
 });
+
+export const savedProperties = pgTable("saved_properties", {
+  id: serial("id").primaryKey(),
+  userId: text("user_id").references(() => users.id).notNull(),
+  propertyId: integer("property_id").references(() => properties.id).notNull(),
+  createdAt: timestamp("created_at", { withTimezone: true }).defaultNow().notNull(),
+});
