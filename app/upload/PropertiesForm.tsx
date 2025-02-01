@@ -165,262 +165,136 @@ const PropertiesForm = () => {
                 className={`space-y-4 ${loading ? "filter blur-sm pointer-events-none" : ""}`}
             >
                 {/* Title */}
-                <Controller
-                    name="title"
-                    control={control}
-                    render={({ field }) => (
-                        <div>
-                            <input
-                                {...field}
-                                type="text"
-                                placeholder="Title"
-                                className="block w-full border rounded p-2"
-                            />
-                            {errors.title && (
-                                <span className="text-red-500">{errors.title.message}</span>
-                            )}
-                        </div>
-                    )}
-                />
+                <div>
+                    <label htmlFor="title" className="block font-semibold mb-1">Title</label>
+                    <input
+                        id="title"
+                        {...register("title")}
+                        type="text"
+                        className="w-full border rounded p-2"
+                    />
+                    {errors.title && <span className="text-red-500">{errors.title.message}</span>}
+                </div>
 
                 {/* Description */}
-                <Controller
-                    name="description"
-                    control={control}
-                    render={({ field }) => (
-                        <div>
-                            <textarea
-                                {...field}
-                                placeholder="Description"
-                                className="block w-full border rounded p-2"
-                            />
-                            {errors.description && (
-                                <span className="text-red-500">{errors.description.message}</span>
-                            )}
-                        </div>
-                    )}
-                />
-                "detials"
-                <Controller
-                    name="propdetails"
-                    control={control}
-                    render={({ field }) => (
-                        <div>
-                            <textarea
-                                {...field}
-                                placeholder="propdetails"
-                                className="block w-full border rounded p-2"
-                            />
-                            {errors.propdetails && (
-                                <span className="text-red-500">{errors.propdetails.message}</span>
-                            )}
-                        </div>
-                    )}
-                />
+                <div>
+                    <label htmlFor="description" className="block font-semibold mb-1">Property Details</label>
+                    <textarea
+                        id="description"
+                        {...register("description")}
+                        className="w-full border rounded p-2"
+                    />
+                    {errors.description && <span className="text-red-500">{errors.description.message}</span>}
+                </div>
+
+                {/* Property Details */}
+                <div>
+                    <label htmlFor="propdetails" className="block font-semibold mb-1"> Description Optional</label>
+                    <textarea
+                        id="propdetails"
+                        {...register("propdetails")}
+                        className="w-full border rounded p-2"
+                    />
+                    {errors.propdetails && <span className="text-red-500">{errors.propdetails.message}</span>}
+                </div>
+
+
+                {/* Location */}
+                <div>
+                    <label htmlFor="location" className="block font-semibold mb-1 ">Address with zip-code</label>
+                    <input
+                        id="location"
+                        {...register("location")}
+                        type="text"
+                        className="w-full border rounded p-2"
+                    />
+                    {errors.location && <span className="text-red-500">{errors.location.message}</span>}
+                </div>
+                {/* Price */}
+                <div>
+                    <label htmlFor="price" className="block font-semibold mb-1">Price ($)</label>
+                    <input
+                        id="price"
+                        {...register("price", { valueAsNumber: true })} // ✅ Convert input to number
+                        type="number"
+                        onChange={(e) => setValue("price", Number(e.target.value))} // ✅ Ensure number conversion
+                        className="w-full border rounded p-2"
+                    />
+                    {errors.price && <span className="text-red-500">{errors.price.message}</span>}
+                </div>
+
+                {/* Bedrooms */}
+                <div>
+                    <label htmlFor="bedrooms" className="block font-semibold mb-1">Bedrooms</label>
+                    <input
+                        id="bedrooms"
+                        {...register("bedrooms", { valueAsNumber: true })}  // ✅ Converts value to number
+                        type="number"
+                        onChange={(e) => setValue("bedrooms", Number(e.target.value) || 1)}  // ✅ Ensure a valid number
+                        className="w-full border rounded p-2"
+                    />
+                    {errors.bedrooms && <span className="text-red-500">{errors.bedrooms.message}</span>}
+                </div>
+
+                {/* Bathrooms */}
+                <div>
+                    <label htmlFor="bathrooms" className="block font-semibold mb-1">Bathrooms</label>
+                    <input
+                        id="bathrooms"
+                        type="number"
+                        {...register("bathrooms", { valueAsNumber: true })} // ✅ Force number conversion
+                        onChange={(e) => setValue("bathrooms", Number(e.target.value) || 1)} // ✅ Ensure it's a number
+                        className="w-full border rounded p-2"
+                    />
+                    {errors.bathrooms && <span className="text-red-500">{errors.bathrooms.message}</span>}
+                </div>
+
+                {/* Square Footage */}
+                <div>
+                    <label htmlFor="sqft" className="block font-semibold mb-1">Square Footage (sq ft)</label>
+                    <input
+                        id="sqft"
+                        type="number"
+                        {...register("sqft", { valueAsNumber: true })} // Ensures form treats it as a number
+                        onChange={(e) => {
+                            const value = parseFloat(e.target.value) || 0; // Explicit conversion
+                            setValue("sqft", value);
+                        }}
+                        className="w-full border rounded p-2"
+                    />
+                    {errors.sqft && <span className="text-red-500">{errors.sqft.message}</span>}
+                </div>
+
+
 
 
                 {/* Lot Size */}
-                <Controller
-                    name="LotSize"
-                    control={control}
-                    render={({ field }) => (
-                        <div>
-                            <input
-                                {...field}
-                                type="number"
-                                placeholder="Lot Size"
-                                onChange={(e) => field.onChange(Number(e.target.value) || 0)} // ✅ Convert to number
-                                className="block w-full border rounded p-2"
-                            />
-                            {errors.LotSize && <span className="text-red-500">{errors.LotSize.message}</span>}
-                        </div>
-                    )}
-                />
-
-                {/* HOA Dues */}
-                <Controller
-                    name="HOADues"
-                    control={control}
-                    render={({ field }) => (
-                        <div>
-                            <input
-                                {...field}
-                                type="number"
-                                placeholder="HOA Dues"
-                                onChange={(e) => field.onChange(Number(e.target.value) || 0)}
-                                className="block w-full border rounded p-2"
-                            />
-                            {errors.HOADues && <span className="text-red-500">{errors.HOADues.message}</span>}
-                        </div>
-                    )}
-                />
-
-                {/* Year Built */}
-                <Controller
-                    name="YearBuilt"
-                    control={control}
-                    render={({ field }) => (
-                        <div>
-                            <input
-                                {...field}
-                                type="number"
-                                placeholder="Year Built"
-                                onChange={(e) => field.onChange(Number(e.target.value) || 0)}
-                                className="block w-full border rounded p-2"
-                            />
-                            {errors.YearBuilt && <span className="text-red-500">{errors.YearBuilt.message}</span>}
-                        </div>
-                    )}
-                />
-
-                {/* Garage Sq Ft */}
-                <Controller
-                    name="GarageSqFt"
-                    control={control}
-                    render={({ field }) => (
-                        <div>
-                            <input
-                                {...field}
-                                type="number"
-                                placeholder="Garage Sq. Ft."
-                                onChange={(e) => field.onChange(Number(e.target.value) || 0)}
-                                className="block w-full border rounded p-2"
-                            />
-                            {errors.GarageSqFt && <span className="text-red-500">{errors.GarageSqFt.message}</span>}
-                        </div>
-                    )}
-                />
-
-                {/* Basement Sq Ft */}
-                <Controller
-                    name="BasementSqFt"
-                    control={control}
-                    render={({ field }) => (
-                        <div>
-                            <input
-                                {...field}
-                                type="number"
-                                placeholder="Basement Sq. Ft."
-                                onChange={(e) => field.onChange(Number(e.target.value) || 0)}
-                                className="block w-full border rounded p-2"
-                            />
-                            {errors.BasementSqFt && <span className="text-red-500">{errors.BasementSqFt.message}</span>}
-                        </div>
-                    )}
-                />
-                {/* Price */}
-                <Controller
-                    name="price"
-                    control={control}
-                    render={({ field }) => (
-                        <div>
-                            <input
-                                type="number"
-                                value={field.value || ""}
-                                onChange={(e) => field.onChange(parseFloat(e.target.value) || 0)}
-                                placeholder="Price"
-                                className="block w-full border rounded p-2"
-                            />
-                            {errors.price && (
-                                <span className="text-red-500">{errors.price.message}</span>
-                            )}
-                        </div>
-                    )}
-                />
-
-                {/* Location */}
-                <Controller
-                    name="location"
-                    control={control}
-                    render={({ field }) => (
-                        <div>
-                            <input
-                                {...field}
-                                type="text"
-                                placeholder="Location"
-                                className="block w-full border rounded p-2"
-                            />
-                            {errors.location && (
-                                <span className="text-red-500">{errors.location.message}</span>
-                            )}
-                        </div>
-                    )}
-                />
-
-                {/* Bedrooms, Bathrooms, and Sqft */}
-                <Controller
-                    name="bedrooms"
-                    control={control}
-                    render={({ field }) => (
-                        <div>
-                            <input
-                                type="number"
-                                value={field.value || ""}
-                                onChange={(e) => field.onChange(parseFloat(e.target.value) || 0)}
-                                placeholder="Bedrooms"
-                                className="block w-full border rounded p-2"
-                            />
-                            {errors.bedrooms && (
-                                <span className="text-red-500">{errors.bedrooms.message}</span>
-                            )}
-                        </div>
-                    )}
-                />
-                <Controller
-                    name="bathrooms"
-                    control={control}
-                    render={({ field }) => (
-                        <div>
-                            <input
-                                type="number"
-                                value={field.value || ""}
-                                onChange={(e) => field.onChange(parseFloat(e.target.value) || 0)}
-                                placeholder="Bathrooms"
-                                className="block w-full border rounded p-2"
-                            />
-                            {errors.bathrooms && (
-                                <span className="text-red-500">{errors.bathrooms.message}</span>
-                            )}
-                        </div>
-                    )}
-                />
-                <Controller
-                    name="sqft"
-                    control={control}
-                    render={({ field }) => (
-                        <div>
-                            <input
-                                type="number"
-                                value={field.value || ""}
-                                onChange={(e) => field.onChange(parseFloat(e.target.value) || 0)}
-                                placeholder="Square Footage"
-                                className="block w-full border rounded p-2"
-                            />
-                            {errors.sqft && (
-                                <span className="text-red-500">{errors.sqft.message}</span>
-                            )}
-                        </div>
-                    )}
-                />
+                <div>
+                    <label htmlFor="LotSize" className="block font-semibold mb-1">Lot Size</label>
+                    <input
+                        id="LotSize"
+                        {...register("LotSize")}
+                        type="number"
+                        className="w-full border rounded p-2"
+                    />
+                    {errors.LotSize && <span className="text-red-500">{errors.LotSize.message}</span>}
+                </div>
 
                 {/* Property Type */}
-                <Controller
-                    name="propertyType"
-                    control={control}
-                    render={({ field }) => (
-                        <div>
-                            <select {...field} className="block w-full border rounded p-2">
-                                <option value="apartment">Apartment</option>
-                                <option value="villa">Villa</option>
-                                <option value="condo">Condo</option>
-                                <option value="bungalow">Bungalow</option>
-                            </select>
-                            {errors.propertyType && (
-                                <span className="text-red-500">{errors.propertyType.message}</span>
-                            )}
-                        </div>
-                    )}
-                />
+                <div>
+                    <label htmlFor="propertyType" className="block font-semibold mb-1">Property Type</label>
+                    <select
+                        id="propertyType"
+                        {...register("propertyType")}
+                        className="w-full border rounded p-2"
+                    >
+                        <option value="apartment">Apartment</option>
+                        <option value="villa">Villa</option>
+                        <option value="condo">Condo</option>
+                        <option value="bungalow">Bungalow</option>
+                    </select>
+                    {errors.propertyType && <span className="text-red-500">{errors.propertyType.message}</span>}
+                </div>
                 {/* Appliances Section */}
                 <div>
                     <h1 className="text-2xl font-bold">Room Details</h1>
