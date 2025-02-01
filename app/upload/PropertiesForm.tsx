@@ -280,6 +280,72 @@ const PropertiesForm = () => {
                     {errors.LotSize && <span className="text-red-500">{errors.LotSize.message}</span>}
                 </div>
 
+                {/* Square Footage */}
+                <div>
+                    <label htmlFor="sqft" className="block font-semibold mb-1">Square Footage (sq ft)</label>
+                    <input
+                        id="sqft"
+                        type="number"
+                        {...register("sqft")}
+                        onChange={(e) => setValue("sqft", Number(e.target.value) || 0)}
+                        className="w-full border rounded p-2"
+                    />
+                    {errors.sqft && <span className="text-red-500">{errors.sqft.message}</span>}
+                </div>
+
+                {/* HOA Dues */}
+                <div>
+                    <label htmlFor="HOADues" className="block font-semibold mb-1">HOA Dues</label>
+                    <input
+                        id="HOADues"
+                        type="number"
+                        {...register("HOADues")}
+                        onChange={(e) => setValue("HOADues", Number(e.target.value) || 0)}
+                        className="w-full border rounded p-2"
+                    />
+                    {errors.HOADues && <span className="text-red-500">{errors.HOADues.message}</span>}
+                </div>
+
+                {/* Year Built */}
+                <div>
+                    <label htmlFor="YearBuilt" className="block font-semibold mb-1">Year Built</label>
+                    <input
+                        id="YearBuilt"
+                        type="number"
+                        {...register("YearBuilt")}
+                        onChange={(e) => setValue("YearBuilt", Number(e.target.value) || new Date().getFullYear())}
+                        className="w-full border rounded p-2"
+                    />
+                    {errors.YearBuilt && <span className="text-red-500">{errors.YearBuilt.message}</span>}
+                </div>
+
+                {/* Garage Sq Ft */}
+                <div>
+                    <label htmlFor="GarageSqFt" className="block font-semibold mb-1">Garage Square Footage</label>
+                    <input
+                        id="GarageSqFt"
+                        type="number"
+                        {...register("GarageSqFt")}
+                        onChange={(e) => setValue("GarageSqFt", Number(e.target.value) || 0)}
+                        className="w-full border rounded p-2"
+                    />
+                    {errors.GarageSqFt && <span className="text-red-500">{errors.GarageSqFt.message}</span>}
+                </div>
+
+                {/* Basement Sq Ft */}
+                <div>
+                    <label htmlFor="BasementSqFt" className="block font-semibold mb-1">Basement Square Footage</label>
+                    <input
+                        id="BasementSqFt"
+                        type="number"
+                        {...register("BasementSqFt")}
+                        onChange={(e) => setValue("BasementSqFt", Number(e.target.value) || 0)}
+                        className="w-full border rounded p-2"
+                    />
+                    {errors.BasementSqFt && <span className="text-red-500">{errors.BasementSqFt.message}</span>}
+                </div>
+
+
                 {/* Property Type */}
                 <div>
                     <label htmlFor="propertyType" className="block font-semibold mb-1">Property Type</label>
