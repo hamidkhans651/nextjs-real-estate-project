@@ -203,6 +203,14 @@ export default function PropertyDetails({ property }: PropertyDetailsProps) {
 
                         <h2 className="text-xl font-bold  py-6 ">
                             What's special</h2>
+                        <div className="flex gap-2 p-2 text-black">
+                            <p className="bg-[#F1F1F4]" p-2 >{property.architecturalStyle}</p>
+                            <p className="bg-[#F1F1F4]" p-2 >{property.exterior}</p>
+                            <p className="bg-[#F1F1F4]" p-2 >{property.outdoorAmenities}</p>
+                            <p className="bg-[#F1F1F4]" p-2 >{property.indoorFeatures}</p>
+                            <p className="bg-[#F1F1F4]" m-10 >{property.propertyType}</p>
+                        </div>
+
                         <p>
                             {showMore
                                 ? property.description
@@ -523,11 +531,12 @@ export default function PropertyDetails({ property }: PropertyDetailsProps) {
                         </div>
                     </div>
                 </section>
+
                 <section
-                    id="price"
+                    id="Neighburhood"
                     className="p-4 rounded-xl border-2 mb-4 shadow-md"
                 >
-                    <h2 className="text-xl font-bold mb-2">Payment calculator</h2>
+                    <h2 className="text-xl font-bold mb-2">Neighburhood</h2>
                     <p>${property.price}</p>
                 </section>
                 <section
