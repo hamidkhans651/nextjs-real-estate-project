@@ -286,24 +286,21 @@ export default function PropertyDetails({ property }: PropertyDetailsProps) {
                         <h3 className="font-semibold text-lg">Appliances</h3>
                         <ul className="list-disc list-inside">
                             <li>
-                                Included: Gas Oven, Gas Range, Trash Compactor, Dishwasher, Disposal,
-                                Microwave, Washer/Dryer
+                                {property.rooms}
                             </li>
-                            <li>Laundry: Electric Dryer Hookup, Gas Dryer Hookup</li>
                         </ul>
 
                         <h3 className="font-semibold text-lg mt-4">Features</h3>
                         <ul className="list-disc list-inside">
-                            <li>Crown Molding, All Bedrooms Up, Countertops (Granite)</li>
-                            <li>Flooring: Carpet, Laminate</li>
-                            <li>Windows: Insulated/Low-E windows</li>
-                            <li>Number of fireplaces: 1</li>
-                            <li>Fireplace features: Wood Burning</li>
+
+                            <li>{property.indoorFeatures}</li>
+
                         </ul>
 
                         <h3 className="font-semibold text-lg mt-4">Interior area</h3>
                         <ul className="list-disc list-inside">
-                            <li>Total structure area: 2,156</li>
+
+                            <li>Total structure area: 2,156 </li>
                             <li>Total interior livable area: 2,156 sqft</li>
                         </ul>
                         <h3 className="font-semibold text-lg mt-4">Financial & listing details
@@ -320,14 +317,11 @@ export default function PropertyDetails({ property }: PropertyDetailsProps) {
                     {/* Left Column */}
                     <div className="w-1/2 pr-4">
                         <h1 className="text-xl font-bold mb-2">Property</h1>
-                        <h1>Interior.</h1>
 
                         <h3 className="font-semibold text-lg">Parking</h3>
                         <ul className="list-disc list-inside">
-                            <li>Bedrooms: 3</li>
-                            <li>Bathrooms: 3</li>
-                            <li>Full bathrooms: 2</li>
-                            <li>1/2 bathrooms: 1</li>
+                            <li>{property.parking}</li>
+
                         </ul>
 
                         <h3 className="font-semibold text-lg mt-4">Features</h3>
@@ -341,10 +335,9 @@ export default function PropertyDetails({ property }: PropertyDetailsProps) {
                         <h3 className="font-semibold text-lg">Lot</h3>
                         <ul className="list-disc list-inside">
                             <li>
-                                Included: Gas Oven, Gas Range, Trash Compactor, Dishwasher, Disposal,
-                                Microwave, Washer/Dryer
+                                Lot-Size:  {property.LotSize}
+
                             </li>
-                            <li>Laundry: Electric Dryer Hookup, Gas Dryer Hookup</li>
                         </ul>
 
                         <h3 className="font-semibold text-lg mt-4">Features</h3>
