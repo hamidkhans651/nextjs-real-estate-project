@@ -172,7 +172,7 @@ export default function PropertyDetails({ property }: PropertyDetailsProps) {
                         </div>
                         <div className="flex items-center gap-2">
                             <span className=" w-6 h-6 rounded-full flex items-center justify-center">
-                                🛠️
+                                <Hammer />
                             </span>
                             <p>Built in {property.YearBuilt}</p>
                         </div>
@@ -184,7 +184,8 @@ export default function PropertyDetails({ property }: PropertyDetailsProps) {
                         </div>
                         <div className="flex items-center gap-2">
                             <span className=" w-6 h-6  rounded-full flex items-center justify-center">
-                                💰
+                                <BadgeDollarSign />
+
                             </span>
                             <p>$-- Zestimate</p>
                         </div>
@@ -258,25 +259,25 @@ export default function PropertyDetails({ property }: PropertyDetailsProps) {
 
                         <h3 className="font-semibold text-lg">Bedrooms & bathrooms</h3>
                         <ul className="list-disc list-inside">
-                            <li>Bedrooms: 3</li>
-                            <li>Bathrooms: 3</li>
-                            <li>Full bathrooms: 2</li>
-                            <li>1/2 bathrooms: 1</li>
+                            <li>Bedrooms: {property.bedrooms}</li>
+                            <li>Bathrooms: {property.bathrooms}</li>
+                            {/* <li>Full bathrooms: </li>
+                            <li>1/2 bathrooms: 1</li> */}
                         </ul>
 
                         <h3 className="font-semibold text-lg mt-4">Rooms</h3>
                         <ul className="list-disc list-inside">
-                            <li>Room types: 1 Living Area, Den, Formal Dining</li>
+                            <li className="gap-2 p-2">Room types: {property.rooms}</li>
                         </ul>
 
                         <h3 className="font-semibold text-lg mt-4">Heating</h3>
                         <ul className="list-disc list-inside">
-                            <li>Natural Gas</li>
+                            <li>{property.heatingFuel}</li>
                         </ul>
 
                         <h3 className="font-semibold text-lg mt-4">Cooling</h3>
                         <ul className="list-disc list-inside">
-                            <li>Electric</li>
+                            <li>{property.coolingType}</li>
                         </ul>
                     </div>
 
