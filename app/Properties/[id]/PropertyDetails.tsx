@@ -533,69 +533,7 @@ export default function PropertyDetails({ property }: PropertyDetailsProps) {
                     <h2 className="text-xl font-bold mb-2">Neighburhood</h2>
                     <p>${property.price}</p>
                 </section>
-                <section
-                    id="price"
-                    className="p-4 rounded-xl border-2 mb-4 shadow-md"
-                >
-                    <h2 className="text-xl font-bold mb-2">Payment calculator</h2>
-                    <p>${property.price}</p>
-                </section>
-                <section
-                    id="price"
-                    className="p-4 rounded-xl border-2 mb-4 shadow-md"
-                >
-                    <h2 className="text-xl font-bold mb-2">Payment calculator</h2>
-                    <p>${property.price}</p>
-                </section>
-                <section
-                    id="price"
-                    className="p-4 rounded-xl border-2 mb-4 shadow-md"
-                >
-                    <h2 className="text-xl font-bold mb-2">Payment calculator</h2>
-                    <p>${property.price}</p>
-                </section>
-                {/* <section
-                    id="price"
-                    className="p-4 border-slate-200 rounded-xl border-2 mb-4"
-                >
-                    <h2 className="text-xl font-bold mb-2">Payment calculator</h2>
-                    <p>${property.price}</p>
-                </section>
-                <section
-                    id="price"
-                    className="p-4 border-slate-200 rounded-xl border-2 mb-4"
-                >
-                    <h2 className="text-xl font-bold mb-2">Payment calculator</h2>
-                    <p>${property.price}</p>
-                </section>
-                <section
-                    id="price"
-                    className="p-4 border-slate-200 rounded-xl border-2 mb-4"
-                >
-                    <h2 className="text-xl font-bold mb-2">Payment calculator</h2>
-                    <p>${property.price}</p>
-                </section>
-                <section
-                    id="price"
-                    className="p-4 border-slate-200 rounded-xl border-2 mb-4"
-                >
-                    <h2 className="text-xl font-bold mb-2">Payment calculator</h2>
-                    <p>${property.price}</p>
-                </section>
-                <section
-                    id="price"
-                    className="p-4 border-slate-200 rounded-xl border-2 mb-4"
-                >
-                    <h2 className="text-xl font-bold mb-2">Payment calculator</h2>
-                    <p>${property.price}</p>
-                </section>
-                <section
-                    id="price"
-                    className="p-4 border-slate-200 rounded-xl border-2 mb-4"
-                >
-                    <h2 className="text-xl font-bold mb-2">Payment calculator</h2>
-                    <p>${property.price}</p>
-                </section> */}
+
 
             </div >
         </main >
