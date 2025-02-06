@@ -1,5 +1,7 @@
 import { Dropdown, DropdownTrigger, DropdownMenu, DropdownItem, Button } from "@nextui-org/react";
 import { Ellipsis } from "lucide-react";
+import Link from "next/link";
+import { useState, useEffect } from "react";
 import { toast } from "react-hot-toast";
 
 interface DropdownButtonProps {
@@ -7,7 +9,14 @@ interface DropdownButtonProps {
   onDelete: (id: number) => void;
 }
 
-export default function DropdownButton({ propertyId, onDelete }: DropdownButtonProps) {
+const DropdownButton = ({ propertyId, onDelete }: DropdownButtonProps) => {
+  const [isClient, setIsClient] = useState(false);
+
+  // Ensures the component is only rendered on the client-side
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
   const handleDelete = async () => {
     if (confirm("Are you sure you want to delete this property?")) {
       toast.loading("Deleting property...");
@@ -33,15 +42,23 @@ export default function DropdownButton({ propertyId, onDelete }: DropdownButtonP
     }
   };
 
+  if (!isClient) {
+    return null; // Prevent rendering this component on SSR
+  }
+
   return (
     <Dropdown>
-      <DropdownTrigger className="bg-transparent ">
-        <Button className="absolute top-0 right-[-10] z-10 ">
+      <DropdownTrigger className="bg-transparent">
+        <Button className="absolute top-0 right-[-10px] z-10">
           <Ellipsis />
         </Button>
       </DropdownTrigger>
       <DropdownMenu aria-label="Property Actions">
-        <DropdownItem key="edit">Edit Property</DropdownItem>
+        <DropdownItem key="edit">
+          <Link href={`/properties/edit/${propertyId}`}>
+            Edit Property
+          </Link>
+        </DropdownItem>
         <DropdownItem
           key="delete"
           onClick={handleDelete} // Triggers the delete logic
@@ -53,4 +70,6 @@ export default function DropdownButton({ propertyId, onDelete }: DropdownButtonP
       </DropdownMenu>
     </Dropdown>
   );
-}
+};
+
+export default DropdownButton;

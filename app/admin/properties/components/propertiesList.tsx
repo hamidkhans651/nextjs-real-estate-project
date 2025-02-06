@@ -5,6 +5,8 @@ import { Spinner } from "@heroui/react"; // Import the Spinner component
 import { Card, CardBody, CardFooter, Image, Button } from "@nextui-org/react";
 import { ChevronIcon } from "@/app/Properties/icons/ChevronIcon";
 import { Property } from "@/types/property";
+import Link from "next/link";
+
 import DropdownButton from "../../components/DropdownButton";
 import ShareButton from "../../components/ShareButton";
 
@@ -13,7 +15,6 @@ export default function PropertiesList() {
     const [properties, setProperties] = useState<Property[]>([]);
     const [propertiesToShow, setPropertiesToShow] = useState<Property[]>([]);
     const [loading, setLoading] = useState(true);
-
     const handleDelete = (id: string) => {
         console.log(`Deleting property with id: ${id}`);
     };
@@ -32,6 +33,7 @@ export default function PropertiesList() {
             }
         };
 
+
         fetchProperties();
     }, []);
 
@@ -41,6 +43,10 @@ export default function PropertiesList() {
         setPropertiesToShow(properties.slice(start, end));
     }, [currentPage, properties]);
 
+    // function handleDelete(arg0: string): void {
+    //     throw new Error("Function not implemented.");
+    // }
+
     return (
         <div className="relative">
             {/* Component-specific Loading Spinner */}
@@ -48,7 +54,11 @@ export default function PropertiesList() {
                 <div className="absolute inset-0 z-10 flex justify-center items-center bg-black bg-opacity-50 backdrop-blur-sm">
                     <Spinner />
                 </div>
+
+
             )}
+
+
 
             {/* Component Content */}
             <div className={loading ? "blur-sm pointer-events-none" : ""}>
@@ -91,6 +101,11 @@ export default function PropertiesList() {
                                 <b className="text-xs text-start text-default-500">
                                     For Sale: {property.isForSale ? "Yes" : "No"}
                                 </b>
+
+                                <Link href={`/properties/edit/${property.id}`}>
+                                    <Button color="primary">Edit</Button>
+                                </Link>
+
                             </CardFooter>
                         </Card>
                     ))}

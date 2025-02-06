@@ -47,10 +47,10 @@ const imageUploadSchema = z.object({
 // Type for the form data
 type FormData = z.infer<typeof imageUploadSchema>;
 
-const PropertiesForm = () => {
+const PropertiesForm = ({ propertyId }: { propertyId?: number }) => {
     const [previews, setPreviews] = useState<string[]>([]);
-    const [loading, setLoading] = useState(false); // State for the loader
-
+    const [loading, setLoading] = useState(false);
+  
     const {
         register,
         handleSubmit,
