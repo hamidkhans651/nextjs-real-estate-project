@@ -46,13 +46,13 @@ export default async function Home() {
         >
           <div className="inline-block max-w-xl text-center pt-16 text-white">
             <span className={title()}>Make&nbsp;</span>
-            <span className={title({ color: "violet" })}>beautiful&nbsp;</span>
+            <span className={title({ color: "violet" })}>your&nbsp;</span>
             <br />
             <span className={title()}>
               websites regardless of your design experience.
             </span>
             <div className={subtitle({ class: "mt-4 text-white" })} >
-              Beautiful, fast, and modern React UI library.
+              Beautiful, fast, and modern React UI l
 
             </div>
           </div>
