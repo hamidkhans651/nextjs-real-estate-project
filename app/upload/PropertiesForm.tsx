@@ -164,7 +164,7 @@ const PropertiesForm = ({ propertyId }: { propertyId?: number }) => {
                 onSubmit={handleSubmit(onSubmit)}
                 className={`space-y-4 ${loading ? "filter blur-sm pointer-events-none" : ""}`}
             >
-                {/* Title */}
+                {/* Title form */}
                 <div>
                     <label htmlFor="title" className="block font-semibold mb-1">Title</label>
                     <input
