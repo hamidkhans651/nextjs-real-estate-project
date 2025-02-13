@@ -93,18 +93,7 @@ export default function Hero() {
 
       {/* Content with blur when loading */}
       <div className={loading ? "blur-sm pointer-events-none" : ""}>
-        <div className="rounded-2xl flex gap-9 justify-center items-center text-white">
-          <Input
-            label=""
-            isClearable
-            radius="lg"
-            placeholder="Type to search..."
-            startContent={
-              <SearchIcon className="text-black/50 mb-0.5 dark:text-white/90 text-slate-400 pointer-events-none flex-shrink-0" />
-            }
-          />
-          <Forsale />
-        </div>
+        <Forsale />
 
         {/* Displaying properties */}
         <div className="p-4 gap-5 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
