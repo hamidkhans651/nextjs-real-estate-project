@@ -1,6 +1,6 @@
 "use client";
 
-import { PopoverDemo } from "@/components/PopoverDemo"
+import PropertyFilter from "@/components/PropertyFilter"
 import { useState, useEffect, useRef } from "react";
 import {
   Dropdown,
@@ -165,7 +165,7 @@ export default function PropertySearchBar() {
             </Dropdown>
           </>
         )}
-        <PopoverDemo />
+        <PropertyFilter />
 
         {/* Save Search Button */}
         <Button color="primary">Save Search</Button>
