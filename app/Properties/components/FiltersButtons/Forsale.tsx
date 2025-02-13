@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { PopoverDemo } from "@/components/PopoverDemo"
+import { useState, useEffect, useRef } from "react";
 import {
   Dropdown,
   DropdownTrigger,
@@ -10,17 +11,48 @@ import {
   Input,
 } from "@nextui-org/react";
 import { SearchIcon } from "@/app/Properties/icons/SearchIcon";
-import { useMediaQuery } from "react-responsive"; // For responsiveness
 
 export default function PropertySearchBar() {
-  const [isMounted, setIsMounted] = useState(false);
-  const isMediumScreen = useMediaQuery({ maxWidth: 1024 }); // Medium screens and below
-  const isMobile = useMediaQuery({ maxWidth: 768 }); // Mobile detection
-
   // Fix SSR hydration issues
+  const [isMounted, setIsMounted] = useState(false);
+  const [isMediumScreen, setIsMediumScreen] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  const [isPriceOpen, setIsPriceOpen] = useState(false);
+  const [minPrice, setMinPrice] = useState("No Min");
+  const [maxPrice, setMaxPrice] = useState("No Max");
+  const priceDropdownRef = useRef<HTMLDivElement | null>(null);
+
+  const priceOptions = [
+    "No Min", "$0", "$200", "$400", "$600", "$800", "$1,000", "$2,000", "$5,000", "$10,000",
+  ];
+
   useEffect(() => {
     setIsMounted(true);
+
+    // Handle screen size for medium and mobile devices
+    const handleResize = () => {
+      setIsMediumScreen(window.innerWidth <= 1024);
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    handleResize(); // Run on mount
+    window.addEventListener("resize", handleResize);
+
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (priceDropdownRef.current && !priceDropdownRef.current.contains(event.target as Node)) {
+        setIsPriceOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
   if (!isMounted) return null;
 
   return (
@@ -39,7 +71,7 @@ export default function PropertySearchBar() {
         />
       </div>
 
-      {/* Filter Buttons (Grouped) */}
+      {/* Filter Buttons */}
       <div className="flex flex-wrap md:flex-nowrap gap-2 md:gap-3">
         <Dropdown>
           <DropdownTrigger>
@@ -48,21 +80,66 @@ export default function PropertySearchBar() {
           <DropdownMenu aria-label="For Sale Options">
             <DropdownItem key="sale">For Sale</DropdownItem>
             <DropdownItem key="rent">For Rent</DropdownItem>
+            <DropdownItem key="sold">Sold</DropdownItem>
           </DropdownMenu>
         </Dropdown>
 
-        <Dropdown>
-          <DropdownTrigger>
-            <Button variant="bordered">Price</Button>
-          </DropdownTrigger>
-          <DropdownMenu aria-label="Price Filter">
-            <DropdownItem key="low">Under $200K</DropdownItem>
-            <DropdownItem key="mid">$200K - $500K</DropdownItem>
-            <DropdownItem key="high">Over $500K</DropdownItem>
-          </DropdownMenu>
-        </Dropdown>
+        {/* Custom Price Dropdown */}
+        <div className="relative inline-block text-left" ref={priceDropdownRef}>
+          <button
+            onClick={() => setIsPriceOpen(!isPriceOpen)}
+            className="px-4 py-2 text-gray-700 border border-gray-300 rounded-md bg-white hover:bg-gray-100 flex items-center justify-between w-32"
+          >
+            Price ▼
+          </button>
 
-        {/* Move "Beds & Baths" and "Home Type" to "More" dropdown on Medium Screens */}
+          {isPriceOpen && (
+            <div className="absolute mt-2 w-72 bg-white shadow-lg border border-gray-200 rounded-md p-4 z-50">
+              <h3 className="text-gray-600 text-sm font-semibold mb-2">Price Range</h3>
+
+              {/* Min & Max Price Select */}
+              <div className="flex justify-between items-center space-x-2">
+                <div className="flex flex-col">
+                  <label className="text-xs text-gray-500">Minimum</label>
+                  <select
+                    className="border p-2 rounded-md w-32"
+                    value={minPrice}
+                    onChange={(e) => setMinPrice(e.target.value)}
+                  >
+                    {priceOptions.map((price, index) => (
+                      <option key={index} value={price}>{price}</option>
+                    ))}
+                  </select>
+                </div>
+
+                <span className="text-gray-500"> - </span>
+
+                <div className="flex flex-col">
+                  <label className="text-xs text-gray-500">Maximum</label>
+                  <select
+                    className="border p-2 rounded-md w-32"
+                    value={maxPrice}
+                    onChange={(e) => setMaxPrice(e.target.value)}
+                  >
+                    {priceOptions.map((price, index) => (
+                      <option key={index} value={price}>{price}</option>
+                    ))}
+                  </select>
+                </div>
+              </div>
+
+              {/* Apply Button */}
+              <button
+                className="w-full mt-4 bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700"
+                onClick={() => setIsPriceOpen(false)}
+              >
+                Apply
+              </button>
+            </div>
+          )}
+        </div>
+
+        {/* Beds & Baths and Home Type moved to "More" dropdown for Medium Screens */}
         {!isMediumScreen && (
           <>
             <Dropdown>
@@ -88,40 +165,7 @@ export default function PropertySearchBar() {
             </Dropdown>
           </>
         )}
-
-        <Dropdown>
-          <DropdownTrigger>
-            <Button variant="bordered">More</Button>
-          </DropdownTrigger>
-          <DropdownMenu aria-label="More Filters">
-            {/* Ensuring valid elements inside DropdownMenu */}
-            {isMediumScreen ? (
-              <>
-                <DropdownItem key="beds">
-                  <b>Beds & Baths</b>
-                  <DropdownMenu aria-label="Beds & Baths">
-                    <DropdownItem key="1b">1+ Bed</DropdownItem>
-                    <DropdownItem key="2b">2+ Beds</DropdownItem>
-                    <DropdownItem key="3b">3+ Beds</DropdownItem>
-                  </DropdownMenu>
-                </DropdownItem>
-
-                <DropdownItem key="home-type">
-                  <b>Home Type</b>
-                  <DropdownMenu aria-label="Home Type">
-                    <DropdownItem key="apartment">Apartment</DropdownItem>
-                    <DropdownItem key="house">House</DropdownItem>
-                    <DropdownItem key="condo">Condo</DropdownItem>
-                  </DropdownMenu>
-                </DropdownItem>
-              </>
-            ) : null}
-
-            <DropdownItem key="garage">Garage</DropdownItem>
-            <DropdownItem key="pool">Swimming Pool</DropdownItem>
-            <DropdownItem key="basement">Basement</DropdownItem>
-          </DropdownMenu>
-        </Dropdown>
+        <PopoverDemo />
 
         {/* Save Search Button */}
         <Button color="primary">Save Search</Button>
