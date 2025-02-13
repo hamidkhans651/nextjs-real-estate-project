@@ -17,19 +17,16 @@ export default function PropertyFilter() {
   const [lotSizeMax, setLotSizeMax] = useState("");
 
   return (
-
-
     <main>
-
       {/* More (Popover) */}
       <Popover>
         <PopoverTrigger asChild>
           <Button variant="outline">More</Button>
         </PopoverTrigger>
         <PopoverContent className="w-80">
-
           <TooltipProvider>
             <div className="space-y-6 p-4   bg-white w-full max-w-md">
+
               {/* Property Status */}
               <div>
                 <h3 className="font-semibold text-gray-800">Property Status</h3>

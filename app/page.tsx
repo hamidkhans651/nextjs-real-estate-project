@@ -33,7 +33,7 @@ export default async function Home() {
   // if (!session) {
   //   redirect("/login");
   // }
-  
+
   return (
     <main>
       <main className="w-full min-h-screen">
@@ -41,18 +41,20 @@ export default async function Home() {
 
         {/* Section with background image and text */}
         <section
-          className="w-full h-screen flex flex-col items-center justify-center gap-4 bg-cover bg-center"
+          className="w-full h-screen  flex flex-col items-center justify-center gap-4 bg-cover bg-center"
           style={{ backgroundImage: 'url(/assets/images/prop3.webp)' }}
         >
-          <div className="inline-block max-w-xl text-center pt-16 text-white">
-            <span className={title()}>Make&nbsp;</span>
-            <span className={title({ color: "violet" })}>your&nbsp;</span>
+          <div className="inline-block max-w-xl text-center pt-16 text-2xl text-white">
+            <span className={title()}>Find the right&nbsp;</span>
+            <span className={title({ color: "violet" })}>home&nbsp;</span>
             <br />
             <span className={title()}>
-              websites regardless of your design experience.
+              at the right&nbsp;
+              <span className={title({ color: "violet" })}>price&nbsp;</span>
+
             </span>
             <div className={subtitle({ class: "mt-4 text-white" })} >
-              Beautiful, fast, and modern React UI l
+              {/* Beautiful, fast, and modern React UI l */}
 
             </div>
           </div>
