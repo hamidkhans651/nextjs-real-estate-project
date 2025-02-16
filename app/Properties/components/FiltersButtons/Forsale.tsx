@@ -5,6 +5,7 @@ import { TooltipProvider, Tooltip, TooltipTrigger, TooltipContent } from "@/comp
 import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
 
+import PriceFilter from "@/components/pricefilter"
 import { useState, useEffect, useRef } from "react";
 import {
   Dropdown,
@@ -91,75 +92,17 @@ export default function PropertySearchBar() {
           </DropdownMenu>
         </Dropdown> */}
 
-      {/* Custom Price Dropdown */}
-      <div className="relative inline-block text-left" ref={priceDropdownRef}>
-        <button
-          onClick={() => setIsPriceOpen(!isPriceOpen)}
-          className="px-4 py-1  border rounded-md hover:bg-[#262626] flex items-center justify-between "
-        >
-          Price ▼
-        </button>
+      <PriceFilter priceOptions={[]} minPrice={""} setMinPrice={function (value: string): void {
+        throw new Error("Function not implemented.");
+      }} maxPrice={""} setMaxPrice={function (value: string): void {
+        throw new Error("Function not implemented.");
+      }} />
 
-        {isPriceOpen && (
-          <div className="absolute mt-2  bg-white shadow-lg border  rounded-md p-4 z-50">
-            <h3 className="text-gray-600 text-sm font-semibold mb-2">Price Range</h3>
-
-            {/* Min & Max Price Select */}
-            <div className="flex justify-between items-center space-x-2">
-              <div className="flex flex-col">
-                <label className="text-xs text-gray-500">Minimum</label>
-                <select
-                  className="border p-2 rounded-md w-32"
-                  value={minPrice}
-                  onChange={(e) => setMinPrice(e.target.value)}
-                >
-                  {priceOptions.map((price, index) => (
-                    <option key={index} value={price}>{price}</option>
-                  ))}
-                </select>
-              </div>
-
-              <span className="text-gray-500"> - </span>
-
-              <div className="flex flex-col">
-                <label className="text-xs text-gray-500">Maximum</label>
-                <select
-                  className="border p-2 rounded-md w-32"
-                  value={maxPrice}
-                  onChange={(e) => setMaxPrice(e.target.value)}
-                >
-                  {priceOptions.map((price, index) => (
-                    <option key={index} value={price}>{price}</option>
-                  ))}
-                </select>
-              </div>
-            </div>
-
-            {/* Apply Button */}
-            <button
-              className="w-full mt-4 bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700"
-              onClick={() => setIsPriceOpen(false)}
-            >
-              Apply
-            </button>
-          </div>
-        )}
-      </div>
 
       {/* Beds & Baths and Home Type moved to "More" dropdown for Medium Screens */}
       {!isMediumScreen && (
         <>
-          {/* <Dropdown>
-              <DropdownTrigger>
-                <Button variant="bordered">Beds & Baths</Button>
-              </DropdownTrigger>
-              <DropdownMenu aria-label="Beds & Baths">
-                <DropdownItem key="1b">1+ Bed</DropdownItem>
-                <DropdownItem key="2b">2+ Beds</DropdownItem>
-                <DropdownItem key="3b">3+ Beds</DropdownItem>
-              </DropdownMenu>
-            </Dropdown>
- */}
+
 
           <Popover>
             <PopoverTrigger asChild>
