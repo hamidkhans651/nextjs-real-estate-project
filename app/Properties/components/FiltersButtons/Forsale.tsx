@@ -67,7 +67,7 @@ export default function PropertySearchBar() {
           placeholder="Address, neighborhood, city, ZIP"
           className="w-full md:w-96"
           startContent={
-            <SearchIcon className="text-black/50 mb-0.5 dark:text-white/90 text-slate-400 pointer-events-none flex-shrink-0" />
+            <SearchIcon className="pointer-events-none flex-shrink-0" />
           }
         />
       </div>

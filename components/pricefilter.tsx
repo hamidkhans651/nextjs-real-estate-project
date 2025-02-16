@@ -1,6 +1,14 @@
 import { Popover, PopoverTrigger, PopoverContent } from "@/components/ui/popover";
 import { Button } from "@/components/ui/button";
 import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "@/components/ui/select";
+import { Slider } from "@/components/ui/slider";
+import { useState } from "react";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Input } from "@/components/ui/input";
+import { TooltipProvider, Tooltip, TooltipTrigger, TooltipContent } from "@/components/ui/tooltip";
+import { Label } from "@/components/ui/label";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { ChevronDown } from "lucide-react";
 
 interface PriceFilterProps {
     minPrice: string;
@@ -11,11 +19,17 @@ interface PriceFilterProps {
 
 const priceOptions = Array.from({ length: 61 }, (_, i) => `$${(i * 500000).toLocaleString()}`);
 
-export default function PriceFilter({ minPrice, setMinPrice, maxPrice, setMaxPrice }: PriceFilterProps) {
+export default function PropertyFilter({ minPrice, setMinPrice, maxPrice, setMaxPrice }: PriceFilterProps) {
+    const [sliderValue, setSliderValue] = useState([0, 30000000]);
+    const [isOpen, setIsOpen] = useState(false);
+
     return (
-        <Popover>
+        <Popover onOpenChange={(open) => setIsOpen(open)}>
             <PopoverTrigger asChild>
-                <Button variant="outline">Price ▼</Button>
+                <Button variant="outline" className="flex items-center gap-2">
+                    <span>Price</span>
+                    <ChevronDown className={`transition-transform ${isOpen ? "rotate-180" : "rotate-0"}`} size={16} />
+                </Button>
             </PopoverTrigger>
             <PopoverContent className="p-4 ">
                 <h3 className=" text-sm font-semibold mb-2">Price Range</h3>
@@ -57,3 +71,39 @@ export default function PriceFilter({ minPrice, setMinPrice, maxPrice, setMaxPri
         </Popover>
     );
 }
+
+const CheckboxWithLabel = ({ label, tooltip }: { label: string; tooltip?: string }) => (
+    <div className="flex items-center gap-2">
+        <Checkbox id={label} />
+        <label htmlFor={label} className="text-sm ">{label}</label>
+        {tooltip && (
+            <Tooltip>
+                <TooltipTrigger>
+                    <span className="cursor-help">ⓘ</span>
+                </TooltipTrigger>
+                <TooltipContent>{tooltip}</TooltipContent>
+            </Tooltip>
+        )}
+    </div>
+);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
