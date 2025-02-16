@@ -17,12 +17,12 @@ export default function PriceFilter({ minPrice, setMinPrice, maxPrice, setMaxPri
             <PopoverTrigger asChild>
                 <Button variant="outline">Price ▼</Button>
             </PopoverTrigger>
-            <PopoverContent className="p-4 w-64">
+            <PopoverContent className="p-4 ">
                 <h3 className=" text-sm font-semibold mb-2">Price Range</h3>
                 <div className="flex justify-between items-center space-x-2">
                     {/* Minimum Price */}
                     <div className="flex flex-col w-1/2">
-                        <label className="text-xs ">Minimum</label>
+                        <label className="text-xs p-2 ">Minimum</label>
                         <Select value={minPrice} onValueChange={setMinPrice}>
                             <SelectTrigger className="border p-2 rounded-md">
                                 <SelectValue placeholder="Min" />
@@ -34,10 +34,10 @@ export default function PriceFilter({ minPrice, setMinPrice, maxPrice, setMaxPri
                             </SelectContent>
                         </Select>
                     </div>
-                    <span className=""> - </span>
+                    <span className="items-center"> - </span>
                     {/* Maximum Price */}
                     <div className="flex flex-col w-1/2">
-                        <label className="text-xs ">Maximum</label>
+                        <label className="text-xs p-2">Maximum</label>
                         <Select value={maxPrice} onValueChange={setMaxPrice}>
                             <SelectTrigger className="border p-2 rounded-md">
                                 <SelectValue placeholder="Max" />
