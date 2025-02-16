@@ -11,6 +11,8 @@ import {
 import { SearchIcon } from "@/app/Properties/icons/SearchIcon";
 import { Popover, PopoverTrigger, PopoverContent } from "@/components/ui/popover";
 import { Button } from "@/components/ui/button";
+import { MailOpen } from "lucide-react";
+
 
 
 export default function PropertySearchBar() {
@@ -146,6 +148,7 @@ export default function PropertySearchBar() {
 
       {/* Save Search Button */}
       <Button color="primary">Save Search</Button>
+      <MailOpen />
     </div>
     // </div >
   );

@@ -16,6 +16,8 @@ import {
 import { Kbd } from "@nextui-org/kbd";
 import { SearchIcon, Logo } from "@/components/icons";
 import DashboardMenu from "./DashboardMenu"
+import { Bell } from "lucide-react";
+
 
 
 export default function Header() {
@@ -49,13 +51,21 @@ export default function Header() {
                         <DashboardMenu />
                     </button>
                 </div>
-                <div className="   grid grid-cols-2 w-full gap-2 items-center ">
-                    <h1 className="col-span-1 text-xl font-semibold   object-fill">
-                        Dashboard
+                <div className="grid grid-cols-2 w-full gap-2 items-center ">
+                    <h1 className="col-span-1 text-xl font-semibold  flex justify-between items-center  object-fill">
+                        Admin Dashboard
+
+
                     </h1>
 
                     {/* Search Input shifted to the right */}
-                    <div className="ml-auto flex items-center justify-end   pr-2 ">
+
+
+                    <div className="ml-auto flex items-center justify-end gap-2  pr-2 ">
+                        <div >
+
+                            <Bell strokeWidth={3} />
+                        </div>
                         <div className="flex justify-end">
                             {searchInput}
                         </div>
