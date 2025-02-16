@@ -95,13 +95,13 @@ export default function PropertySearchBar() {
       <div className="relative inline-block text-left" ref={priceDropdownRef}>
         <button
           onClick={() => setIsPriceOpen(!isPriceOpen)}
-          className="px-4 py-2 text-gray-700 border border-gray-300 rounded-md bg-white hover:bg-gray-100 flex items-center justify-between w-32"
+          className="px-4 py-1  border rounded-md hover:bg-[#262626] flex items-center justify-between "
         >
           Price ▼
         </button>
 
         {isPriceOpen && (
-          <div className="absolute mt-2 w-72 bg-white shadow-lg border border-gray-200 rounded-md p-4 z-50">
+          <div className="absolute mt-2  bg-white shadow-lg border  rounded-md p-4 z-50">
             <h3 className="text-gray-600 text-sm font-semibold mb-2">Price Range</h3>
 
             {/* Min & Max Price Select */}
