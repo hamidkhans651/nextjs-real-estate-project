@@ -25,11 +25,11 @@ export default function PropertyFilter() {
         </PopoverTrigger>
         <PopoverContent className="w-80">
           <TooltipProvider>
-            <div className="space-y-6 p-4   bg-white w-full max-w-md">
+            <div className="space-y-6 p-4  w-full max-w-md">
 
               {/* Property Status */}
               <div>
-                <h3 className="font-semibold text-gray-800">Property Status</h3>
+                <h3 className="font-semibold ">Property Status</h3>
                 <div className="space-y-2 mt-2">
                   <CheckboxWithLabel label="Coming soon" tooltip="Properties coming to market soon." />
                   <CheckboxWithLabel label="Accepting backup offers" tooltip="Properties accepting secondary offers." />
@@ -39,7 +39,7 @@ export default function PropertyFilter() {
 
               {/* Tours */}
               <div>
-                <h3 className="font-semibold text-gray-800">Tours</h3>
+                <h3 className="font-semibold">Tours</h3>
                 <div className="space-y-2 mt-2">
                   <CheckboxWithLabel label="Must have open house" />
                   <CheckboxWithLabel label="Must have 3D Tour" />
@@ -49,7 +49,7 @@ export default function PropertyFilter() {
 
               {/* Parking Spots */}
               <div>
-                <h3 className="font-semibold text-gray-800">Parking Spots</h3>
+                <h3 className="font-semibold ">Parking Spots</h3>
                 <Select>
                   <SelectTrigger className="w-full">
                     <SelectValue placeholder="Any" />
@@ -67,20 +67,20 @@ export default function PropertyFilter() {
 
               {/* Square Feet */}
               <div>
-                <h3 className="font-semibold text-gray-800">Square Feet</h3>
+                <h3 className="font-semibold ">Square Feet</h3>
                 <div className="flex items-center gap-2 mt-2">
                   <SelectInput value={squareFeetMin} onChange={setSquareFeetMin} placeholder="No Min" />
-                  <span className="text-gray-500">-</span>
+                  <span className="">-</span>
                   <SelectInput value={squareFeetMax} onChange={setSquareFeetMax} placeholder="No Max" />
                 </div>
               </div>
 
               {/* Lot Size */}
               <div>
-                <h3 className="font-semibold text-gray-800">Lot Size</h3>
+                <h3 className="font-semibold">Lot Size</h3>
                 <div className="flex items-center gap-2 mt-2">
                   <SelectInput value={lotSizeMin} onChange={setLotSizeMin} placeholder="No Min" />
-                  <span className="text-gray-500">-</span>
+                  <span className="">-</span>
                   <SelectInput value={lotSizeMax} onChange={setLotSizeMax} placeholder="No Max" />
                 </div>
               </div>
@@ -139,13 +139,13 @@ export default function PropertyFilter() {
 const CheckboxWithLabel = ({ label, tooltip }: { label: string; tooltip?: string }) => (
   <div className="flex items-center gap-2">
     <Checkbox id={label} />
-    <label htmlFor={label} className="text-sm text-gray-700">
+    <label htmlFor={label} className="text-sm ">
       {label}
     </label>
     {tooltip && (
       <Tooltip>
         <TooltipTrigger>
-          <span className="text-gray-400 cursor-help">ⓘ</span>
+          <span className=" cursor-help">ⓘ</span>
         </TooltipTrigger>
         <TooltipContent>{tooltip}</TooltipContent>
       </Tooltip>

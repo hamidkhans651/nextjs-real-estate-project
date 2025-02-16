@@ -1,16 +1,23 @@
 "use client";
 
 import PropertyFilter from "@/components/PropertyFilter"
+import { TooltipProvider, Tooltip, TooltipTrigger, TooltipContent } from "@/components/ui/tooltip";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Label } from "@/components/ui/label";
+
 import { useState, useEffect, useRef } from "react";
 import {
   Dropdown,
   DropdownTrigger,
   DropdownMenu,
   DropdownItem,
-  Button,
+
   Input,
 } from "@nextui-org/react";
 import { SearchIcon } from "@/app/Properties/icons/SearchIcon";
+import { Popover, PopoverTrigger, PopoverContent } from "@/components/ui/popover";
+import { Button } from "@/components/ui/button";
+
 
 export default function PropertySearchBar() {
   // Fix SSR hydration issues
@@ -72,7 +79,7 @@ export default function PropertySearchBar() {
       </div>
 
       {/* Filter Buttons */}
-      <div className="flex flex-wrap md:flex-nowrap gap-2 md:gap-3">
+      {/* <div className="flex flex-wrap md:flex-nowrap gap-2 md:gap-3">
         <Dropdown>
           <DropdownTrigger>
             <Button variant="bordered">For Sale</Button>
@@ -82,67 +89,67 @@ export default function PropertySearchBar() {
             <DropdownItem key="rent">For Rent</DropdownItem>
             <DropdownItem key="sold">Sold</DropdownItem>
           </DropdownMenu>
-        </Dropdown>
+        </Dropdown> */}
 
-        {/* Custom Price Dropdown */}
-        <div className="relative inline-block text-left" ref={priceDropdownRef}>
-          <button
-            onClick={() => setIsPriceOpen(!isPriceOpen)}
-            className="px-4 py-2 text-gray-700 border border-gray-300 rounded-md bg-white hover:bg-gray-100 flex items-center justify-between w-32"
-          >
-            Price ▼
-          </button>
+      {/* Custom Price Dropdown */}
+      <div className="relative inline-block text-left" ref={priceDropdownRef}>
+        <button
+          onClick={() => setIsPriceOpen(!isPriceOpen)}
+          className="px-4 py-2 text-gray-700 border border-gray-300 rounded-md bg-white hover:bg-gray-100 flex items-center justify-between w-32"
+        >
+          Price ▼
+        </button>
 
-          {isPriceOpen && (
-            <div className="absolute mt-2 w-72 bg-white shadow-lg border border-gray-200 rounded-md p-4 z-50">
-              <h3 className="text-gray-600 text-sm font-semibold mb-2">Price Range</h3>
+        {isPriceOpen && (
+          <div className="absolute mt-2 w-72 bg-white shadow-lg border border-gray-200 rounded-md p-4 z-50">
+            <h3 className="text-gray-600 text-sm font-semibold mb-2">Price Range</h3>
 
-              {/* Min & Max Price Select */}
-              <div className="flex justify-between items-center space-x-2">
-                <div className="flex flex-col">
-                  <label className="text-xs text-gray-500">Minimum</label>
-                  <select
-                    className="border p-2 rounded-md w-32"
-                    value={minPrice}
-                    onChange={(e) => setMinPrice(e.target.value)}
-                  >
-                    {priceOptions.map((price, index) => (
-                      <option key={index} value={price}>{price}</option>
-                    ))}
-                  </select>
-                </div>
-
-                <span className="text-gray-500"> - </span>
-
-                <div className="flex flex-col">
-                  <label className="text-xs text-gray-500">Maximum</label>
-                  <select
-                    className="border p-2 rounded-md w-32"
-                    value={maxPrice}
-                    onChange={(e) => setMaxPrice(e.target.value)}
-                  >
-                    {priceOptions.map((price, index) => (
-                      <option key={index} value={price}>{price}</option>
-                    ))}
-                  </select>
-                </div>
+            {/* Min & Max Price Select */}
+            <div className="flex justify-between items-center space-x-2">
+              <div className="flex flex-col">
+                <label className="text-xs text-gray-500">Minimum</label>
+                <select
+                  className="border p-2 rounded-md w-32"
+                  value={minPrice}
+                  onChange={(e) => setMinPrice(e.target.value)}
+                >
+                  {priceOptions.map((price, index) => (
+                    <option key={index} value={price}>{price}</option>
+                  ))}
+                </select>
               </div>
 
-              {/* Apply Button */}
-              <button
-                className="w-full mt-4 bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700"
-                onClick={() => setIsPriceOpen(false)}
-              >
-                Apply
-              </button>
-            </div>
-          )}
-        </div>
+              <span className="text-gray-500"> - </span>
 
-        {/* Beds & Baths and Home Type moved to "More" dropdown for Medium Screens */}
-        {!isMediumScreen && (
-          <>
-            <Dropdown>
+              <div className="flex flex-col">
+                <label className="text-xs text-gray-500">Maximum</label>
+                <select
+                  className="border p-2 rounded-md w-32"
+                  value={maxPrice}
+                  onChange={(e) => setMaxPrice(e.target.value)}
+                >
+                  {priceOptions.map((price, index) => (
+                    <option key={index} value={price}>{price}</option>
+                  ))}
+                </select>
+              </div>
+            </div>
+
+            {/* Apply Button */}
+            <button
+              className="w-full mt-4 bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700"
+              onClick={() => setIsPriceOpen(false)}
+            >
+              Apply
+            </button>
+          </div>
+        )}
+      </div>
+
+      {/* Beds & Baths and Home Type moved to "More" dropdown for Medium Screens */}
+      {!isMediumScreen && (
+        <>
+          {/* <Dropdown>
               <DropdownTrigger>
                 <Button variant="bordered">Beds & Baths</Button>
               </DropdownTrigger>
@@ -152,24 +159,78 @@ export default function PropertySearchBar() {
                 <DropdownItem key="3b">3+ Beds</DropdownItem>
               </DropdownMenu>
             </Dropdown>
+ */}
 
-            <Dropdown>
-              <DropdownTrigger>
-                <Button variant="bordered">Home Type</Button>
-              </DropdownTrigger>
-              <DropdownMenu aria-label="Home Type">
-                <DropdownItem key="apartment">Apartment</DropdownItem>
-                <DropdownItem key="house">House</DropdownItem>
-                <DropdownItem key="condo">Condo</DropdownItem>
-              </DropdownMenu>
-            </Dropdown>
-          </>
-        )}
-        <PropertyFilter />
+          <Popover>
+            <PopoverTrigger asChild>
+              <Button variant="outline">Beds & Baths</Button>
+            </PopoverTrigger>
+            <PopoverContent className="">
+              <TooltipProvider>
+                <div className=" p-2 overflow-hidden  w-full ">
+                  <h3 className="font-semibold ">Bedrooms</h3>
+                  <div className=" mt-4  flex items-center">
+                    <CheckboxWithLabel label="1+ Beds" tooltip="Properties coming to market soon." />
+                    <CheckboxWithLabel label="2+ Beds" tooltip="Properties accepting secondary offers." />
+                    <CheckboxWithLabel label="3+ Beds" tooltip="Homes that have pending deals." />
+                  </div>
+                  <h3 className="font-semibold mt-4 ">Bathrooms</h3>
+                  <div className=" mt-4 flex items-center">
+                    <CheckboxWithLabel label="1+ Bath" tooltip="Properties coming to market soon." />
+                    <CheckboxWithLabel label="2+ Bath" tooltip="Properties accepting secondary offers." />
+                    <CheckboxWithLabel label="3+ Bath" tooltip="Homes that have pending deals." />
+                  </div>
+                </div>
+                <Button className="bg-blue-600 mt-4 w-full" variant="outline">apply</Button>
+              </TooltipProvider>
+            </PopoverContent>
+          </Popover>
 
-        {/* Save Search Button */}
-        <Button color="primary">Save Search</Button>
-      </div>
+          <Popover>
+            <PopoverTrigger asChild>
+              <Button variant="outline">Home Type</Button>
+            </PopoverTrigger>
+            <PopoverContent className="">
+              <TooltipProvider>
+                <div className=" p-2  w-full ">
+                  <h3 className="font-semibold ">Home Type</h3>
+                  <div className="space-y-2 mt-2">
+                    <CheckboxWithLabel label="apartment" tooltip="Properties coming to market soon." />
+                    <CheckboxWithLabel label="houses" tooltip="Properties accepting secondary offers." />
+                    <CheckboxWithLabel label="condo" tooltip="Homes that have pending deals." />
+                  </div>
+                </div>
+                <Button className="bg-blue-600 w-full" variant="outline">apply</Button>
+              </TooltipProvider>
+            </PopoverContent>
+          </Popover>
+        </>
+      )}
+      <PropertyFilter />
+
+      {/* Save Search Button */}
+      <Button color="primary">Save Search</Button>
     </div>
+    // </div >
   );
 }
+
+
+
+// Reusable Checkbox with Label & Optional Tooltip
+const CheckboxWithLabel = ({ label, tooltip }: { label: string; tooltip?: string }) => (
+  <div className="flex items-center gap-2">
+    <Checkbox id={label} />
+    <label htmlFor={label} className="text-sm ">
+      {label}
+    </label>
+    {tooltip && (
+      <Tooltip>
+        <TooltipTrigger>
+          <span className=" cursor-help"></span>
+        </TooltipTrigger>
+        <TooltipContent>{tooltip}</TooltipContent>
+      </Tooltip>
+    )}
+  </div>
+);
