@@ -3,16 +3,9 @@
 import PropertyFilter from "@/components/PropertyFilter"
 import { TooltipProvider, Tooltip, TooltipTrigger, TooltipContent } from "@/components/ui/tooltip";
 import { Checkbox } from "@/components/ui/checkbox";
-import { Label } from "@/components/ui/label";
-
 import PriceFilter from "@/components/pricefilter"
 import { useState, useEffect, useRef } from "react";
 import {
-  Dropdown,
-  DropdownTrigger,
-  DropdownMenu,
-  DropdownItem,
-
   Input,
 } from "@nextui-org/react";
 import { SearchIcon } from "@/app/Properties/icons/SearchIcon";
@@ -92,7 +85,7 @@ export default function PropertySearchBar() {
           </DropdownMenu>
         </Dropdown> */}
 
-      <PriceFilter priceOptions={[]} minPrice={""} setMinPrice={function (value: string): void {
+      <PriceFilter minPrice={""} setMinPrice={function (value: string): void {
         throw new Error("Function not implemented.");
       }} maxPrice={""} setMaxPrice={function (value: string): void {
         throw new Error("Function not implemented.");

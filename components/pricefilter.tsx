@@ -3,25 +3,26 @@ import { Button } from "@/components/ui/button";
 import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "@/components/ui/select";
 
 interface PriceFilterProps {
-    priceOptions: string[];
     minPrice: string;
     setMinPrice: (value: string) => void;
     maxPrice: string;
     setMaxPrice: (value: string) => void;
 }
 
-export default function PriceFilter({ priceOptions, minPrice, setMinPrice, maxPrice, setMaxPrice }: PriceFilterProps) {
+const priceOptions = Array.from({ length: 61 }, (_, i) => `$${(i * 500000).toLocaleString()}`);
+
+export default function PriceFilter({ minPrice, setMinPrice, maxPrice, setMaxPrice }: PriceFilterProps) {
     return (
         <Popover>
             <PopoverTrigger asChild>
                 <Button variant="outline">Price ▼</Button>
             </PopoverTrigger>
             <PopoverContent className="p-4 w-64">
-                <h3 className="text-gray-600 text-sm font-semibold mb-2">Price Range</h3>
+                <h3 className=" text-sm font-semibold mb-2">Price Range</h3>
                 <div className="flex justify-between items-center space-x-2">
                     {/* Minimum Price */}
                     <div className="flex flex-col w-1/2">
-                        <label className="text-xs text-gray-500">Minimum</label>
+                        <label className="text-xs ">Minimum</label>
                         <Select value={minPrice} onValueChange={setMinPrice}>
                             <SelectTrigger className="border p-2 rounded-md">
                                 <SelectValue placeholder="Min" />
@@ -33,10 +34,10 @@ export default function PriceFilter({ priceOptions, minPrice, setMinPrice, maxPr
                             </SelectContent>
                         </Select>
                     </div>
-                    <span className="text-gray-500"> - </span>
+                    <span className=""> - </span>
                     {/* Maximum Price */}
                     <div className="flex flex-col w-1/2">
-                        <label className="text-xs text-gray-500">Maximum</label>
+                        <label className="text-xs ">Maximum</label>
                         <Select value={maxPrice} onValueChange={setMaxPrice}>
                             <SelectTrigger className="border p-2 rounded-md">
                                 <SelectValue placeholder="Max" />
