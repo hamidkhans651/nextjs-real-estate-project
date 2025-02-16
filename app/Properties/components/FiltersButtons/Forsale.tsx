@@ -3,6 +3,8 @@
 import PropertyFilter from "@/components/PropertyFilter"
 import { TooltipProvider, Tooltip, TooltipTrigger, TooltipContent } from "@/components/ui/tooltip";
 import { Checkbox } from "@/components/ui/checkbox";
+import { Label } from "@/components/ui/label"
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import PriceFilter from "@/components/pricefilter"
 import { useState, useEffect, useRef } from "react";
 import {
@@ -59,7 +61,7 @@ export default function PropertySearchBar() {
   if (!isMounted) return null;
 
   return (
-    <div className="w-full px-4 py-2 flex flex-wrap md:flex-nowrap items-center justify-center gap-3 md:gap-2">
+    <div className="w-full px-4 py-2 flex flex-wrap md:flex-nowrap items-center justify-center gap-3 md:gap-2 border-t border-b border-gray-700">
       {/* Search Bar */}
       <div className="flex-grow md:w-auto relative">
         <Input
@@ -74,31 +76,13 @@ export default function PropertySearchBar() {
         />
       </div>
 
-      {/* Filter Buttons */}
-      {/* <div className="flex flex-wrap md:flex-nowrap gap-2 md:gap-3">
-        <Dropdown>
-          <DropdownTrigger>
-            <Button variant="bordered">For Sale</Button>
-          </DropdownTrigger>
-          <DropdownMenu aria-label="For Sale Options">
-            <DropdownItem key="sale">For Sale</DropdownItem>
-            <DropdownItem key="rent">For Rent</DropdownItem>
-            <DropdownItem key="sold">Sold</DropdownItem>
-          </DropdownMenu>
-        </Dropdown> */}
-
-      <PriceFilter minPrice={""} setMinPrice={function (value: string): void {
-        throw new Error("Function not implemented.");
-      }} maxPrice={""} setMaxPrice={function (value: string): void {
-        throw new Error("Function not implemented.");
-      }} />
 
 
       {/* Beds & Baths and Home Type moved to "More" dropdown for Medium Screens */}
       {!isMediumScreen && (
         <>
-
-
+          <Button variant="link">Find an Agent</Button>
+          <Button variant="link">Home Loans</Button>
           <Popover>
             <PopoverTrigger asChild>
               <Button variant="outline">Beds & Baths</Button>
@@ -142,15 +126,56 @@ export default function PropertySearchBar() {
               </TooltipProvider>
             </PopoverContent>
           </Popover>
+
+
+          <Popover>
+            <PopoverTrigger asChild>
+              <Button variant="outline">For Sale</Button>
+            </PopoverTrigger>
+            <PopoverContent className="">
+              <TooltipProvider>
+                <div className="p-2">
+                  <RadioGroup defaultValue="comfortable">
+                    <div className="flex items-center space-x-2">
+                      <RadioGroupItem value="default" id="r1" />
+                      <Label htmlFor="r1">Default</Label>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      <RadioGroupItem value="comfortable" id="r2" />
+                      <Label htmlFor="r2">Comfortable</Label>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      <RadioGroupItem value="compact" id="r3" />
+                      <Label htmlFor="r3">Compact</Label>
+                    </div>
+                  </RadioGroup>
+
+                </div>
+
+
+                <Button className="bg-blue-600 w-full" variant="outline">apply</Button>
+              </TooltipProvider>
+            </PopoverContent>
+          </Popover>
         </>
       )}
-      <PropertyFilter />
 
-      {/* Save Search Button */}
-      <Button color="primary">Save Search</Button>
-      <MailOpen />
+      <div className="flex gap-3 ">
+        <PriceFilter minPrice={""} setMinPrice={function (value: string): void {
+          throw new Error("Function not implemented.");
+        }} maxPrice={""} setMaxPrice={function (value: string): void {
+          throw new Error("Function not implemented.");
+        }} />
+        <PropertyFilter />
+        {/* Save Search Button */}
+        <Button color="primary">Save Search</Button>
+        <div className="md:block hidden">
+          <MailOpen />
+        </div>
+      </div>
+
     </div>
-    // </div >
+
   );
 }
 
