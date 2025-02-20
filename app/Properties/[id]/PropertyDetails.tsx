@@ -114,13 +114,15 @@ export default function PropertyDetails({ property }: PropertyDetailsProps) {
 
 
             <div className="flex ">
+
                 <Image
-                    className="rounded-md"
+                    className="rounded-md w-full h-[600px] object-cover"
                     src={property.imageUrl}
                     alt={property.title}
-                    width={12000}
+                    width={1200}
                     height={200}
                 />
+
             </div>
             {/* Overview Section */}
 
