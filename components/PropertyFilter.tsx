@@ -23,7 +23,7 @@ export default function PropertyFilter() {
         <PopoverTrigger asChild>
           <Button variant="outline">More</Button>
         </PopoverTrigger>
-        <PopoverContent className="w-80">
+        <PopoverContent className="w-80 max-h-[400px] overflow-y-auto">
           <TooltipProvider>
             <div className="space-y-6 p-4  w-full max-w-md">
 
