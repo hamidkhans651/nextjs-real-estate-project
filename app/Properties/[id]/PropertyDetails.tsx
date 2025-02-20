@@ -8,6 +8,8 @@ import SaveShare from "@/components/SaveShare"
 import { useState } from "react";
 import Image from "next/image";
 import { BedDouble } from "lucide-react";
+import { ChevronDown } from "lucide-react";
+
 
 type PropertyDetailsProps = {
     property: {
@@ -207,11 +209,11 @@ export default function PropertyDetails({ property }: PropertyDetailsProps) {
                         <h2 className="text-xl font-bold  py-6 ">
                             What's special</h2>
                         <div className="flex gap-2 p-2 text-black">
-                            <p className="bg-[#F1F1F4]" p-2 >{property.architecturalStyle}</p>
-                            <p className="bg-[#F1F1F4]" p-2 >{property.exterior}</p>
-                            <p className="bg-[#F1F1F4]" p-2 >{property.outdoorAmenities}</p>
-                            <p className="bg-[#F1F1F4]" p-2 >{property.indoorFeatures}</p>
-                            <p className="bg-[#F1F1F4]" m-10 >{property.propertyType}</p>
+                            <p className="bg-[#F1F1F4] rounded-sm  p-1" p-2 >{property.architecturalStyle}</p>
+                            <p className="bg-[#F1F1F4] rounded-sm p-1" p-2 >{property.exterior}</p>
+                            <p className="bg-[#F1F1F4] rounded-sm p-1" p-2 >{property.outdoorAmenities}</p>
+                            <p className="bg-[#F1F1F4] rounded-sm p-1 " p-2 >{property.indoorFeatures}</p>
+                            <p className="bg-[#F1F1F4] rounded-sm p-1" m-10 >{property.propertyType}</p>
                         </div>
 
                         <p>
@@ -221,9 +223,10 @@ export default function PropertyDetails({ property }: PropertyDetailsProps) {
                         </p>
                         <button
                             onClick={toggleShowMore}
-                            className="text-blue-500 underline mt-2"
+                            className="flex items-center text-blue-500 underline mt-2 transition-transform"
                         >
                             {showMore ? "Show Less" : "Show More"}
+                            <ChevronDown className={`ml-1 transition-transform ${showMore ? "rotate-180" : "rotate-0"}`} size={16} />
                         </button>
 
                         <div className="flex gap-2 py-2">

@@ -3,7 +3,6 @@
 import { useState, useEffect } from "react";
 import { Input, Pagination, PaginationItemRenderProps, PaginationItemType } from "@nextui-org/react";
 import { Card, CardBody, CardFooter, Image, Button } from "@nextui-org/react";
-import { SearchIcon } from "./icons/SearchIcon";
 import { HeartIcon } from "./icons/HeartIcon";
 import { Spinner } from "@heroui/react"; // Import Spinner component
 import { useRouter } from "next/navigation";
