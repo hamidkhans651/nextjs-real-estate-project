@@ -7,10 +7,6 @@ import { Label } from "@/components/ui/label"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import PriceFilter from "@/components/pricefilter"
 import { useState, useEffect, useRef } from "react";
-import {
-  Input,
-} from "@nextui-org/react";
-import { SearchIcon } from "@/app/Properties/icons/SearchIcon";
 import { Popover, PopoverTrigger, PopoverContent } from "@/components/ui/popover";
 import { Button } from "@/components/ui/button";
 import { MailOpen } from "lucide-react";
@@ -61,22 +57,7 @@ export default function PropertySearchBar() {
   if (!isMounted) return null;
 
   return (
-    <div className="w-full px-4 py-2 flex flex-wrap md:flex-nowrap items-center justify-center gap-3 md:gap-2 border-t border-b border-gray-700">
-      {/* Search Bar */}
-      <div className="flex-grow md:w-auto relative">
-        <Input
-          label=""
-          isClearable
-          radius="lg"
-          placeholder="Address, neighborhood, city, ZIP"
-          className="w-full md:w-96"
-          startContent={
-            <SearchIcon className="pointer-events-none flex-shrink-0" />
-          }
-        />
-      </div>
-
-
+    <div className="w-full px-4 py-2 flex flex-wrap md:flex-nowrap items-center justify-center gap-3 md:gap-2">
 
       {/* Beds & Baths and Home Type moved to "More" dropdown for Medium Screens */}
       {!isMediumScreen && (
