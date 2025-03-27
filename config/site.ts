@@ -1,4 +1,3 @@
-export type SiteConfig = typeof siteConfig;
 
 import LogoutButton from "@/components/auth/logout-button";
 
@@ -25,12 +24,13 @@ export const siteConfig = {
     {
       label: "Dashboard",
       href: "/admin",
+      auth: true
     },
     {
       label: "Login",
       href: "/login",
+      auth: false
     },
-
   ],
   navMenuItems: [
     {
@@ -40,6 +40,7 @@ export const siteConfig = {
     {
       label: "Dashboard",
       href: "/admin",
+      auth: true
     },
     {
       label: "Properties",
@@ -64,6 +65,7 @@ export const siteConfig = {
     {
       label: "login",
       href: "/login",
+      auth: false
     },
   ],
   links: {
@@ -74,3 +76,5 @@ export const siteConfig = {
     sponsor: "https://patreon.com",
   },
 };
+
+export type SiteConfig = typeof siteConfig;

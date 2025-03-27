@@ -8,7 +8,7 @@
 //   Avatar,
 // } from "@nextui-org/react";
 import LogoutButton from "@/components/auth/logout-button";
-
+import { useSession } from "next-auth/react";
 
 import {
   Navbar as NextUINavbar,
@@ -34,6 +34,11 @@ import { ThemeSwitch } from "@/components/theme-switch";
 import DropdownButton from "@/app/admin/components/DropdownButton";
 
 export const Navbar = () => {
+
+
+
+  
+  const { data: session } = useSession();
   const searchInput = (
     <Input
       aria-label="Search"
@@ -53,9 +58,18 @@ export const Navbar = () => {
     />
   );
 
+  const filteredNavItems = siteConfig.navItems.filter(item => {
+    if ('auth' in item) return item.auth ? !!session : !session;
+    return true;
+  });
+  
+  const filteredNavMenuItems = siteConfig.navMenuItems.filter(item => {
+    if ('auth' in item) return item.auth ? !!session?.user : !session?.user;
+    return true;
+  });
+
   return (
     <main className="">
-
       <NextUINavbar maxWidth="xl" position="sticky">
         {/* Left-side Branding */}
         <NavbarContent className="basis-1/5 sm:basis-full" justify="start">
@@ -68,10 +82,9 @@ export const Navbar = () => {
             </NextLink>
           </NavbarBrand>
 
-          {/* Navbar Links (Desktop) */}
-          <ul
-            className="hidden md:flex  gap-9 justify-center md:ml-40 lg:ml-80" >
-            {siteConfig.navItems.map((item) => (
+          {/* Updated Desktop Nav Items */}
+          <ul className="hidden md:flex gap-9 justify-center md:ml-40 lg:ml-80">
+            {filteredNavItems.map((item) => (
               <NavbarItem key={item.href}>
                 <NextLink
                   className={clsx(
@@ -135,19 +148,16 @@ export const Navbar = () => {
         </NavbarContent>
 
         {/* Mobile Menu */}
-        <NavbarMenu >
-          {/* Mobile Search Input */}
+        <NavbarMenu>
           {searchInput}
-
-          {/* Mobile Navbar Links */}
-          <div className="mx-4 mt-2 flex flex-col gap-2  ">
-            {siteConfig.navMenuItems.map((item, index) => (
+          <div className="mx-4 mt-2 flex flex-col gap-2">
+            {filteredNavMenuItems.map((item, index) => (
               <NavbarMenuItem key={`${item}-${index}`}>
                 <Link
                   color={
                     index === 2
                       ? "primary"
-                      : index === siteConfig.navMenuItems.length - 1
+                      : index === filteredNavMenuItems.length - 1
                         ? "danger"
                         : "foreground"
                   }
@@ -156,13 +166,12 @@ export const Navbar = () => {
                   {item.label}
                 </Link>
               </NavbarMenuItem>
-
             ))}
-            <button className="flex justify-start ">
-              <LogoutButton />
-            </button>
-
-
+            {session && (
+              <button className="flex justify-start">
+                <LogoutButton />
+              </button>
+            )}
           </div>
         </NavbarMenu>
       </NextUINavbar>

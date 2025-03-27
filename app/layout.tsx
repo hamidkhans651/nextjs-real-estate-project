@@ -4,6 +4,8 @@ import clsx from "clsx";
 import { Toaster } from "react-hot-toast"; // Import the Toaster
 import { Providers } from "./providers";
 import { siteConfig } from "@/config/site";
+import { SessionProvider } from "next-auth/react";
+
 // import { fontSans } from "@/config/fonts";
 
 // Set metadata for light and dark theme color scheme
@@ -32,6 +34,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
+    <SessionProvider>
+
     <html suppressHydrationWarning lang="en">
       <head />
       <body
@@ -39,6 +43,7 @@ export default function RootLayout({
           "min-h-screen bg-background font-sans antialiased",
         )}
       >
+
         <Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
           {/* Toaster for notifications */}
           <Toaster position="top-center" reverseOrder={false} />
@@ -48,5 +53,7 @@ export default function RootLayout({
         </Providers>
       </body>
     </html>
+    </SessionProvider>
+
   );
 }
