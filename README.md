@@ -1,9 +1,7 @@
-[Project Screenshot](assets/example-image.png.jpg "Project-screenshort")
-fulstack  web appliaction for real estate with ai
-live Demo here= https://hamidestate.vercel.app/
+# Next.js Real Estate Project
+An open-source, full-stack real estate application built with **Next.js**, **Tailwind CSS**, **ShadCN UI**, and **Drizzle ORM for property management and listings.
 
-
-
+# test user using this credentials 
 email: testUser232@gmail.com
 username: testuser
 password: testuser2230!#
