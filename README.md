@@ -3,5 +3,3 @@ An open-source, full-stack real estate application built with **Next.js**, **Tai
 
 # test user using this credentials 
 email: testUser232@gmail.com
-username: testuser
-password: testuser2230!#
