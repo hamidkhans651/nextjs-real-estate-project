@@ -3,7 +3,7 @@ An open-source, full-stack real estate application built with **Next.js**, **Tai
 
 
 
-## test user details
-# username: usertest
-# usertest@gmail.com
-# Password34343@
+# test user details
+username: usertest
+Email: usertest@gmail.com
+Password: Password34343@
