@@ -29,6 +29,19 @@ body {
 .custom-dropdown-menu {
   margin: 0;
   padding: 0;
-  box-shadow: none; /* Optional: Remove default shadow if present */
-  border: none; /* Optional: Adjust border if necessary */
+  box-shadow: none;
+  /* Optional: Remove default shadow if present */
+  border: none;
+  /* Optional: Adjust border if necessary */
+}
+
+/* globals.css */
+.prose {
+  max-width: 65ch;
+  line-height: 1.6;
+}
+
+.prose ul {
+  list-style-type: disc;
+  margin-left: 1.5rem;
 }

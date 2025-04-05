@@ -1,5 +1,4 @@
-'use client'
-
+"use client";
 
 import { title, subtitle } from "@/components/primitives";
 import { SearchIcon } from "@/components/icons";
@@ -8,7 +7,6 @@ import { Input } from "@nextui-org/input";
 import Midsections from "../components/Midsections";
 import { Navbar } from "@/components/navbar";
 import Footer from "@/components/Footer";
-
 
 export default async function Home() {
   // const session = await auth();
@@ -42,20 +40,16 @@ export default async function Home() {
         {/* Section with background image and text */}
         <section
           className="w-full h-screen  flex flex-col items-center justify-center gap-4 bg-cover bg-center"
-          style={{ backgroundImage: 'url(/assets/images/prop3.webp)' }}
+          style={{ backgroundImage: "url(/assets/images/prop3.webp)" }}
         >
           <div className="inline-block max-w-xl text-center pt-16 text-2xl text-white">
-            <span className={title()}>Find the right&nbsp;</span>
-            <span className={title({ color: "violet" })}>home&nbsp;</span>
-            <br />
+            <span className={title()}>Search properties for sale in&nbsp;</span>
             <span className={title()}>
-              at the right&nbsp;
-              <span className={title({ color: "violet" })}>price&nbsp;</span>
-
+              &nbsp;
+              <span className={title({ color: "violet" })}> USA&nbsp;</span>
             </span>
-            <div className={subtitle({ class: "mt-4 text-white" })} >
+            <div className={subtitle({ class: "mt-4 text-white" })}>
               {/* Beautiful, fast, and modern React UI l */}
-
             </div>
           </div>
 
@@ -66,7 +60,6 @@ export default async function Home() {
         {/* /* Midsections or additional content below the hero */}
         <Midsections />
         <Footer />
-
       </main>
     </main>
   );
