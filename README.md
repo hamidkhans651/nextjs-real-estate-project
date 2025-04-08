@@ -10,3 +10,4 @@ Password: Password34343@
 
 @facebook authenticaion
 @twetter verification 
+@google
