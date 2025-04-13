@@ -1,5 +1,5 @@
 {
-  "id": "19e4e956-d0de-4324-8d50-0be9ddba6b29",
+  "id": "8aaf71c1-0d36-4e20-8332-2ef4fd257327",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "7",
   "dialect": "postgresql",
@@ -14,6 +14,12 @@
           "primaryKey": true,
           "notNull": true
         },
+        "zpid": {
+          "name": "zpid",
+          "type": "varchar(50)",
+          "primaryKey": false,
+          "notNull": true
+        },
         "title": {
           "name": "title",
           "type": "varchar(255)",
@@ -22,6 +28,12 @@
         },
         "description": {
           "name": "description",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "propdetails": {
+          "name": "propdetails",
           "type": "text",
           "primaryKey": false,
           "notNull": true
@@ -62,6 +74,36 @@
           "primaryKey": false,
           "notNull": true
         },
+        "LotSize": {
+          "name": "LotSize",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "HOADues": {
+          "name": "HOADues",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "YearBuilt": {
+          "name": "YearBuilt",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "GarageSqFt": {
+          "name": "GarageSqFt",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "BasementSqFt": {
+          "name": "BasementSqFt",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
         "property_type": {
           "name": "property_type",
           "type": "varchar(255)",
@@ -74,10 +116,332 @@
           "primaryKey": false,
           "notNull": true,
           "default": true
+        },
+        "appliances": {
+          "name": "appliances",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "basement": {
+          "name": "basement",
+          "type": "varchar(50)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "floor_covering": {
+          "name": "floor_covering",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "cooling_type": {
+          "name": "cooling_type",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "heating_type": {
+          "name": "heating_type",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "heating_fuel": {
+          "name": "heating_fuel",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "rooms": {
+          "name": "rooms",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "indoor_features": {
+          "name": "indoor_features",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "building_amenities": {
+          "name": "building_amenities",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "architectural_style": {
+          "name": "architectural_style",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "exterior": {
+          "name": "exterior",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "outdoor_amenities": {
+          "name": "outdoor_amenities",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "parking": {
+          "name": "parking",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "roof": {
+          "name": "roof",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "view": {
+          "name": "view",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
         }
       },
       "indexes": {},
       "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "properties_zpid_unique": {
+          "name": "properties_zpid_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "zpid"
+          ]
+        }
+      },
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.property_details": {
+      "name": "property_details",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "zpid": {
+          "name": "zpid",
+          "type": "varchar(50)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "walk_score": {
+          "name": "walk_score",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "transit_score": {
+          "name": "transit_score",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "bike_score": {
+          "name": "bike_score",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "year_built": {
+          "name": "year_built",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "tax_history": {
+          "name": "tax_history",
+          "type": "jsonb",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "price_history": {
+          "name": "price_history",
+          "type": "jsonb",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "zestimate": {
+          "name": "zestimate",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "rental_estimate": {
+          "name": "rental_estimate",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "property_details_zpid_properties_zpid_fk": {
+          "name": "property_details_zpid_properties_zpid_fk",
+          "tableFrom": "property_details",
+          "tableTo": "properties",
+          "columnsFrom": [
+            "zpid"
+          ],
+          "columnsTo": [
+            "zpid"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.property_images": {
+      "name": "property_images",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "zpid": {
+          "name": "zpid",
+          "type": "varchar(50)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "image_url": {
+          "name": "image_url",
+          "type": "varchar(500)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "type": {
+          "name": "type",
+          "type": "varchar(50)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "property_images_zpid_properties_zpid_fk": {
+          "name": "property_images_zpid_properties_zpid_fk",
+          "tableFrom": "property_images",
+          "tableTo": "properties",
+          "columnsFrom": [
+            "zpid"
+          ],
+          "columnsTo": [
+            "zpid"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.saved_properties": {
+      "name": "saved_properties",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "user_id": {
+          "name": "user_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "property_id": {
+          "name": "property_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "saved_properties_user_id_user_id_fk": {
+          "name": "saved_properties_user_id_user_id_fk",
+          "tableFrom": "saved_properties",
+          "tableTo": "user",
+          "columnsFrom": [
+            "user_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "saved_properties_property_id_properties_id_fk": {
+          "name": "saved_properties_property_id_properties_id_fk",
+          "tableFrom": "saved_properties",
+          "tableTo": "properties",
+          "columnsFrom": [
+            "property_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
       "compositePrimaryKeys": {},
       "uniqueConstraints": {},
       "policies": {},
