@@ -8,7 +8,7 @@ username: usertest
 Email: usertest@gmail.com
 Password: Password34343@
 
-@facebook authenticaion
+@facebook authenticaionjj
 @twetter verification 
 @google
 @discord
