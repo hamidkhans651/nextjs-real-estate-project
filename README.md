@@ -1,5 +1,16 @@
 # Next.js Real Estate Project Overview
 
+
+## created user
+
+username: usertest
+Email: usertest@gmail.com
+Password: Password34343@
+
+
+
+
+
 ## Project Structure
 
 ```
