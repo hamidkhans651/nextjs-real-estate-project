@@ -1,4 +1,3 @@
-
 import LogoutButton from "@/components/auth/logout-button";
 
 export const siteConfig = {
@@ -22,9 +21,16 @@ export const siteConfig = {
       href: "/Properties",
     },
     {
-      label: "Dashboard",
+      label: "Admin Dashboard",
       href: "/admin",
-      auth: true
+      auth: true,
+      adminOnly: true
+    },
+    {
+      label: "My Dashboard",
+      href: "/dashboard",
+      auth: true,
+      userOnly: true
     },
     {
       label: "Login",
@@ -38,9 +44,16 @@ export const siteConfig = {
       href: "/",
     },
     {
-      label: "Dashboard",
+      label: "Admin Dashboard",
       href: "/admin",
-      auth: true
+      auth: true,
+      adminOnly: true
+    },
+    {
+      label: "My Dashboard",
+      href: "/dashboard",
+      auth: true,
+      userOnly: true
     },
     {
       label: "Properties",

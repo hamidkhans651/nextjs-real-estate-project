@@ -13,11 +13,26 @@ export async function middleware(req: NextRequest) {
     return NextResponse.redirect(loginUrl);
   }
 
+  // Check if trying to access admin routes
+  if (req.nextUrl.pathname.startsWith("/admin")) {
+    if (session.user && 'role' in session.user && session.user.role !== "admin") {
+      // Redirect non-admin users to home page
+      const homeUrl = new URL("/", req.url);
+      return NextResponse.redirect(homeUrl);
+    }
+  }
+
+  // Check if trying to access user dashboard
+  if (req.nextUrl.pathname.startsWith("/dashboard")) {
+    // Allow access to user dashboard for all authenticated users
+    return NextResponse.next();
+  }
+
   // Allow the request to continue
   return NextResponse.next();
 }
 
-// Apply this middleware to all routes inside the /dashboard folder
+// Apply this middleware to all routes inside the /admin folder and /dashboard
 export const config = {
-  matcher: "/dashboard/page.tsx", // Protect all routes under /dashboard
+  matcher: ["/admin/:path*", "/dashboard/:path*"],
 };

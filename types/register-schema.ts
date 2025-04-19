@@ -2,6 +2,7 @@ import * as z from "zod";
 
 
 const SkillLevelEnum = z.enum(["Buyer", "Seller", "Advanced", "Expert", "Master"]);
+const RoleEnum = z.enum(["user", "admin"]);
 
 export const RegisterSchema = z.object({
   email: z.string().email(),
@@ -11,4 +12,5 @@ export const RegisterSchema = z.object({
   location: z.string(),
   confirmPassword: z.string(),
   skillLevel: SkillLevelEnum,
+  role: RoleEnum.default("user"),
 });

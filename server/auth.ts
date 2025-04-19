@@ -5,10 +5,10 @@ import { eq } from "drizzle-orm"
 import bcrypt from "bcryptjs"
 import Credentials from "next-auth/providers/credentials"
 import { LoginSchema } from "@/types/login-schema"
-import { users } from "./schema"
+import { users, RoleEnum } from "./schema"
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
-  adapter: DrizzleAdapter(db),
+  adapter: DrizzleAdapter(db) as any,
   providers: [
     Credentials({
       authorize: async (credentials) => {
@@ -22,7 +22,6 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
           })
           if (!user || !user.password) return null
 
-
           const passwordMatch = await bcrypt.compare(password, user.password)
           if (passwordMatch) return user
         }
@@ -32,6 +31,22 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
   ],
   pages: {
     signIn: "/login"
+  },
+  callbacks: {
+    async jwt({ token, user }) {
+      if (user) {
+        token.role = user.role as typeof RoleEnum.enumValues[number]
+        token.id = user.id
+      }
+      return token
+    },
+    async session({ session, token }) {
+      if (session?.user) {
+        session.user.role = token.role as typeof RoleEnum.enumValues[number]
+        session.user.id = token.id as string
+      }
+      return session
+    }
   },
   secret: process.env.NEXTAUTH_SECRET,
   session: {

@@ -59,12 +59,28 @@ export const Navbar = () => {
   );
 
   const filteredNavItems = siteConfig.navItems.filter(item => {
-    if ('auth' in item) return item.auth ? !!session : !session;
+    if ('auth' in item) {
+      if (item.adminOnly) {
+        return item.auth ? !!session?.user && 'role' in session.user && session.user.role === 'admin' : !session;
+      }
+      if (item.userOnly) {
+        return item.auth ? !!session?.user && (!('role' in session.user) || session.user.role !== 'admin') : !session;
+      }
+      return item.auth ? !!session : !session;
+    }
     return true;
   });
   
   const filteredNavMenuItems = siteConfig.navMenuItems.filter(item => {
-    if ('auth' in item) return item.auth ? !!session?.user : !session?.user;
+    if ('auth' in item) {
+      if (item.adminOnly) {
+        return item.auth ? !!session?.user && 'role' in session.user && session.user.role === 'admin' : !session;
+      }
+      if (item.userOnly) {
+        return item.auth ? !!session?.user && (!('role' in session.user) || session.user.role !== 'admin') : !session;
+      }
+      return item.auth ? !!session : !session;
+    }
     return true;
   });
 

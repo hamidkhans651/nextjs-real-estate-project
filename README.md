@@ -8,6 +8,15 @@ username: usertest
 Email: usertest@gmail.com
 Password: Password34343@
 
+
+
+
+# test user details
+username: usertest232
+Email: usertest2323@gmail.com
+Password: Password342323343@
+
+
 @facebook authenticaion
 @twetter verification 
 @google
@@ -18,3 +27,15 @@ docume
 final year project 
 
 fina
+
+
+
+
+final test user common
+asiyakahn232@gmail.com
+asiya32323@H
+
+
+second admin test
+admin232test22@gmail.com
+admin232lahre34@@
