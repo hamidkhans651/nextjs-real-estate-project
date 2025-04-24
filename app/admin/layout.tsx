@@ -15,8 +15,8 @@ export default async function Layout({
     // Perform session check
     const session = await auth();
 
-    // If no session, redirect to login
-    if (!session) {
+    // If no session or not admin, redirect to login
+    if (!session || !session.user || !('role' in session.user) || session.user.role !== "admin") {
         redirect("/login");
     }
 

@@ -7,7 +7,9 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "generate": "drizzle-kit generate:pg",
+    "migrate": "tsx server/migrate.ts"
   },
   "dependencies": {
     "@auth/drizzle-adapter": "^1.7.4",
@@ -32,6 +34,7 @@
     "@nextui-org/switch": "^2.0.34",
     "@nextui-org/system": "^2.4.5",
     "@nextui-org/theme": "^2.4.4",
+    "@paralleldrive/cuid2": "^2.2.2",
     "@radix-ui/react-avatar": "^1.1.2",
     "@radix-ui/react-checkbox": "^1.1.4",
     "@radix-ui/react-collapsible": "^1.1.2",
@@ -48,6 +51,7 @@
     "@radix-ui/react-slot": "^1.1.1",
     "@radix-ui/react-toast": "^1.2.6",
     "@radix-ui/react-tooltip": "^1.1.6",
+    "@sendinblue/client": "^3.3.1",
     "@types/bcrypt": "^5.0.2",
     "axios": "^1.7.9",
     "bcrypt": "^5.1.1",
@@ -55,6 +59,7 @@
     "bcryptjs": "^2.4.3",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "date-fns": "^4.1.0",
     "dotenv": "^16.4.7",
     "drizzle-orm": "^0.38.4",
     "framer-motion": "^11.15.0",
@@ -72,6 +77,8 @@
     "react-hot-toast": "^2.4.1",
     "react-responsive": "^10.0.0",
     "recharts": "^2.15.1",
+    "resend": "^4.3.0",
+    "sonner": "^2.0.3",
     "tailwind-merge": "^2.6.0",
     "tailwindcss-animate": "^1.0.7",
     "zod": "^3.24.1"

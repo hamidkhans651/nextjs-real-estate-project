@@ -8,6 +8,7 @@ import { eq } from "drizzle-orm";
 import { users } from "../schema";
 import { signIn } from "../auth";
 import { redirect } from "next/navigation";
+import { headers } from "next/headers";
 
 export const LoginAccount = actionClient
   .schema(LoginSchema)
@@ -27,14 +28,22 @@ export const LoginAccount = actionClient
         return { error: "Invalid email or password" };
       }
 
+      // Check if the user is trying to access admin routes
+      const headersList = await headers();
+      const referer = headersList.get("referer") || "";
+      const isAdminRoute = referer.includes("/admin");
+      
+      // If trying to access admin routes, verify the user is an admin
+      if (isAdminRoute && user.role !== "admin") {
+        return { error: "You do not have permission to access the admin area" };
+      }
+
       await signIn("credentials", {
         email,
         password,
         redirect: false
       }) 
     
-
-      redirect("/")
+      return { success: "Login successful" };
     }
-
   );

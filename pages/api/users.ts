@@ -61,16 +61,46 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { db } from "@/server/db";
 import { users } from "@/server/schema";
+import { sql } from "drizzle-orm";
+import { auth } from "@/server/auth";
 
-export default async function handler(
-    req: NextApiRequest,
-    res: NextApiResponse
-) {
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+  // Check if the current user is an admin
+  const session = await auth();
+  if (!session || !session.user || !('role' in session.user) || session.user.role !== "admin") {
+    return res.status(403).json({ error: "Unauthorized" });
+  }
+
+  if (req.method === "GET") {
     try {
-        const allUsers = await db.select().from(users);
-        res.status(200).json(allUsers);
+      const { page = 1, search = "" } = req.query;
+      const limit = 10; // Number of users per page
+      const offset = (Number(page) - 1) * limit;
+
+      // Fetch users with pagination and search
+      const result = await db
+        .select()
+        .from(users)
+        .where(sql`${users.firstName} ILIKE ${`%${search}%`}`)
+        .offset(offset)
+        .limit(limit);
+
+      const totalUsers = await db
+        .select({ count: sql<number>`COUNT(${users.id})` })
+        .from(users);
+
+      res.status(200).json({
+        users: result,
+        totalUsers: totalUsers[0].count,
+        currentPage: Number(page),
+        totalPages: Math.ceil(totalUsers[0].count / limit),
+      });
     } catch (error) {
-        console.error("Error fetching users:", error);
-        res.status(500).json({ error: "Internal Server Error" });
+      console.error("Error fetching users:", error);
+      res.status(500).json({ error: "Failed to fetch users" });
     }
+  } else {
+    res.setHeader("Allow", ["GET"]);
+    res.status(405).end(`Method ${req.method} Not Allowed`);
+  }
 }

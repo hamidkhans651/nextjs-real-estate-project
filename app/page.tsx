@@ -42,15 +42,13 @@ export default async function Home() {
           className="w-full h-screen  flex flex-col items-center justify-center gap-4 bg-cover bg-center"
           style={{ backgroundImage: "url(/assets/images/prop3.webp)" }}
         >
-          <div className="inline-block max-w-xl text-center pt-16 text-2xl text-white">
-            <span className={title()}>Search properties for sale in&nbsp;</span>
+          <div className="inline-block max-w-xl text-center text-6xl font-bold text-black">
+          Search properties for sale in
             <span className={title()}>
               &nbsp;
-              <span className={title({ color: "violet" })}> USA&nbsp;</span>
+              <span className={`${title({ color: "blue" })} text-glow-blue`}> USA&nbsp;</span>
             </span>
-            <div className={subtitle({ class: "mt-4 text-white" })}>
-              {/* Beautiful, fast, and modern React UI l */}
-            </div>
+         
           </div>
 
           {/* /* Your search input */}

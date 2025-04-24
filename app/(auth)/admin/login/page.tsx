@@ -21,7 +21,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 
-export default function LoginForm() {
+export default function AdminLoginForm() {
   const router = useRouter();
   const [formData, setFormData] = useState({
     email: "",
@@ -33,13 +33,13 @@ export default function LoginForm() {
     defaultValues: formData,
   });
 
-  const { execute } = useAction(LoginAccount, {
+  const { execute, status } = useAction(LoginAccount, {
     onSuccess(data) {
       if (data.data?.error) {
         toast.error(data.data.error);
       } else if (data.data?.success) {
-        toast.success(data.data?.success);
-        router.push("/dashboard");
+        toast.success(data.data.success);
+        router.push("/admin");
       }
     },
   });
@@ -51,14 +51,14 @@ export default function LoginForm() {
   return (
     <div className="w-full p-8 flex min-h-screen flex-col bg-[#313131]">
       <div className="mb-8">
-        <h1 className="text-2xl font-bold mb-2">Login</h1>
+        <h1 className="text-2xl font-bold mb-2">Admin Login</h1>
       </div>
 
       <div className="flex-grow flex flex-col justify-center max-w-md mx-auto w-full">
         <div>
           <h3 className="text-3xl font-bold">Welcome Back</h3>
           <p className="text-sm mt-3">
-            👋 Login to your account
+            👋 Login to your admin account
           </p>
           <div className="mt-10">
             <Form {...form}>
@@ -91,17 +91,8 @@ export default function LoginForm() {
                   )}
                 />
 
-                <div className="flex justify-end">
-                  <Link 
-                    href="/forgot-password" 
-                    className="text-sm text-blue-500 hover:text-blue-700 hover:underline"
-                  >
-                    Forgot Password?
-                  </Link>
-                </div>
-
-                <Button type="submit" className="w-full">
-                  Login
+                <Button type="submit" className="w-full" disabled={status === "executing"}>
+                  {status === "executing" ? "Logging in..." : "Login as Admin"}
                 </Button>
               </form>
             </Form>
@@ -109,26 +100,18 @@ export default function LoginForm() {
         </div>
       </div>
 
-      <div className="text-center space-y-2 mt-6">
-        <p className="text-sm">
-          Don't have an account?{" "}
-          <Link href="/register" className="text-blue-600 hover:underline">
-            Register Here
-          </Link>
-        </p>
-        <p className="text-sm">
-          Are you an admin?{" "}
-          <Link href="/admin/login" className="text-blue-600 hover:underline">
-            Login to Admin Panel
-          </Link>
-        </p>
-        <p className="text-sm">
-          Want to register as an admin?{" "}
-          <Link href="/admin/register" className="text-blue-600 hover:underline">
-            Register as Admin
-          </Link>
-        </p>
-      </div>
+      <p className="text-center text-sm mt-6">
+        Don't have an admin account?{" "}
+        <Link href="/admin/register" className="text-blue-600 hover:underline">
+          Register Here
+        </Link>
+      </p>
+      <p className="text-center text-sm mt-6">
+        Want to login as a regular user?{" "}
+        <Link href="/login" className="text-blue-600 hover:underline">
+          Login Here
+        </Link>
+      </p>
     </div>
   );
-}
+} 

@@ -15,6 +15,8 @@ export const SkillLevelEnum = pgEnum("skill_level", [
   "Buyer", "Seller", "Advanced", "Expert", "Master",
 ]);
 
+export const RoleEnum = pgEnum("role", ["user", "admin"]);
+
 export const users = pgTable("user", {
   id: text("id")
     .primaryKey()
@@ -26,6 +28,9 @@ export const users = pgTable("user", {
   image: text("image").default("no-image"),
   password: text("password"),
   skillLevel: SkillLevelEnum("skill_level").notNull().default("Buyer"),
+  role: RoleEnum("role").notNull().default("user"),
+  resetToken: text("reset_token"),
+  resetTokenExpires: timestamp("reset_token_expires", { withTimezone: true }),
 })
 
 

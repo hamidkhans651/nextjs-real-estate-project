@@ -21,6 +21,7 @@ export default function MultiStepForm() {
     firstName: "",
     location: "",
     lastName: "",
+    role: "user",
   });
 
   const handleNextStep = (data: any) => {
