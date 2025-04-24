@@ -3,6 +3,7 @@
 import React from 'react'
 import { useState } from 'react';
 import { useTheme } from 'next-themes';  // Import useTheme from next-themes
+import { AnimatedTestimonialsDemo } from './AnimatedTestimonialsDemo';
 
 
 const Midsections = () => {
@@ -35,6 +36,8 @@ const Midsections = () => {
         <div className="container mx-auto text-center">
           <h2 className="text-3xl font-semibold mb-8">Our Services</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+
+
             {/* Card 1 - Buy */}
             <div className="  border-solid border-2 shadow-2xl rounded-lg p-6 flex flex-col items-center text-center"
             >
@@ -74,6 +77,10 @@ const Midsections = () => {
           </div>
         </div>
       </section>
+
+
+      <AnimatedTestimonialsDemo />
+
 
       <section
         className={`py-16 px-4 sm:px-6 lg:px-8 ${theme === 'dark' ? 'bg-black-900 text-white border-white' : 'bg-gray-100 text-black border-black'}`}  // Apply conditional styling based on theme

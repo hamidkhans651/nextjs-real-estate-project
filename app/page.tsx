@@ -17,9 +17,9 @@ export default async function Home() {
         inputWrapper: "bg-default-100",
         input: "text-sm",
       }}
-      endContent={
-        <Kbd className="hidden lg:inline-block" keys={["command"]}></Kbd>
-      }
+      // endContent={
+      //   <Kbd className="hidden lg:inline-block" keys={["command"]}></Kbd>
+      // }
       labelPlacement="outside"
       placeholder="Search..."
       startContent={
