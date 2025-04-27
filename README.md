@@ -7,6 +7,7 @@ A modern real estate platform built with Next.js, featuring property listings, u
 ![Real Estate Platform Screenshot](public/assets/screenshots/homepage.png)
 
 ## Features
+xsd
 
 - 🏠 Property Search & Listings
 - 👥 User Authentication
