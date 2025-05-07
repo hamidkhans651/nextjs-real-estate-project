@@ -2,7 +2,7 @@
 
 A modern real estate platform built with Next.js, featuring property listings, user authentication, and advanced search capabilities.
 
-#Full documentation of this project
+# Full documentation of this project
 
 https://docs.google.com/document/d/1MmFTF8dsSs-UNtZP1WYt43bkHuU26yQvh8CowxaQTck/edit?usp=sharing
 
