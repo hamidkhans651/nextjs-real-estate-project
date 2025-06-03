@@ -68,7 +68,7 @@ export default function MultiStepForm() {
   };
 
   return (
-    <div className="w-full p-8 flex h-screen flex-col bg-[#313131]">
+    <div className="w-full p-8 flex h-screen flex-col ">
       <div className="mb-8">
         <h1 className="text-2xl font-bold mb-2">
           {stepText()}

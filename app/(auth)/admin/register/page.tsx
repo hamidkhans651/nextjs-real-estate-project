@@ -62,7 +62,7 @@ export default function AdminRegisterForm() {
   };
 
   return (
-    <div className="w-full p-8 flex min-h-screen flex-col bg-[#313131]">
+    <div className="w-full p-8 flex min-h-screen flex-col ">
       <div className="mb-8">
         <h1 className="text-2xl font-bold mb-2">Admin Registration</h1>
       </div>
