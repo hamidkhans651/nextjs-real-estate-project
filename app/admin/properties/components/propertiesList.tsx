@@ -3,7 +3,6 @@
 import { useState, useEffect } from "react";
 import { Spinner } from "@heroui/react"; // Import the Spinner component
 import { Card, CardBody, CardFooter, Image, Button } from "@nextui-org/react";
-import { ChevronIcon } from "@/app/Properties/icons/ChevronIcon";
 import { Property } from "@/types/property";
 import Link from "next/link";
 
